@@ -17,6 +17,8 @@ public class loginTu extends javax.swing.JDialog {
     public loginTu(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setResizable(false);
+        setLocationRelativeTo(null);
     }
 
     /**
