@@ -5,6 +5,10 @@
  */
 package GiaoDien;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
+
 /**
  *
  * @author dfg
@@ -17,8 +21,34 @@ public class LoadingTu extends javax.swing.JDialog {
     public LoadingTu(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        inti();
     }
-
+     void inti(){
+          new Timer(50, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+              int value = pgbload.getValue();
+                if (value < 100) {
+                    pgbload.setValue(value+1);
+                }
+                if (value ==20) {
+                    lbLoading.setText("Đang Khởi Tạo......");
+                }
+                 if (value ==50) {
+                    lbLoading.setText("Khởi Động Dữ Liệu......");
+                }
+                  if (value ==90) {
+                    lbLoading.setText("Khởi Tạo Thành Công......");
+                }
+                   if (value ==100) {
+                    LoadingTu.this.dispose();
+                }
+            }
+        }).start();
+     }
+        
+    
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,16 +58,16 @@ public class LoadingTu extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pgbLoading = new javax.swing.JProgressBar();
-        jLabel1 = new javax.swing.JLabel();
+        pgbload = new javax.swing.JProgressBar();
+        lbLoading = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        pgbLoading.setMaximum(99);
-        pgbLoading.setStringPainted(true);
+        pgbload.setMaximum(99);
+        pgbload.setStringPainted(true);
 
-        jLabel1.setText("Loading");
+        lbLoading.setText("Loading");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/253795567_1521267488228513_1183163511757277391_n.jpg"))); // NOI18N
 
@@ -47,27 +77,24 @@ public class LoadingTu extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(pgbLoading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pgbload, javax.swing.GroupLayout.PREFERRED_SIZE, 894, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(433, 433, 433)
-                        .addComponent(jLabel1)))
+                        .addComponent(lbLoading))
+                    .addComponent(jLabel2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pgbLoading, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbLoading)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pgbload, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
 
@@ -117,8 +144,8 @@ public class LoadingTu extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JProgressBar pgbLoading;
+    private javax.swing.JLabel lbLoading;
+    private javax.swing.JProgressBar pgbload;
     // End of variables declaration//GEN-END:variables
 }

@@ -63,8 +63,6 @@ public class Banhang extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel6.setText("Tên khách hàng");
 
-        jTextField3.setText("jTextField2");
-
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Shopping_basket_accept_Icon_32.png"))); // NOI18N
         jButton1.setText("Thêm vào giỏ hàng");
 
