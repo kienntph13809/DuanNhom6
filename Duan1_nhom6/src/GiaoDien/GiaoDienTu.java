@@ -6,6 +6,7 @@
 package GiaoDien;
 
 import Helper.DialogHelper;
+import Helper.Sharehelper;
 import javax.swing.JInternalFrame;
 
 /**
@@ -48,13 +49,17 @@ public class GiaoDienTu extends javax.swing.JFrame {
         jDesktopPane1.add(x);
         x.setVisible(true);
     }
-        public void openChuyenDe() {
-        if (YImages.authenticated()) {
+        public void openSanPham() {
+        
             QuanLySanPham frmSanPham = new QuanLySanPham();
             openX(frmSanPham);
-        } else {
-            DialogHelper.alert(this, "Vui lòng đăng nhập!");
-        }
+      
+    }
+         public void openbanhang() {
+        
+            Banhang frmbanhang = new Banhang();
+            openX(frmbanhang);
+      
     }
 
     /**
@@ -92,7 +97,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 797, Short.MAX_VALUE)
+            .addGap(0, 657, Short.MAX_VALUE)
         );
 
         MnHeThong.setText("Hệ Thống");
@@ -128,9 +133,29 @@ public class GiaoDienTu extends javax.swing.JFrame {
         jMenuBar1.add(TrangChu);
 
         mnBanHang.setText("Bán Hàng");
+        mnBanHang.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                mnBanHangStateChanged(evt);
+            }
+        });
+        mnBanHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnBanHangMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(mnBanHang);
 
         mnSanPham.setText("Sản Phẩm");
+        mnSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnSanPhamMouseClicked(evt);
+            }
+        });
+        mnSanPham.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnSanPhamActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(mnSanPham);
 
         ChiTietHoaDon.setText("Hóa Đơn");
@@ -155,7 +180,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jDesktopPane1)
         );
 
         pack();
@@ -163,6 +188,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
 
     private void DangxuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DangxuatActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_DangxuatActionPerformed
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
@@ -173,6 +199,26 @@ public class GiaoDienTu extends javax.swing.JFrame {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void mnBanHangStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mnBanHangStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mnBanHangStateChanged
+
+    private void mnSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnSanPhamActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_mnSanPhamActionPerformed
+
+    private void mnBanHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnBanHangMouseClicked
+        // TODO add your handling code here:
+        openbanhang();
+    }//GEN-LAST:event_mnBanHangMouseClicked
+
+    private void mnSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnSanPhamMouseClicked
+        // TODO add your handling code here:
+       openSanPham();
+       
+    }//GEN-LAST:event_mnSanPhamMouseClicked
 
     /**
      * @param args the command line arguments

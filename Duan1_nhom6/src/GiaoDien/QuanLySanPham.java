@@ -87,10 +87,8 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        btnThemMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Add.png"))); // NOI18N
         btnThemMoi.setText("Thêm Mới");
 
-        btnThemSo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Accept.png"))); // NOI18N
         btnThemSo.setText("Thêm SP");
         btnThemSo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,10 +96,8 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
             }
         });
 
-        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Edit.png"))); // NOI18N
         btnSua.setText("Sửa SP");
 
-        btnFind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Zoom.png"))); // NOI18N
         btnFind.setText("Tìm Kiếm");
 
         rdoCon.setText("Còn Hàng");
