@@ -29,7 +29,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
         new LoadingTu(this, true).setVisible(true);
     }
        public void openLogin() {
-        for (JInternalFrame frmChild : jDesktopPane1.getAllFrames()) {
+        for (JInternalFrame frmChild : destop.getAllFrames()) {
             frmChild.dispose();
         }
         new loginTu(this, true).setVisible(true);
@@ -39,29 +39,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
             System.exit(0);
         }
        }
-      public void openX(JInternalFrame x) {
-        for (JInternalFrame frmChild : jDesktopPane1.getAllFrames()) {
-            frmChild.dispose();
-        }
-
-        x.setLocation(this.getWidth() / 2 - x.getWidth() / 2,
-                (this.getHeight() - 20) / 2 - x.getHeight() / 2 - 60);
-        jDesktopPane1.add(x);
-        x.setVisible(true);
-    }
-        public void openSanPham() {
-        
-            QuanLySanPham frmSanPham = new QuanLySanPham();
-            openX(frmSanPham);
-      
-    }
-         public void openbanhang() {
-        
-            Banhang frmbanhang = new Banhang();
-            openX(frmbanhang);
-      
-    }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,7 +49,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        destop = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         MnHeThong = new javax.swing.JMenu();
         QLKH = new javax.swing.JMenuItem();
@@ -87,17 +65,17 @@ public class GiaoDienTu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jDesktopPane1.setBackground(new java.awt.Color(255, 153, 102));
+        destop.setBackground(new java.awt.Color(255, 153, 102));
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout destopLayout = new javax.swing.GroupLayout(destop);
+        destop.setLayout(destopLayout);
+        destopLayout.setHorizontalGroup(
+            destopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1170, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 657, Short.MAX_VALUE)
+        destopLayout.setVerticalGroup(
+            destopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 705, Short.MAX_VALUE)
         );
 
         MnHeThong.setText("Hệ Thống");
@@ -176,11 +154,13 @@ public class GiaoDienTu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(destop)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(destop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -216,7 +196,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
 
     private void mnSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnSanPhamMouseClicked
         // TODO add your handling code here:
-       openSanPham();
+//       s
        
     }//GEN-LAST:event_mnSanPhamMouseClicked
 
@@ -265,10 +245,16 @@ public class GiaoDienTu extends javax.swing.JFrame {
     private javax.swing.JMenuItem QLTK;
     private javax.swing.JMenuItem SuKien;
     private javax.swing.JMenu TrangChu;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane destop;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenu mnBanHang;
     private javax.swing.JMenu mnSanPham;
     // End of variables declaration//GEN-END:variables
+
+    private void openbanhang() {
+         Banhang bh = new Banhang();
+        destop.add(bh);
+        bh.setVisible(true);
+    }
 }

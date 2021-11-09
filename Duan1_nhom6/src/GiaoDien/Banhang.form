@@ -66,7 +66,7 @@
               <Component id="lbtongtien" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
               <Component id="btnxoasp" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="39" max="32767" attributes="0"/>
+              <EmptySpace pref="468" max="32767" attributes="0"/>
               <Component id="btnthanhtoan" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
@@ -107,7 +107,7 @@
                   <Component id="btnxoasp" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnthanhtoan" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

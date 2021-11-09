@@ -126,7 +126,7 @@ public class Banhang extends javax.swing.JInternalFrame {
                 .addComponent(lbtongtien)
                 .addGap(138, 138, 138)
                 .addComponent(btnxoasp)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 468, Short.MAX_VALUE)
                 .addComponent(btnthanhtoan)
                 .addGap(30, 30, 30))
         );
@@ -160,7 +160,7 @@ public class Banhang extends javax.swing.JInternalFrame {
                     .addComponent(lbtongtien)
                     .addComponent(btnxoasp)
                     .addComponent(btnthanhtoan))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();

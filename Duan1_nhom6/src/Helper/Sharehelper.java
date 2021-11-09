@@ -19,13 +19,15 @@ import model.taikhoan;
  * @author kien5
  */
 public class Sharehelper {
+   
      public static final Image APP_ICON;
  public static final ImageIcon APP_ICON_1;
  static{
      // Tải biểu tượng ứng dụng 
      //CÁCH TẢI ẢNH TỪ TRONG PROJECT
      //icon là thư mục con của src
-     String file = "/icon/duc.jpg";      //icon là thư mục con của src
+     String file = "/icon/duc.jpg";      
+      //icon là thư mục con của src
      APP_ICON = new ImageIcon(Sharehelper.class.getResource(file)).getImage();
      APP_ICON_1 = new ImageIcon(Sharehelper.class.getResource(file));
  }
