@@ -32,14 +32,17 @@ public class Banhang extends javax.swing.JInternalFrame {
         cbbdanhsachsp = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         txtsoluong = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        lbnhanvienbh = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txttenkh = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtmakh = new javax.swing.JTextField();
-        btngiohang = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbnbanhang = new javax.swing.JTable();
+        lbtongtien = new javax.swing.JLabel();
+        btnxoasp = new javax.swing.JButton();
+        btnthanhtoan = new javax.swing.JButton();
+        btnthemvaogiohang = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 30)); // NOI18N
         jLabel1.setText("Bán Hàng");
@@ -52,19 +55,14 @@ public class Banhang extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel3.setText("Số lượng");
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel4.setText("Nhân viên bán hàng: ................");
+        lbnhanvienbh.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        lbnhanvienbh.setText("Nhân viên bán hàng: ................");
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel5.setText("Mã khách hàng");
 
-        txttenkh.setText("jTextField2");
-
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel6.setText("Tên khách hàng");
-
-        btngiohang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Shopping_basket_accept_Icon_32.png"))); // NOI18N
-        btngiohang.setText("Thêm vào giỏ hàng");
 
         tbnbanhang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -76,21 +74,29 @@ public class Banhang extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tbnbanhang);
 
+        lbtongtien.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        lbtongtien.setText("Tổng tiền : ..............................");
+
+        btnxoasp.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnxoasp.setText("Xóa sản phẩm");
+
+        btnthanhtoan.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnthanhtoan.setText("Thanh Toán");
+
+        btnthemvaogiohang.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnthemvaogiohang.setText("Thêm vào giỏ hàng");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(lbnhanvienbh, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
@@ -107,13 +113,22 @@ public class Banhang extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel6)
                                         .addComponent(txttenkh, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(cbbdanhsachsp, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                        .addComponent(btngiohang)
-                        .addGap(26, 26, 26))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnthemvaogiohang)
+                        .addGap(27, 27, 27))))
+            .addComponent(jScrollPane1)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addGap(26, 26, 26))
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(lbtongtien)
+                .addGap(138, 138, 138)
+                .addComponent(btnxoasp)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(btnthanhtoan)
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,9 +142,9 @@ public class Banhang extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbbdanhsachsp, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtsoluong, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btngiohang))
-                .addGap(38, 38, 38)
-                .addComponent(jLabel4)
+                    .addComponent(btnthemvaogiohang))
+                .addGap(44, 44, 44)
+                .addComponent(lbnhanvienbh)
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -138,9 +153,14 @@ public class Banhang extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txttenkh, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtmakh, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbtongtien)
+                    .addComponent(btnxoasp)
+                    .addComponent(btnthanhtoan))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -148,15 +168,18 @@ public class Banhang extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btngiohang;
+    private javax.swing.JButton btnthanhtoan;
+    private javax.swing.JButton btnthemvaogiohang;
+    private javax.swing.JButton btnxoasp;
     private javax.swing.JComboBox<String> cbbdanhsachsp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbnhanvienbh;
+    private javax.swing.JLabel lbtongtien;
     private javax.swing.JTable tbnbanhang;
     private javax.swing.JTextField txtmakh;
     private javax.swing.JTextField txtsoluong;
