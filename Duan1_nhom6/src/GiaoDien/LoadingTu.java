@@ -26,7 +26,7 @@ public class LoadingTu extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }
      void inti(){
-          new Timer(50, new ActionListener() {
+          new Timer(25, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
               int value = pgbload.getValue();
@@ -42,7 +42,7 @@ public class LoadingTu extends javax.swing.JDialog {
                   if (value ==90) {
                     lbLoading.setText("Khởi Tạo Thành Công......");
                 }
-                   if (value ==100) {
+                   if (value ==100) {                     
                     LoadingTu.this.dispose();
                 }
             }
