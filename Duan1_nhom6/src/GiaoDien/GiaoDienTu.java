@@ -13,7 +13,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
 import javax.swing.JInternalFrame;
-import sun.jvmstat.perfdata.monitor.protocol.local.LocalEventTimer;
 
 /**
  *
@@ -100,12 +99,8 @@ public class GiaoDienTu extends javax.swing.JFrame {
             .addGap(0, 709, Short.MAX_VALUE)
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Desktop\\DuanNhom6\\Duan1_nhom6\\src\\icon\\Info.png")); // NOI18N
-
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Hệ Thống Bán Hàng");
-
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Desktop\\DuanNhom6\\Duan1_nhom6\\src\\icon\\Alarm.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -125,11 +120,11 @@ public class GiaoDienTu extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(lbdongho, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 

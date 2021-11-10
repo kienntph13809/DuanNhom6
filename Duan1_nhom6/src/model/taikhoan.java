@@ -13,7 +13,7 @@ public class taikhoan {
     private String tentk;
     private String matkhau;
     private String hoten;
-    private boolean vaitro;
+    private boolean vaitro =  false ;
     private boolean trangthai;
 
     public taikhoan() {
