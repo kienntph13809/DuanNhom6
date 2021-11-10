@@ -40,7 +40,7 @@ public class loginTu extends javax.swing.JDialog {
                if (taikhoan !=null) {
                  String matkhau2 = taikhoan.getMatkhau();
                    if (matkhau.equals(matkhau2)) {
-                       Sharehelper.USER = taikhoan;
+//                       Sharehelper.USER = taikhoan;
                        DialogHelper.alert(this,"Đăng nhập Thành Công");
                        this.dispose();
                    }

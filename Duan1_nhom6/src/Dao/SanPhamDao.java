@@ -18,23 +18,22 @@ import model.Sanpham;
  * @author kien5
  */
 public class SanPhamDao {
-     private Sanpham readFromResultSet(ResultSet rs) throws SQLException {
-        Sanpham model = new Sanpham();
-        model.setMasp(rs.getInt("Masp"));
-        model.setTensp(rs.getString("TenSP"));
-        model.setSoluong(rs.getInt("SoLuong"));
-        model.setChatlieu(rs.getString("ChatLieu"));
-        model.setMadm(rs.getInt("MaDM"));
-        model.setDongia(rs.getFloat("DonGia"));
-        model.setAnh(rs.getString("HinhAnh"));
-        model.setTrangthai(rs.getInt("TrangThai"));
-        model.setMota(rs.getString("MoTa"));
 
+    private static Sanpham readFromResultSet(ResultSet rs) throws SQLException {
+        Sanpham model = new Sanpham();
+        model.setMasp(rs.getInt("MASP"));
+        model.setTensp(rs.getString("TENSP"));
+        model.setSoluong(rs.getInt("SOLUONG"));
+        model.setChatlieu(rs.getString("CHATLIEU"));
+        model.setDongia(rs.getFloat("DONGIA"));
+        model.setMadm(rs.getInt("MaDanhMuc"));
+        model.setAnh(rs.getString("ANHSP"));
+        model.setTrangthai(rs.getInt("TrangThai"));
         return model;
 
     }
 
-    public List<Sanpham> select(String sql, Object... args) {
+    public static List<Sanpham> select(String sql, Object... args) {
         List<Sanpham> list = new ArrayList<>();
         try {
             ResultSet rs = null;
@@ -53,31 +52,76 @@ public class SanPhamDao {
 
     }
 
+    //lấy về list món
+    public static List<Sanpham> getListSanPham() {
+        String sql = "select * from MonAn\n"
+                + "where TrangThai=1";
+        return select(sql);
+
+    }
+
     /**
      * Thêm mới thực thể vào CSDL
      *
      * @param entity là thực thể chứa thông tin bản ghi mới
      */
     public void insert(Sanpham entity) {
-        String sql = "INSERT INTO sanpham(tensp,soluong,chatlieu,MaDm,DonGia,anhsp,TrangThai,mota) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO MonAn(TenSP,soluong,chatlieu,dongia,MaDM,AnhSP,mota,TrangThai) VALUES (?,?,?,?,?,?,?,?)";
         jdbcKien.executeUpdate(sql,
                 entity.getTensp(),
                 entity.getSoluong(),
                 entity.getChatlieu(),
-                entity.getMadm(),
                 entity.getDongia(),
+                entity.getMadm(),
                 entity.getAnh(),
-                entity.getTrangthai(),
-                entity.getMota()
+                entity.getMota(),
+                entity.getTrangthai()
+                
         );
 
     }
 
+    //update món ăn
+    public void updatesanPham(Sanpham sp) {
+        String sql = "update sanpham\n"
+                + "set TenSP = ?,\n"
+                + "    soluong = ?,\n"
+                + "    chatlieu = ?,\n"
+                + "	DonGia = ?,\n"
+                + "	anhSP = ?\n"
+                + "where Masp = ?";
+        jdbcKien.executeUpdate(sql, sp.getTensp(), sp.getSoluong(),sp.getChatlieu(),sp.getDongia(), sp.getAnh(), sp.getMasp());
+    }
+
+    //update ẩn món ăn
+    public void updateAnSanPham(Sanpham sp) {
+        String sql = "update SanPham\n"
+                + "set TrangThai = 0\n"
+                + "where MaSP = ?";
+        jdbcKien.executeUpdate(sql, sp.getMasp());
+    }
+
     //
-    public Sanpham findByMasanpham(Integer maMon) {
-        String sql = "select * from sanpham\n"
-                + "where TrangThai = 1 and masp = ?";
-        List<Sanpham> list = select(sql, maMon);
+    public Sanpham findByMaMon(Integer MaSP) {
+        String sql = "select * from SanPham\n"
+                + "where TrangThai = 1 and MaSP = ?";
+        List<Sanpham> list = select(sql, MaSP);
+        return list.size() > 0 ? list.get(0) : null;
+    }
+
+    //
+    public Sanpham findMonByMaDM(Integer maDM) {
+        String sql = "select * from SanPham\n"
+                + "where TrangThai = 1 and MaDM = ?";
+        List<Sanpham> list = select(sql, maDM);
+        return list.size() > 0 ? list.get(0) : null;
+    }
+    //tim để check trùng với tên món
+
+    public Sanpham findMonByTenSP(String TenSP) {
+        String sql = "select * from SANPHAM\n"
+                + "where TrangThai = 1 and TenMon = ?";
+        List<Sanpham> list = select(sql, TenSP);
         return list.size() > 0 ? list.get(0) : null;
     }
 //    public TaiKhoanMode findByTenTaiKhoan(String tenTaiKhoan) {

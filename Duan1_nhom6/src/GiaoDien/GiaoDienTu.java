@@ -7,6 +7,7 @@ package GiaoDien;
 
 import Helper.DialogHelper;
 import Helper.Sharehelper;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -26,8 +27,8 @@ public class GiaoDienTu extends javax.swing.JFrame {
     public GiaoDienTu() {
         initComponents();
         setLocationRelativeTo(null);
-        showChao();
-        openLogin();
+//        showChao();
+//        openLogin();
         dongHo();
 
     }
@@ -59,7 +60,11 @@ public class GiaoDienTu extends javax.swing.JFrame {
         });
         t.start();
     }
-
+   void OpendSanPham(){
+        QuanLySanPham qlsp = new QuanLySanPham();
+       destop.add(qlsp);
+        qlsp.setVisible(true);
+   }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -96,7 +101,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
         );
         destopLayout.setVerticalGroup(
             destopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 709, Short.MAX_VALUE)
+            .addGap(0, 856, Short.MAX_VALUE)
         );
 
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
@@ -110,7 +115,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 937, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 813, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbdongho, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -214,8 +219,8 @@ public class GiaoDienTu extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(destop)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(destop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -252,7 +257,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
 
     private void mnSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnSanPhamMouseClicked
         // TODO add your handling code here:
-//       s
+      OpendSanPham();
 
     }//GEN-LAST:event_mnSanPhamMouseClicked
 
