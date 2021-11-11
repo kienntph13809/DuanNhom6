@@ -18,7 +18,7 @@ public class Utils {
 
     public static synchronized Connection myConnection() {
         try {
-            String url = "jdbc:sqlserver://DESKTOP-LV3Q68V\\SQLEXPRESS:1433;databaseName=" + "QLNOITHAT_NHOM6";
+            String url = "jdbc:sqlserver://DESKTOP-SR6RUDS\\SQLEXPRESS:1433;databaseName=" + "QLNOITHAT_NHOM6";
             String user = "sa";
             String pass = "123";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");

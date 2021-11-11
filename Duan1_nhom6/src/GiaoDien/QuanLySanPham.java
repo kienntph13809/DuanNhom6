@@ -47,7 +47,8 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
                 model.addElement(x);
             }
         } catch (Exception e) {
-            DialogHelper.alert(this, "lõi truy vấn combobox danh Mục");
+            //DialogHelper.alert(this, "lõi truy vấn combobox danh Mục");
+            System.out.println(e);
         }
     }
 
@@ -71,7 +72,8 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
                 model.addRow(row);
             }
         } catch (Exception e) {
-            DialogHelper.alert(this, "Lỗi");
+            //DialogHelper.alert(this, "Lỗi");
+            System.out.println(e);
         }
     }
 
@@ -240,6 +242,7 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
         jLabel9.setText("Trạng Thái");
 
         buttonGroup1.add(rboConHang);
+        rboConHang.setSelected(true);
         rboConHang.setText("Còn Hàng");
 
         buttonGroup1.add(rboHetHang);
