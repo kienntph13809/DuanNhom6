@@ -105,7 +105,7 @@ public class SanPhamDao {
     }
 
     //
-    public Sanpham findByMaMon(Integer MaSP) {
+    public Sanpham findByMaSp(Integer MaSP) {
         String sql = "select * from SanPham\n"
                 + "where TrangThai = 1 and MaSP = ?";
         List<Sanpham> list = select(sql, MaSP);

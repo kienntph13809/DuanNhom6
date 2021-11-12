@@ -97,7 +97,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
         destop.setLayout(destopLayout);
         destopLayout.setHorizontalGroup(
             destopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1300, Short.MAX_VALUE)
+            .addGap(0, 1281, Short.MAX_VALUE)
         );
         destopLayout.setVerticalGroup(
             destopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
