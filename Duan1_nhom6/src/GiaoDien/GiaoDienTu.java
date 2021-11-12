@@ -65,6 +65,11 @@ public class GiaoDienTu extends javax.swing.JFrame {
        destop.add(qlsp);
         qlsp.setVisible(true);
    }
+   void OpendQLTK(){
+       quanlytaikhoan qltk = new quanlytaikhoan();
+       destop.add(qltk);
+       qltk.setVisible(true);
+   }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -102,6 +107,11 @@ public class GiaoDienTu extends javax.swing.JFrame {
         MnHeThong.setText("Hệ Thống");
 
         QLKH.setText("Quản Lý khách hàng");
+        QLKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QLKHActionPerformed(evt);
+            }
+        });
         MnHeThong.add(QLKH);
 
         SuKien.setText("Sự Kiện");
@@ -222,6 +232,11 @@ public class GiaoDienTu extends javax.swing.JFrame {
       OpendSanPham();
 
     }//GEN-LAST:event_mnSanPhamMouseClicked
+
+    private void QLKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QLKHActionPerformed
+        // TODO add your handling code here:
+        OpendQLTK();
+    }//GEN-LAST:event_QLKHActionPerformed
 
     /**
      * @param args the command line arguments
