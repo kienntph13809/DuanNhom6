@@ -118,6 +118,11 @@ public class GiaoDienTu extends javax.swing.JFrame {
         MnHeThong.add(SuKien);
 
         QLTK.setText("Quản Lý tài khoản");
+        QLTK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QLTKActionPerformed(evt);
+            }
+        });
         MnHeThong.add(QLTK);
 
         Dangxuat.setText("Đăng xuất");
@@ -235,8 +240,13 @@ public class GiaoDienTu extends javax.swing.JFrame {
 
     private void QLKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QLKHActionPerformed
         // TODO add your handling code here:
-        OpendQLTK();
+
     }//GEN-LAST:event_QLKHActionPerformed
+
+    private void QLTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QLTKActionPerformed
+        // TODO add your handling code here:
+        OpendQLTK();
+    }//GEN-LAST:event_QLTKActionPerformed
 
     /**
      * @param args the command line arguments
