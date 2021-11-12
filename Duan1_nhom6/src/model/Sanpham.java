@@ -18,12 +18,12 @@ public class Sanpham {
     private int madm;
     private int soluong;
     private Float dongia;
-    private int trangthai;
+    private Boolean trangthai;
 
     public Sanpham() {
     }
 
-    public Sanpham(int masp, String tensp, String chatlieu, String mota, String anh, int madm, int soluong, Float dongia, int trangthai) {
+    public Sanpham(int masp, String tensp, String chatlieu, String mota, String anh, int madm, int soluong, Float dongia, Boolean trangthai) {
         this.masp = masp;
         this.tensp = tensp;
         this.chatlieu = chatlieu;
@@ -99,13 +99,15 @@ public class Sanpham {
         this.dongia = dongia;
     }
 
-    public int getTrangthai() {
+    public Boolean getTrangthai() {
         return trangthai;
     }
 
-    public void setTrangthai(int trangthai) {
+    public void setTrangthai(Boolean trangthai) {
         this.trangthai = trangthai;
     }
+
+
 
    
 }

@@ -33,7 +33,7 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
 
     public QuanLySanPham() {
         initComponents();
-        load();
+        loadtable();
         fillcomboboxchuyende();
 
     }
@@ -52,12 +52,19 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
         }
     }
 
-    void load() {
+    void loadtable() {
+        String a;
         DefaultTableModel model = (DefaultTableModel) tblSanPham.getModel();
         model.setRowCount(0);
         try {
             List<Sanpham> list = daoSP.getListSanPham();
             for (Sanpham sp : list) {
+                if (sp.getTrangthai() == false) {
+                    a = "Hết Hàng";
+
+                } else {
+                    a = "Còn Hàng";
+                }
                 Object[] row = {
                     sp.getMasp(),
                     sp.getTensp(),
@@ -66,14 +73,15 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
                     sp.getChatlieu(),
                     sp.getMadm(),
                     sp.getAnh(),
-                    sp.getTrangthai()
+                    sp.getMota(),
+                    a
 
                 };
                 model.addRow(row);
             }
         } catch (Exception e) {
-            //DialogHelper.alert(this, "Lỗi");
-            System.out.println(e);
+             throw new RuntimeException(e);
+           
         }
     }
 
@@ -113,7 +121,7 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
             Sanpham model = getModel();
             try {
                 daoSP.insert(model);
-                this.load();
+                this.loadtable();
                 DialogHelper.alert(this, "Thêm mới thành công!");
             } catch (Exception e) {
                 DialogHelper.alert(this, "Thêm mới thất bại!");

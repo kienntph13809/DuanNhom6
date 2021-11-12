@@ -19,6 +19,8 @@ import model.Sanpham;
  */
 public class SanPhamDao {
 
+
+
     private static Sanpham readFromResultSet(ResultSet rs) throws SQLException {
         Sanpham model = new Sanpham();
         model.setMasp(rs.getInt("MASP"));
@@ -26,9 +28,10 @@ public class SanPhamDao {
         model.setSoluong(rs.getInt("SOLUONG"));
         model.setChatlieu(rs.getString("CHATLIEU"));
         model.setDongia(rs.getFloat("DONGIA"));
-        model.setMadm(rs.getInt("MaDanhMuc"));
+        model.setMadm(rs.getInt("MADM"));
         model.setAnh(rs.getString("ANHSP"));
-        model.setTrangthai(rs.getInt("TrangThai"));
+        model.setMota(rs.getString("MoTa"));
+        model.setTrangthai(rs.getBoolean("trangthai"));
         return model;
 
     }
@@ -54,7 +57,7 @@ public class SanPhamDao {
 
     //lấy về list món
     public static List<Sanpham> getListSanPham() {
-        String sql = "select * from MonAn\n"
+        String sql = "select * from SanPham\n"
                 + "where TrangThai=1";
         return select(sql);
 
@@ -66,7 +69,7 @@ public class SanPhamDao {
      * @param entity là thực thể chứa thông tin bản ghi mới
      */
     public void insert(Sanpham entity) {
-        String sql = "INSERT INTO MonAn(TenSP,soluong,chatlieu,dongia,MaDM,AnhSP,mota,TrangThai) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO SanPham(TenSP,soluong,chatlieu,dongia,MaDM,AnhSP,mota,TrangThai) VALUES (?,?,?,?,?,?,?,?)";
         jdbcKien.executeUpdate(sql,
                 entity.getTensp(),
                 entity.getSoluong(),
