@@ -36,8 +36,8 @@ public class TaiKhoanDao {
     public synchronized static List<taikhoan> HienThi() {
         List<taikhoan> list = new ArrayList<>();
         try {
-            String sql = "select tentk,matkhau,hoten,vaitro,trangthai from taikhoan\n"
-                    + "where trangthai='1'";
+            String sql = "SELECT * FROM TAIKHOAN\n" +
+                   "where TRANGTHAI = 1";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -51,6 +51,7 @@ public class TaiKhoanDao {
                 list.add(tk);
             }
         } catch (Exception e) {
+            System.out.println(e);
 
         }
 
@@ -58,30 +59,30 @@ public class TaiKhoanDao {
 
     }
 
-    public synchronized static List<taikhoan> HienThi1() {
-        List<taikhoan> list = new ArrayList<>();
-        try {
-            String sql = "select tentaikk,matkhau,hoten,email,vaitro from taikhoan\n"
-                    + "where trangthai= 0";
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                taikhoan hd = new taikhoan();
-                hd.setTentk(rs.getString(1));
-                hd.setMatkhau(rs.getString(2));
-                hd.setHoten(rs.getString(3));
-                hd.setVaitro(rs.getBoolean(4));
-                hd.setTrangthai(rs.getBoolean(5));
-
-                list.add(hd);
-            }
-        } catch (Exception e) {
-
-        }
-
-        return list;
-
-    }
+//    public synchronized static List<taikhoan> HienThi1() {
+//        List<taikhoan> list = new ArrayList<>();
+//        try {
+//            String sql = "select tentaikk,matkhau,hoten,email,vaitro from taikhoan\n"
+//                    + "where trangthai= 0";
+//            Statement st = con.createStatement();
+//            ResultSet rs = st.executeQuery(sql);
+//            while (rs.next()) {
+//                taikhoan hd = new taikhoan();
+//                hd.setTentk(rs.getString(1));
+//                hd.setMatkhau(rs.getString(2));
+//                hd.setHoten(rs.getString(3));
+//                hd.setVaitro(rs.getBoolean(4));
+//                hd.setTrangthai(rs.getBoolean(5));
+//
+//                list.add(hd);
+//            }
+//        } catch (Exception e) {
+//
+//        }
+//
+//        return list;
+//
+//    }
 
     //thực hiện truy vấn lấy về 1 tập ResultSet rồi điền tập ResultSet đó vào 1 List
     public List<taikhoan> select(String sql, Object... args) {
@@ -115,8 +116,13 @@ public class TaiKhoanDao {
                 entity.getMatkhau(),
                 entity.getHoten(),
                 entity.isVaitro(),
-                entity.isTrangthai());
                 
+                entity.isTrangthai()
+        
+        );
+               
+        
+        
     }
 
     public static void update(taikhoan entity) {

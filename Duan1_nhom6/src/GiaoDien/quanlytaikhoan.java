@@ -54,33 +54,33 @@ public class quanlytaikhoan extends javax.swing.JInternalFrame {
         if (rootPaneCheckingEnabled) {
 
         }
-        model.setTrangthai(false);
+        model.setTrangthai(true);
         return model;
     }
 
-    public taikhoan getModel1() {
-        taikhoan model = new taikhoan();
-        model.setTentk(txttaikhoan.getText());
-        model.setMatkhau(new String(txtatkhau.getPassword()));
-        if (rdhoatdong.isSelected()) {
-            model.setTrangthai(true);
-        }
-        if (rdkhonghoatdong.isSelected()) {
-            model.setTrangthai(false);
-        }
-        if (rdQuanly.isSelected()) {
-            model.setVaitro(true);
-        }
-        if (rdNhanVien.isSelected()) {
-            model.setVaitro(false);
-        }
-        if (cbVHH.isSelected()) {
-            model.setTrangthai(false);
-        } else {
-            model.setTrangthai(true);
-        }
-        return model;
-    }
+//    public taikhoan getModel1() {
+//        taikhoan model = new taikhoan();
+//        model.setTentk(txttaikhoan.getText());
+//        model.setMatkhau(new String(txtatkhau.getPassword()));
+//        if (rdhoatdong.isSelected()) {
+//            model.setTrangthai(true);
+//        }
+//        if (rdkhonghoatdong.isSelected()) {
+//            model.setTrangthai(false);
+//        }
+//        if (rdQuanly.isSelected()) {
+//            model.setVaitro(true);
+//        }
+//        if (rdNhanVien.isSelected()) {
+//            model.setVaitro(false);
+//        }
+//        if (cbVHH.isSelected()) {
+//            model.setTrangthai(false);
+//        } else {
+//            model.setTrangthai(true);
+//        }
+//        return model;
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -125,11 +125,11 @@ public class quanlytaikhoan extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Tài khoản", "Mật khẩu", "Vai Trò", "Trạng Thái"
+                "STT", "Tài Khoản", "Họ Tên", "Mật Khẩu", "Vai Trò"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -411,9 +411,9 @@ public class quanlytaikhoan extends javax.swing.JInternalFrame {
             List<taikhoan> tkd = TaiKhoanDao.HienThi();
             for (taikhoan tk : tkd) {
                 if (tk.isVaitro() == false) {
-                    a = "Nhân Viên";
+                    a = "1";
                 } else {
-                    a = "Quản lý";
+                    a = "0";
                 }
                 Object[] row = {
                     i++,
@@ -429,32 +429,32 @@ public class quanlytaikhoan extends javax.swing.JInternalFrame {
         }
     }
 
-    public void loadTable1() {
-        String a;
-        DefaultTableModel model = (DefaultTableModel) tbTaiKhoan.getModel();
-        model.setRowCount(0);
-        try {
-            int i = 1;
-            List<taikhoan> tkd = TaiKhoanDao.HienThi1();
-            for (taikhoan tk : tkd) {
-                if (tk.isVaitro() == false) {
-                    a = "Nhân Viên";
-                } else {
-                    a = "Quản lý";
-                }
-                Object[] row = {
-                    i++,
-                    tk.getTentk(),
-                    tk.getHoten(),
-                    tk.getMatkhau(),
-                    a};
-
-                model.addRow(row);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e);
-        }
-    }
+//    public void loadTable1() {
+//        String a;
+//        DefaultTableModel model = (DefaultTableModel) tbTaiKhoan.getModel();
+//        model.setRowCount(0);
+//        try {
+//            int i = 1;
+//            List<taikhoan> tkd = TaiKhoanDao.HienThi1();
+//            for (taikhoan tk : tkd) {
+//                if (tk.isVaitro() == false) {
+//                    a = "Nhân Viên";
+//                } else {
+//                    a = "Quản lý";
+//                }
+//                Object[] row = {
+//                    i++,
+//                    tk.getTentk(),
+//                    tk.getHoten(),
+//                    tk.getMatkhau(),
+//                    a};
+//
+//                model.addRow(row);
+//            }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, e);
+//        }
+//    }
 
     public void insert() {
         taikhoan model = getModel();
@@ -530,7 +530,7 @@ public class quanlytaikhoan extends javax.swing.JInternalFrame {
     }
 
     public boolean doiMatKhau() {
-        taikhoan model = getModel1();
+        taikhoan model = getModel();
         String confirm = new String(txtatkhau.getPassword());
         if (!confirm.equals(model.getMatkhau())) {
             txtatkhau.setBackground(pink);
@@ -569,7 +569,7 @@ public class quanlytaikhoan extends javax.swing.JInternalFrame {
         String tendn = txttaikhoan.getText();
         try {
             tkdaotu.delete(tendn);   //xóa nhân viên theo maNV
-            this.loadTable1();//điền tt mới vào bảng
+            this.loadTable();//điền tt mới vào bảng
             //  this.clear();       //xóa trắng form và chỉnh lại status
             JOptionPane.showMessageDialog(this, "Xóa thành công!");
         } catch (Exception e) {
