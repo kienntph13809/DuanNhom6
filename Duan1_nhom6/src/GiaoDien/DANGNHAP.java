@@ -17,9 +17,7 @@ import model.taikhoan;
  */
 public class DANGNHAP extends javax.swing.JDialog {
 
-    /**
-     * Creates new form login
-     */
+
   
     DangNhap dao = new DangNhap();
     public DANGNHAP(java.awt.Frame parent, boolean modal) {
