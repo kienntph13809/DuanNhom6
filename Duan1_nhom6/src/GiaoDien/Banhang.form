@@ -94,7 +94,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jButton3" linkSize="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnAddHD" linkSize="1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                           <Component id="btnxoasp" linkSize="1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
@@ -247,7 +247,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnxoasp" linkSize="2" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                       <Component id="btnthanhtoan" linkSize="2" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
-                      <Component id="jButton3" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnAddHD" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -593,9 +593,12 @@
             </Container>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="btnAddHD">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton3"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Times New Roman" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Th&#xea;m H&#xf3;a &#x110;&#x1a1;n"/>
           </Properties>
         </Component>
       </SubComponents>
