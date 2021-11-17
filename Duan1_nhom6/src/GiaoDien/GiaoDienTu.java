@@ -45,10 +45,18 @@ public class GiaoDienTu extends javax.swing.JFrame {
     }
 
     public void openLogin() {
+//<<<<<<< HEAD
 //        for (JInternalFrame frmChild : destop.getAllFrames()) {
 //            frmChild.dispose();
 //        }
 //        new loginTu(this, true).setVisible(true);
+//=======
+//        for (JInternalFrame frmChild : destop.getAllFrames()) {
+//            frmChild.dispose();
+//        }
+//        new DANGNHAP(this, true).setVisible(true);
+//
+//>>>>>>> origin/master
     }
 
     void exit() {
