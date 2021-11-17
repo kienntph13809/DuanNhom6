@@ -29,7 +29,7 @@ public class TaiKhoanDao {
         model.setHoten(rs.getString(2));
         model.setMatkhau(rs.getString(3));
         model.setVaitro(rs.getBoolean(4));
-        model.setTrangthai(rs.getBoolean(5));       
+        model.setTrangthai(rs.getString(5));       
         return model;
     }
 
@@ -46,7 +46,7 @@ public class TaiKhoanDao {
                 tk.setMatkhau(rs.getString(2));
                 tk.setHoten(rs.getString(3));
                 tk.setVaitro(rs.getBoolean(4));
-                tk.setTrangthai(rs.getBoolean(5));
+                tk.setTrangthai(rs.getString(5));
 
                 list.add(tk);
             }
@@ -117,7 +117,7 @@ public class TaiKhoanDao {
                 entity.getHoten(),
                 entity.isVaitro(),
                 
-                entity.isTrangthai()
+                entity.getTrangthai()
         
         );
                
@@ -131,7 +131,7 @@ public class TaiKhoanDao {
                 entity.getMatkhau(),
                 entity.getHoten(),
                 entity.isVaitro(),
-                entity.isTrangthai(),
+                entity.getTrangthai(),
                 entity.getTentk());
     }
 
@@ -149,7 +149,7 @@ public class TaiKhoanDao {
                 tk.setHoten(rs.getString(2));
                 tk.setMatkhau(rs.getString(3));
                 tk.setVaitro(rs.getBoolean(4));
-                tk.setTrangthai(rs.getBoolean(5));
+                tk.setTrangthai(rs.getString(5));
 
                 list.add(tk);
 

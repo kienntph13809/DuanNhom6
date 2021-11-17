@@ -10,16 +10,19 @@ package model;
  * @author kien5
  */
 public class taikhoan {
+
     private String tentk;
     private String matkhau;
     private String hoten;
-    private boolean vaitro =  false ;
-    private boolean trangthai;
+    private boolean vaitro;
+    private  String trangthai;
 
     public taikhoan() {
     }
+ 
+;
 
-    public taikhoan(String tentk, String matkhau, String hoten, boolean vaitro, boolean trangthai) {
+    public taikhoan(String tentk, String matkhau, String hoten, boolean vaitro, String trangthai) {
         this.tentk = tentk;
         this.matkhau = matkhau;
         this.hoten = hoten;
@@ -59,13 +62,16 @@ public class taikhoan {
         this.vaitro = vaitro;
     }
 
-    public boolean isTrangthai() {
+    public String getTrangthai() {
         return trangthai;
     }
 
-    public void setTrangthai(boolean trangthai) {
+    public void setTrangthai(String trangthai) {
         this.trangthai = trangthai;
     }
     
+
+    }
     
-}
+
+
