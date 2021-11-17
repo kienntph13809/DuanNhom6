@@ -19,8 +19,6 @@ import model.Sanpham;
  */
 public class SanPhamDao {
 
-
-
     private static Sanpham readFromResultSet(ResultSet rs) throws SQLException {
         Sanpham model = new Sanpham();
         model.setMasp(rs.getInt("MASP"));
@@ -63,6 +61,14 @@ public class SanPhamDao {
 
     }
 
+    public static List<Sanpham> getListSanPhamjoinDanhMuc() {
+        String sql = "select SANPHAM.MASP,TENSP,dongia,soluong,chatlieu,tendm,ANHSP\n"
+                + "from SANPHAM join danhmuc on SANPHAM.MADM = danhmuc.madm\n"
+                + "where sanpham.TRANGTHAI = 1";
+        return select(sql);
+
+    }
+
     /**
      * Thêm mới thực thể vào CSDL
      *
@@ -79,7 +85,6 @@ public class SanPhamDao {
                 entity.getAnh(),
                 entity.getMota(),
                 entity.getTrangthai()
-                
         );
 
     }
@@ -93,7 +98,7 @@ public class SanPhamDao {
                 + "	DonGia = ?,\n"
                 + "	anhSP = ?\n"
                 + "where Masp = ?";
-        jdbcKien.executeUpdate(sql, sp.getTensp(), sp.getSoluong(),sp.getChatlieu(),sp.getDongia(), sp.getAnh(), sp.getMasp());
+        jdbcKien.executeUpdate(sql, sp.getTensp(), sp.getSoluong(), sp.getChatlieu(), sp.getDongia(), sp.getAnh(), sp.getMasp());
     }
 
     //update ẩn món ăn

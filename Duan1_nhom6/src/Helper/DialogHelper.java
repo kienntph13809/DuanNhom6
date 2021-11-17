@@ -15,7 +15,7 @@ public class DialogHelper {
     
     public static void alert(java.awt.Component parent, String message) {
     JOptionPane.showMessageDialog(parent, message,
-    "Hệ thống quản lý đào tạo", JOptionPane.INFORMATION_MESSAGE);
+    "Hệ Thống Quản lý bán Nội Thất", JOptionPane.INFORMATION_MESSAGE);
  }
     /**
  * Hiển thị thông báo và yêu cầu người dùng xác nhận
@@ -25,7 +25,7 @@ public class DialogHelper {
  */
      public static boolean confirm(java.awt.Component parent, String message) {
     int result = JOptionPane.showConfirmDialog(parent, message,
-    "Hệ thống quản lý đào tạo",
+    "Hệ Thống Quản lý bán Nội Thất",
     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
     return result == JOptionPane.YES_OPTION;
  }
@@ -37,6 +37,6 @@ public class DialogHelper {
  */
  public static String prompt(java.awt.Component parent, String message) {
     return JOptionPane.showInputDialog(parent, message,
-    "Hệ thống quản lý đào tạo", JOptionPane.INFORMATION_MESSAGE);
+    "Hệ Thống Quản lý bán Nội Thất", JOptionPane.INFORMATION_MESSAGE);
  }
 }

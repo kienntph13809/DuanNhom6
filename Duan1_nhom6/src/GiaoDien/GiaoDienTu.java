@@ -37,6 +37,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
         SanPham.setBackground(DefaultColor);
         HoaDon.setBackground(DefaultColor);
         TaiKhoan.setBackground(DefaultColor);
+        Thoat.setBackground(DefaultColor);
 
     }
 
@@ -117,9 +118,6 @@ public class GiaoDienTu extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(176, 228, 246));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\dfg\\Pictures\\horizontal_on_white_by_logaster.png")); // NOI18N
-
-        Close.setIcon(new javax.swing.ImageIcon("C:\\Users\\dfg\\Pictures\\ảnh đm\\IconGiaoDien\\2x\\cancel.png")); // NOI18N
         Close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CloseMouseClicked(evt);
@@ -164,7 +162,6 @@ public class GiaoDienTu extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\dfg\\Pictures\\ảnh đm\\IconGiaoDien\\2x\\outline_home_black_24dp.png")); // NOI18N
         jLabel1.setText("Trang Chủ");
 
         javax.swing.GroupLayout TrangChuLayout = new javax.swing.GroupLayout(TrangChu);
@@ -174,7 +171,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
             .addGroup(TrangChuLayout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         TrangChuLayout.setVerticalGroup(
             TrangChuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,7 +190,6 @@ public class GiaoDienTu extends javax.swing.JFrame {
 
         jLabel4.setBackground(new java.awt.Color(0, 204, 204));
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\dfg\\Pictures\\ảnh đm\\IconGiaoDien\\2x\\outline_storefront_black_24dp.png")); // NOI18N
         jLabel4.setText("Bán Hàng");
 
         javax.swing.GroupLayout SanPhamLayout = new javax.swing.GroupLayout(SanPham);
@@ -203,7 +199,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
             .addGroup(SanPhamLayout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addComponent(jLabel4)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
         SanPhamLayout.setVerticalGroup(
             SanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,7 +217,6 @@ public class GiaoDienTu extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\dfg\\Pictures\\ảnh đm\\IconGiaoDien\\2x\\outline_receipt_long_black_24dp.png")); // NOI18N
         jLabel2.setText("Sản Phẩm");
 
         javax.swing.GroupLayout HoaDonLayout = new javax.swing.GroupLayout(HoaDon);
@@ -231,7 +226,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
             .addGroup(HoaDonLayout.createSequentialGroup()
                 .addGap(83, 83, 83)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         HoaDonLayout.setVerticalGroup(
             HoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,7 +244,6 @@ public class GiaoDienTu extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\dfg\\Pictures\\ảnh đm\\IconGiaoDien\\2x\\outline_vpn_key_black_24dp.png")); // NOI18N
         jLabel5.setText("Tài Khoản");
 
         javax.swing.GroupLayout TaiKhoanLayout = new javax.swing.GroupLayout(TaiKhoan);
@@ -259,7 +253,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
             .addGroup(TaiKhoanLayout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addComponent(jLabel5)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
         TaiKhoanLayout.setVerticalGroup(
             TaiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,10 +261,22 @@ public class GiaoDienTu extends javax.swing.JFrame {
         );
 
         Thoat.setBackground(new java.awt.Color(176, 228, 246));
+        Thoat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ThoatMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ThoatMousePressed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\dfg\\Pictures\\ảnh đm\\IconGiaoDien\\2x\\power-button.png")); // NOI18N
         jLabel6.setText("   Thoát");
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel6MousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ThoatLayout = new javax.swing.GroupLayout(Thoat);
         Thoat.setLayout(ThoatLayout);
@@ -279,7 +285,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
             .addGroup(ThoatLayout.createSequentialGroup()
                 .addGap(81, 81, 81)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
         ThoatLayout.setVerticalGroup(
             ThoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,6 +371,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
         SanPham.setBackground(DefaultColor);
         HoaDon.setBackground(DefaultColor);
         TaiKhoan.setBackground(DefaultColor);
+        Thoat.setBackground(DefaultColor);
     }//GEN-LAST:event_TrangChuMousePressed
 
     private void SanPhamMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SanPhamMousePressed
@@ -373,6 +380,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
         SanPham.setBackground(ClickerColor);
         HoaDon.setBackground(DefaultColor);
         TaiKhoan.setBackground(DefaultColor);
+        Thoat.setBackground(DefaultColor);
     }//GEN-LAST:event_SanPhamMousePressed
 
     private void HoaDonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoaDonMousePressed
@@ -381,6 +389,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
         SanPham.setBackground(DefaultColor);
         HoaDon.setBackground(ClickerColor);
         TaiKhoan.setBackground(DefaultColor);
+        Thoat.setBackground(DefaultColor);
     }//GEN-LAST:event_HoaDonMousePressed
 
     private void TaiKhoanMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TaiKhoanMousePressed
@@ -389,6 +398,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
         SanPham.setBackground(DefaultColor);
         HoaDon.setBackground(DefaultColor);
         TaiKhoan.setBackground(ClickerColor);
+        Thoat.setBackground(DefaultColor);
     }//GEN-LAST:event_TaiKhoanMousePressed
 
     private void TrangChuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TrangChuMouseClicked
@@ -420,6 +430,26 @@ public class GiaoDienTu extends javax.swing.JFrame {
         jDesktopPane1.removeAll();
         jDesktopPane1.add(qltk).setVisible(true);
     }//GEN-LAST:event_TaiKhoanMouseClicked
+
+    private void jLabel6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MousePressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jLabel6MousePressed
+
+    private void ThoatMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ThoatMousePressed
+        // TODO add your handling code here:
+         TrangChu.setBackground(DefaultColor);
+        SanPham.setBackground(DefaultColor);
+        HoaDon.setBackground(DefaultColor);
+        TaiKhoan.setBackground(DefaultColor);
+        Thoat.setBackground(ClickerColor);
+    }//GEN-LAST:event_ThoatMousePressed
+
+    private void ThoatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ThoatMouseClicked
+        // TODO add your handling code here:
+        //DialogHelper.confirm(this,"bạn muốn thoát");
+           exit();
+    }//GEN-LAST:event_ThoatMouseClicked
 
     /**
      * @param args the command line arguments

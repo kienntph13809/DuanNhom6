@@ -201,8 +201,6 @@ public class Banhang extends javax.swing.JInternalFrame {
             }
         });
 
-        AddGioHang.setIcon(new javax.swing.ImageIcon("C:\\Users\\dfg\\Pictures\\ảnh đm\\IconGiaoDien\\2x\\outline_add_shopping_cart_black_24dp.png")); // NOI18N
-
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Hóa Đơm"));
 
         jTable1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));

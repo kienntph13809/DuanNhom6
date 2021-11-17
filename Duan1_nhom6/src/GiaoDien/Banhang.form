@@ -527,11 +527,6 @@
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="AddGioHang">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\dfg\Pictures\&#x1ea3;nh &#x111;m\IconGiaoDien\2x\outline_add_shopping_cart_black_24dp.png"/>
-            </Property>
-          </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel1">
           <Properties>
