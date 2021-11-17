@@ -10,10 +10,10 @@ DIACHI NVARCHAR(50),
 TRANGTHAI BIT
 CONSTRAINT PK_KHACHHANG PRIMARY KEY (MAKH))
 --DOANH MỤC
-create table doanhmuc(
+create table danhmuc(
 madm int identity,
 tendm nvarchar(100),
-tangthai bit
+trangthai bit
 primary key (madm)
 )
 -- CHI TI?T S?N PH?M
@@ -23,12 +23,13 @@ TENSP NVARCHAR(100),
 SOLUONG INT,
 CHATLIEU NVARCHAR(20),
 DONGIA MONEY,
-MADM INT,
+MADM int,
 ANHSP NVARCHAR(50),
 MOTA NVARCHAR(100),
 TRANGTHAI BIT
 CONSTRAINT PK_CTSANPHAM PRIMARY KEY (MASP),
-foreign key(MADM) references DOANHMUC,
+foreign key(MADM) references danhmuc,
+
 
 )
 --TÀI KHO?N
@@ -81,13 +82,13 @@ select * from KHACHHANG
 select * from SANPHAM
 select * from HOADON
 select * from CTHOADON
-select * from doanhmuc
+select * from danhmuc
 insert into KHACHHANG values ('kh15',N'Nguy?n Anh D?ng','0897999565','Hà N?i',1)
 insert into KHACHHANG values ('kh16',N'Phạm Anh Tú','0897999555','Hà N?i',1)
 insert into KHACHHANG values ('kh17',N'Nguyễn Trung Kiên','0897977775','Hà N?i',0)
-insert into doanhmuc values (N'Bàn',1)
-insert into doanhmuc values (N'Ghế',1)
-insert into doanhmuc values (N'Gương',1)
+insert into danhmuc values (N'Bàn',1)
+insert into danhmuc values (N'Ghế',1)
+insert into danhmuc values (N'Gương',1)
 insert into SANPHAM values (N'Bàn trạm hình rồng',5,N'Gỗ',6500000,1,'Ban Hinh Rong.jpg',N'Bàn đẹp hình Rồng uốn lượn',1)
 insert into SANPHAM values (N'Ghế trạm hình rồng',3,N'Gỗ',4500000,2,'Ghe Hinh Rong.jpg',N'Ghế đẹp hình Rồng uốn lượn',1)
 insert into SANPHAM values (N'Gương trạm hình rồng',2,N'Gỗ',2500000,3,'Guong Hinh Rong.jpg',N'Gương đẹp hình Rồng uốn lượn',1)
@@ -97,9 +98,12 @@ insert into TAIKHOAN values ('adminduc','123',N'Đào Văn Đức',1,1)
 insert into SUKIEN values (N'KHUYẾN MÃI',20,GETDATE(),NULL,1)
 insert into SUKIEN values (N'KHUYẾN MÃI 30%',30,GETDATE(),NULL,1)
 insert into SUKIEN values (N'KHUYẾN MÃI 40%',40,GETDATE(),NULL,1)
+insert into SANPHAM values (N'Bàn trạm hình rồng',5,N'Gỗ',6500000,1,'Ban Hinh Rong.jpg',N'Bàn đẹp hình Rồng uốn lượn',1)
 
 
-
+select SANPHAM.MASP,TENSP,dongia,soluong,chatlieu,tendm,ANHSP
+from SANPHAM join danhmuc on SANPHAM.MADM = danhmuc.madm
+where sanpham.TRANGTHAI = 1
 
 
 
