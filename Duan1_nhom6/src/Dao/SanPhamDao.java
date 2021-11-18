@@ -24,7 +24,7 @@ public class SanPhamDao {
         model.setMasp(rs.getInt("MASP"));
         model.setTensp(rs.getString("TENSP"));
         model.setSoluong(rs.getInt("SOLUONG"));
-        model.setChatlieu(rs.getInt("CHATLIEU"));
+        model.setChatlieu(rs.getInt("MaCl"));
         model.setDongia(rs.getFloat("DONGIA"));
         model.setMadm(rs.getInt("MADM"));
         model.setAnh(rs.getString("ANHSP"));
