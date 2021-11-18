@@ -16,12 +16,18 @@ tendm nvarchar(100),
 trangthai bit
 primary key (madm)
 )
+-- chất Liệu 
+create table chatlieu(
+Macl int identity,
+TenCl nvarchar(50),
+trangThai bit
+primary key (macl))
 -- CHI TI?T S?N PH?M
 CREATE TABLE SANPHAM(
 MASP int identity,
 TENSP NVARCHAR(100),
 SOLUONG INT,
-CHATLIEU NVARCHAR(20),
+Macl int,
 DONGIA MONEY,
 MADM int,
 ANHSP NVARCHAR(50),
@@ -29,6 +35,7 @@ MOTA NVARCHAR(100),
 TRANGTHAI BIT
 CONSTRAINT PK_CTSANPHAM PRIMARY KEY (MASP),
 foreign key(MADM) references danhmuc,
+foreign key(MaCl) references chatlieu
 
 
 )
@@ -83,15 +90,21 @@ select * from SANPHAM
 select * from HOADON
 select * from CTHOADON
 select * from danhmuc
+select * from chatlieu
+
 insert into KHACHHANG values ('kh15',N'Nguy?n Anh D?ng','0897999565','Hà N?i',1)
 insert into KHACHHANG values ('kh16',N'Phạm Anh Tú','0897999555','Hà N?i',1)
 insert into KHACHHANG values ('kh17',N'Nguyễn Trung Kiên','0897977775','Hà N?i',0)
 insert into danhmuc values (N'Bàn',1)
 insert into danhmuc values (N'Ghế',1)
 insert into danhmuc values (N'Gương',1)
-insert into SANPHAM values (N'Bàn trạm hình rồng',5,N'Gỗ',6500000,1,'Ban Hinh Rong.jpg',N'Bàn đẹp hình Rồng uốn lượn',1)
-insert into SANPHAM values (N'Ghế trạm hình rồng',3,N'Gỗ',4500000,2,'Ghe Hinh Rong.jpg',N'Ghế đẹp hình Rồng uốn lượn',1)
-insert into SANPHAM values (N'Gương trạm hình rồng',2,N'Gỗ',2500000,3,'Guong Hinh Rong.jpg',N'Gương đẹp hình Rồng uốn lượn',1)
+insert into  chatlieu values (N'Gỗ',1)
+insert into  chatlieu values (N'Nhôm',1)
+insert into  chatlieu values (N'Nhựa',1)
+
+insert into SANPHAM values (N'Bàn trạm hình rồng',5,1,6500000,1,'Ban Hinh Rong.jpg',N'Bàn đẹp hình Rồng uốn lượn',1)
+insert into SANPHAM values (N'Ghế trạm hình rồng',3,1,4500000,2,'Ghe Hinh Rong.jpg',N'Ghế đẹp hình Rồng uốn lượn',1)
+insert into SANPHAM values (N'Gương trạm hình rồng',2,1,2500000,3,'Guong Hinh Rong.jpg',N'Gương đẹp hình Rồng uốn lượn',1)
 insert into TAIKHOAN values ('adminkien','123',N'Nguyễn Trung Kiên',0,1)
 insert into TAIKHOAN values ('admintu','123',N'Phạm Anh Tú',0,0)
 insert into TAIKHOAN values ('adminduc','123',N'Đào Văn Đức',1,1)
