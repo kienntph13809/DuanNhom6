@@ -111,7 +111,7 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
             if (Sharehelper.saveLogo(file)) {
                 //sao chép file đã chọn thư mục logos
                 // Hiển thị hình lên form
-                lbAnhSP.seticon(Sharehelper.readLogo(file.getName()));
+                //lbAnhSP.seticon(Sharehelper.readLogo(file.getName()));
                 //file.getName(); lấy tên của file
                 //ImageIcon readLogo(String tenFile) đọc file trong thư mục logos theo tên file trả về ImageIcon
                 //void setIcon(ImageIcon icon) set Icon cho lbl
@@ -191,7 +191,7 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(1150, 660));
 
         jPanel2.setBackground(new java.awt.Color(176, 228, 246));
-        jPanel2.setPreferredSize(new java.awt.Dimension(1150, 660));
+        jPanel2.setPreferredSize(new java.awt.Dimension(1210, 780));
 
         javax.swing.GroupLayout lbAnhSPLayout = new javax.swing.GroupLayout(lbAnhSP);
         lbAnhSP.setLayout(lbAnhSPLayout);
@@ -261,7 +261,7 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
             }
         });
 
-        tbnSanPham.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tbnSanPham.setBorder(new javax.swing.border.SoftBevelBorder(0));
         tbnSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -302,7 +302,7 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
                             .addComponent(txtDonGia1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jButton1)
-                                .addGap(89, 89, 89)
+                                .addGap(75, 75, 75)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel2Layout.createSequentialGroup()
@@ -317,6 +317,7 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(86, 86, 86)
@@ -384,7 +385,7 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)

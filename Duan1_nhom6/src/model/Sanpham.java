@@ -13,9 +13,11 @@ public class Sanpham {
     private int masp;
     private String tensp;
     private int chatlieu;
+    private  String TenCL;
     private String mota;
     private String anh;
     private int madm;
+    private String TenDm;
     private int soluong;
     private Float dongia;
     private Boolean trangthai;
@@ -23,13 +25,15 @@ public class Sanpham {
     public Sanpham() {
     }
 
-    public Sanpham(int masp, String tensp, int chatlieu, String mota, String anh, int madm, int soluong, Float dongia, Boolean trangthai) {
+    public Sanpham(int masp, String tensp, int chatlieu, String TenCL, String mota, String anh, int madm, String TenDm, int soluong, Float dongia, Boolean trangthai) {
         this.masp = masp;
         this.tensp = tensp;
         this.chatlieu = chatlieu;
+        this.TenCL = TenCL;
         this.mota = mota;
         this.anh = anh;
         this.madm = madm;
+        this.TenDm = TenDm;
         this.soluong = soluong;
         this.dongia = dongia;
         this.trangthai = trangthai;
@@ -59,6 +63,14 @@ public class Sanpham {
         this.chatlieu = chatlieu;
     }
 
+    public String getTenCL() {
+        return TenCL;
+    }
+
+    public void setTenCL(String TenCL) {
+        this.TenCL = TenCL;
+    }
+
     public String getMota() {
         return mota;
     }
@@ -81,6 +93,14 @@ public class Sanpham {
 
     public void setMadm(int madm) {
         this.madm = madm;
+    }
+
+    public String getTenDm() {
+        return TenDm;
+    }
+
+    public void setTenDm(String TenDm) {
+        this.TenDm = TenDm;
     }
 
     public int getSoluong() {
@@ -107,6 +127,5 @@ public class Sanpham {
         this.trangthai = trangthai;
     }
 
-   
-   
+ 
 }
