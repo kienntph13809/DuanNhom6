@@ -98,6 +98,8 @@ insert into KHACHHANG values ('kh17',N'Nguyễn Trung Kiên','0897977775','Hà N
 insert into danhmuc values (N'Bàn',1)
 insert into danhmuc values (N'Ghế',1)
 insert into danhmuc values (N'Gương',1)
+insert into danhmuc values (N'sofa',2)
+
 insert into  chatlieu values (N'Gỗ',1)
 insert into  chatlieu values (N'Nhôm',1)
 insert into  chatlieu values (N'Nhựa',1)
@@ -112,11 +114,11 @@ insert into SUKIEN values (N'KHUYẾN MÃI',20,GETDATE(),NULL,1)
 insert into SUKIEN values (N'KHUYẾN MÃI 30%',30,GETDATE(),NULL,1)
 insert into SUKIEN values (N'KHUYẾN MÃI 40%',40,GETDATE(),NULL,1)
 insert into SANPHAM values (N'Bàn trạm hình rồng',5,N'Gỗ',6500000,1,'Ban Hinh Rong.jpg',N'Bàn đẹp hình Rồng uốn lượn',1)
+select SANPHAM.MASP,tensp,soluong,chatlieu.Macl,tendm,dongia,anhsp,mota
+from danhmuc join SANPHAM on danhmuc.madm =  SANPHAM.MADM
+join chatlieu on SANPHAM.Macl = chatlieu.Macl
+ where tendm = 'Gương'
 
-
-select SANPHAM.MASP,TENSP,dongia,soluong,chatlieu,tendm,ANHSP
-from SANPHAM join danhmuc on SANPHAM.MADM = danhmuc.madm
-where sanpham.TRANGTHAI = 1
 
 
 
