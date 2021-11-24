@@ -49,6 +49,8 @@ public class CHITIETHOADON extends javax.swing.JInternalFrame {
 
         jLabel5.setText("jLabel5");
 
+        setPreferredSize(new java.awt.Dimension(1210, 750));
+
         jPanel2.setBackground(new java.awt.Color(176, 228, 246));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Chi Tiết Hóa Đơn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 30))); // NOI18N
 
