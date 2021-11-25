@@ -24,7 +24,7 @@ trangThai bit
 primary key (macl))
 -- CHI TI?T S?N PH?M
 CREATE TABLE SANPHAM(
-MASP int identity,
+MASP VARCHAR(15),
 TENSP NVARCHAR(100),
 SOLUONG INT,
 Macl int,
@@ -60,10 +60,11 @@ PRIMARY KEY (MASK)
 --HÓA ??N
 CREATE TABLE HOADON (
 MAHD VARCHAR(15),
-MASP int,
+MASP VARCHAR(15),
 MAKH VARCHAR(15),
 TENTK VARCHAR(15),
 MASK int,
+NGAYLAP DATE DEFAULT GETDATE(),
 UUDAI FLOAT,
 TONGTIENTT MONEY,
 TRANGTHAI BIT
@@ -75,8 +76,7 @@ foreign key(MASK) references SUKIEN)
 --CT HÓA ??N 
 CREATE TABLE CTHOADON(
 MAHD VARCHAR(15),
-MASP int,
-TENSP NVARCHAR(50),
+MASP VARCHAR(15),
 SOLUONG INT,
 DONGIA MONEY,
 THANHTIEN MONEY,
@@ -104,9 +104,9 @@ insert into  chatlieu values (N'Gỗ',1)
 insert into  chatlieu values (N'Nhôm',1)
 insert into  chatlieu values (N'Nhựa',1)
 
-insert into SANPHAM values (N'Bàn trạm hình rồng',5,1,6500000,1,'Ban Hinh Rong.jpg',N'Bàn đẹp hình Rồng uốn lượn',1)
-insert into SANPHAM values (N'Ghế trạm hình rồng',3,1,4500000,2,'Ghe Hinh Rong.jpg',N'Ghế đẹp hình Rồng uốn lượn',1)
-insert into SANPHAM values (N'Gương trạm hình rồng',2,1,2500000,3,'Guong Hinh Rong.jpg',N'Gương đẹp hình Rồng uốn lượn',1)
+insert into SANPHAM values ('SP01',N'Bàn trạm hình rồng',5,1,6500000,1,'Ban Hinh Rong.jpg',N'Bàn đẹp hình Rồng uốn lượn',1)
+insert into SANPHAM values ('SP02',N'Ghế trạm hình rồng',3,1,4500000,2,'Ghe Hinh Rong.jpg',N'Ghế đẹp hình Rồng uốn lượn',1)
+insert into SANPHAM values ('SP03',N'Gương trạm hình rồng',2,1,2500000,3,'Guong Hinh Rong.jpg',N'Gương đẹp hình Rồng uốn lượn',1)
 insert into TAIKHOAN values ('adminkien','123',N'Nguyễn Trung Kiên',0,1)
 insert into TAIKHOAN values ('admintu','123',N'Phạm Anh Tú',0,0)
 insert into TAIKHOAN values ('adminduc','123',N'Đào Văn Đức',1,1)
@@ -118,7 +118,11 @@ select SANPHAM.MASP,tensp,soluong,chatlieu.Macl,tendm,dongia,anhsp,mota
 from danhmuc join SANPHAM on danhmuc.madm =  SANPHAM.MADM
 join chatlieu on SANPHAM.Macl = chatlieu.Macl
  where tendm = 'Gương'
- insert into HOADON values ('HD01',1,'KH15','admintu',NULL,NULL,6500000,1)
+ insert into HOADON values ('HD01','sp01','KH15','admintu',NULL,'2021-01-01',NULL,6500000,1)
 
   insert into CTHOADON values('HD01',1,1,6500000,6500000,1)
 
+  SELECT *
+            FROM HOADON JOIN TAIKHOAN ON HOADON.TENTK = TAIKHOAN.TENTK
+            			JOIN KHACHHANG ON KHACHHANG.MAKH = HOADON.MAKH 
+            WHERE hoadon.TRANGTHAI LIKE 1

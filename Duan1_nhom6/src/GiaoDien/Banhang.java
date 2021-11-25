@@ -6,13 +6,16 @@
 package GiaoDien;
 
 import Dao.BanHangDao;
+import Dao.HoaDonDAO;
 import Dao.SanPhamDao;
 import Helper.DialogHelper;
+import Helper.XDate;
 import java.sql.ResultSet;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import model.DanhMuc;
+import model.HoaDon;
 import model.KhachHang;
 import model.Sanpham;
 
@@ -26,16 +29,21 @@ public class Banhang extends javax.swing.JInternalFrame {
      * Creates new form Banhang
      */
     DefaultTableModel model1;
+    DefaultTableModel model2;
+    DefaultTableModel model3;
 
     BanHangDao daobh = new BanHangDao();
     Dao.DanhMuc daoDm = new Dao.DanhMuc();
+    HoaDonDAO  daohd = new HoaDonDAO();
 
     public Banhang() {
 
         initComponents();
         model1 = (DefaultTableModel) tblSP.getModel();
-
+        model2 = (DefaultTableModel) tbnbanhang.getModel();
+        model3 = (DefaultTableModel) tblHoaDon.getModel();
         fillCboDanhMuc();
+        showHoaDonCho();
 //        fillTable();
 
     }
@@ -60,13 +68,13 @@ public class Banhang extends javax.swing.JInternalFrame {
     }
 
     public void showProductsDM() {
-       
+
         if (cbxDanhMuc.getSelectedIndex() == 0) {
             fillTable();
         }
         if (cbxDanhMuc.getSelectedIndex() > 0) {
             model1.setRowCount(0);
-            List<Sanpham> list = daobh.selectByDM(cbxDanhMuc.getSelectedItem()+"");
+            List<Sanpham> list = daobh.selectByDM(cbxDanhMuc.getSelectedItem() + "");
             for (Sanpham x : list) {
                 model1.addRow(new Object[]{
                     x.getMasp(), x.getTensp(), x.getSoluong(), x.getChatlieu(), x.getDongia(), x.getAnh(), x.getMota()
@@ -99,7 +107,7 @@ public class Banhang extends javax.swing.JInternalFrame {
         btnXoaAll = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblHoaDon = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -205,16 +213,16 @@ public class Banhang extends javax.swing.JInternalFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Hóa Đơm"));
 
-        jTable2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblHoaDon.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tblHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Mã Hóa Đơn", "Nhân Viên Bán", "Ngày Bán", "Mã Khách Hàng", "Sản Phẩm", "Trạng Thái"
+                "Mã Hóa Đơn", "Nhân Viên Bán", "Ngày Bán"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane3.setViewportView(tblHoaDon);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -496,7 +504,7 @@ public class Banhang extends javax.swing.JInternalFrame {
                     .addComponent(cbxDanhMuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addGap(69, 69, 69))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -608,12 +616,12 @@ public class Banhang extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblGiamGia;
     private javax.swing.JLabel lblTenNV;
     private javax.swing.JLabel lblTongTien;
     private javax.swing.JLabel lbnhanvienbh;
+    private javax.swing.JTable tblHoaDon;
     private javax.swing.JTable tblSP;
     private javax.swing.JTable tbnbanhang;
     private javax.swing.JTextField txtMaHd;
@@ -635,6 +643,19 @@ public class Banhang extends javax.swing.JInternalFrame {
 //            System.out.println(e);
 //        }
 //    }
+     public void showHoaDonCho() {
+        model3.setRowCount(0);
+        List<HoaDon> list = daohd.selectByHDChoThanhToan();
+        for (HoaDon x : list) {
+            model3.addRow(new Object[]{
+                x.getMahd(), x.getTentk(),XDate.toString(x.getNgaylap())
+            });
+        }
+    }
+    void ThemSp() {
+
+    }
+
     void Timkh() {
         try {
             String hoten = "";
