@@ -33,6 +33,8 @@ public class Banhang extends javax.swing.JInternalFrame {
     public Banhang() {
 
         initComponents();
+        model1 = (DefaultTableModel) tblSP.getModel();
+
         fillCboDanhMuc();
 //        fillTable();
 
@@ -58,21 +60,20 @@ public class Banhang extends javax.swing.JInternalFrame {
     }
 
     public void showProductsDM() {
-        DefaultTableModel model = (DefaultTableModel) tblSP.getModel();
-        model.setRowCount(0);
+       
         if (cbxDanhMuc.getSelectedIndex() == 0) {
             fillTable();
         }
-   if (cbxDanhMuc.getSelectedIndex() > 0) {
-        model.setRowCount(0);
-            List<Sanpham> list = daobh.selectByDM(cbxDanhMuc.getSelectedItem() + "");
+        if (cbxDanhMuc.getSelectedIndex() > 0) {
+            model1.setRowCount(0);
+            List<Sanpham> list = daobh.selectByDM(cbxDanhMuc.getSelectedItem()+"");
             for (Sanpham x : list) {
                 model1.addRow(new Object[]{
-                  x.getMasp(),x.getTensp(),x.getSoluong(),x.getChatlieu(),x.getDongia(),x.getAnh(),x.getMota()
+                    x.getMasp(), x.getTensp(), x.getSoluong(), x.getChatlieu(), x.getDongia(), x.getAnh(), x.getMota()
                 });
             }
         }
- 
+
     }
 
     /**
@@ -238,7 +239,7 @@ public class Banhang extends javax.swing.JInternalFrame {
         jLabel5.setText("Mã khách hàng");
 
         btnAddHD.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        btnAddHD.setText("Chọn");
+        btnAddHD.setText("+");
 
         jLabel16.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel16.setText("Tên Khách hàng");
@@ -274,12 +275,12 @@ public class Banhang extends javax.swing.JInternalFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAddHD)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
-                        .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAddHD, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(txtTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -375,13 +376,11 @@ public class Banhang extends javax.swing.JInternalFrame {
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lbnhanvienbh, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel3))
+                                            .addComponent(jLabel2))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(cboTT, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblTenNV)
-                                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(lblTenNV)))
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addGap(23, 23, 23)
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -389,7 +388,11 @@ public class Banhang extends javax.swing.JInternalFrame {
                                             .addGroup(jPanel4Layout.createSequentialGroup()
                                                 .addComponent(jButton2)
                                                 .addGap(37, 37, 37)
-                                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -522,15 +525,15 @@ public class Banhang extends javax.swing.JInternalFrame {
                         .addComponent(AddGioHang)
                         .addGap(518, 518, 518))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
                                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(55, Short.MAX_VALUE))))
+                        .addContainerGap(41, Short.MAX_VALUE))))
         );
 
         jPanel3.getAccessibleContext().setAccessibleName("Hóa Đơn");

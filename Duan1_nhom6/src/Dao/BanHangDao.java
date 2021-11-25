@@ -18,13 +18,16 @@ import model.Sanpham;
  * @author kien5
  */
 public class BanHangDao {
-String SPbyDanhMuc = "select SANPHAM.MASP,tensp,soluong,chatlieu.Macl,tendm,dongia,anhsp,mota\n"
-                + "from danhmuc join SANPHAM on danhmuc.madm =  SANPHAM.MADM\n"
-                + "join chatlieu on SANPHAM.Macl = chatlieu.Macl\n"
-                + " where tendm = ?";
+
+    String SPbyDanhMuc = "select SANPHAM.MASP,tensp,soluong,chatlieu.Macl,dongia,anhsp,mota\n"
+            + "FROM SANPHAM\n"
+            + "        join dbo.chatlieu on SANPHAM.Macl = chatlieu.Macl\n"
+            + "		join danhmuc on danhmuc.madm = SANPHAM.MADM\n"
+            + "		 WHERE TENDM = ?";
+
     private static Sanpham readFromResultSet(ResultSet rs) throws SQLException {
         Sanpham model = new Sanpham();
-        model.setMasp(rs.getInt("MASP"));
+        model.setMasp(rs.getString("MASP"));
         model.setTensp(rs.getString("TENSP"));
         model.setSoluong(rs.getInt("SOLUONG"));
         model.setChatlieu(rs.getInt("MaCl"));
@@ -36,21 +39,22 @@ String SPbyDanhMuc = "select SANPHAM.MASP,tensp,soluong,chatlieu.Macl,tendm,dong
         return model;
 
     }
-     public List<Sanpham> selectBySQL(String sql, Object... args) {
+
+    public List<Sanpham> selectBySQL(String sql, Object... args) {
         List<Sanpham> list = new ArrayList<>();
         try {
             ResultSet rs = jdbcKien.executeQuery(sql, args);
             while (rs.next()) {
-               Sanpham model = new Sanpham();
-            model.setMasp(rs.getInt("MASP"));
-        model.setTensp(rs.getString("TENSP"));
-        model.setSoluong(rs.getInt("SOLUONG"));
-        model.setChatlieu(rs.getInt("MaCl"));
-        model.setDongia(rs.getFloat("DONGIA"));
-        model.setMadm(rs.getInt("MADM"));
-        model.setAnh(rs.getString("ANHSP"));
-        model.setMota(rs.getString("MoTa"));
-        model.setTrangthai(rs.getBoolean("trangthai"));
+                Sanpham model = new Sanpham();
+                model.setMasp(rs.getString("MASP"));
+                model.setTensp(rs.getString("TENSP"));
+                model.setSoluong(rs.getInt("SOLUONG"));
+                model.setChatlieu(rs.getInt("MaCl"));
+                model.setDongia(rs.getFloat("DONGIA"));
+                model.setMadm(rs.getInt("MADM"));
+                model.setAnh(rs.getString("ANHSP"));
+                model.setMota(rs.getString("MoTa"));
+                model.setTrangthai(rs.getBoolean("trangthai"));
                 list.add(model);
             }
             rs.getStatement().getConnection().close();
@@ -133,7 +137,7 @@ String SPbyDanhMuc = "select SANPHAM.MASP,tensp,soluong,chatlieu.Macl,tendm,dong
     }
 
     public List<Sanpham> selectByDM(String key) {
-        
+
         return selectBySQL(SPbyDanhMuc, key);
     }
 

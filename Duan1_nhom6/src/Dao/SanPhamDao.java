@@ -21,7 +21,7 @@ public class SanPhamDao {
 
     private static Sanpham readFromResultSet(ResultSet rs) throws SQLException {
         Sanpham model = new Sanpham();
-        model.setMasp(rs.getInt("MASP"));
+        model.setMasp(rs.getString("MASP"));
         model.setTensp(rs.getString("TENSP"));
         model.setSoluong(rs.getInt("SOLUONG"));
         model.setChatlieu(rs.getInt("MaCl"));
@@ -75,7 +75,7 @@ public class SanPhamDao {
      * @param entity là thực thể chứa thông tin bản ghi mới
      */
     public void insert(Sanpham entity) {
-        String sql = "INSERT INTO SanPham(TenSP,soluong,chatlieu,dongia,MaDM,AnhSP,mota,TrangThai) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO SanPham(masp,TenSP,soluong,chatlieu,dongia,MaDM,AnhSP,mota,TrangThai) VALUES (?,?,?,?,?,?,?,?,?)";
         jdbcKien.executeUpdate(sql,
                 entity.getTensp(),
                 entity.getSoluong(),

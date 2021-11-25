@@ -10,7 +10,7 @@ package model;
  * @author kien5
  */
 public class Sanpham {
-    private int masp;
+    private String masp;
     private String tensp;
     private int chatlieu;
     private  String TenCL;
@@ -25,7 +25,7 @@ public class Sanpham {
     public Sanpham() {
     }
 
-    public Sanpham(int masp, String tensp, int chatlieu, String TenCL, String mota, String anh, int madm, String TenDm, int soluong, Float dongia, Boolean trangthai) {
+    public Sanpham(String masp, String tensp, int chatlieu, String TenCL, String mota, String anh, int madm, String TenDm, int soluong, Float dongia, Boolean trangthai) {
         this.masp = masp;
         this.tensp = tensp;
         this.chatlieu = chatlieu;
@@ -39,11 +39,11 @@ public class Sanpham {
         this.trangthai = trangthai;
     }
 
-    public int getMasp() {
+    public String getMasp() {
         return masp;
     }
 
-    public void setMasp(int masp) {
+    public void setMasp(String masp) {
         this.masp = masp;
     }
 
@@ -127,5 +127,6 @@ public class Sanpham {
         this.trangthai = trangthai;
     }
 
+  
  
 }

@@ -33,7 +33,7 @@ MADM int,
 ANHSP NVARCHAR(50),
 MOTA NVARCHAR(100),
 TRANGTHAI BIT
-CONSTRAINT PK_CTSANPHAM PRIMARY KEY (MASP),
+CONSTRAINT PK_SANPHAM PRIMARY KEY (MASP),
 foreign key(MADM) references danhmuc,
 foreign key(MaCl) references chatlieu
 
@@ -75,14 +75,14 @@ foreign key(MASK) references SUKIEN)
 --CT HÓA ??N 
 CREATE TABLE CTHOADON(
 MAHD VARCHAR(15),
-MACTSP int,
+MASP int,
 TENSP NVARCHAR(50),
 SOLUONG INT,
 DONGIA MONEY,
 THANHTIEN MONEY,
 TRANGTHAI BIT
 foreign key(MAHD) references HOADON,
-FOREIGN KEY (MACTSP) REFERENCES SANPHAM)
+FOREIGN KEY (MASP) REFERENCES SANPHAM)
 --doanh m?c
 
 select * from KHACHHANG
@@ -118,7 +118,7 @@ select SANPHAM.MASP,tensp,soluong,chatlieu.Macl,tendm,dongia,anhsp,mota
 from danhmuc join SANPHAM on danhmuc.madm =  SANPHAM.MADM
 join chatlieu on SANPHAM.Macl = chatlieu.Macl
  where tendm = 'Gương'
+ insert into HOADON values ('HD01',1,'KH15','admintu',NULL,NULL,6500000,1)
 
-
-
+  insert into CTHOADON values('HD01',1,1,6500000,6500000,1)
 

@@ -21,7 +21,7 @@ import model.taikhoan;
  * @author kien5
  */
 public class TaiKhoanDao {
-     static Connection con = Utils.myConnection();
+    static Connection con = Utils.myConnection();
 
     public taikhoan readFromResultSet(ResultSet rs) throws SQLException {
         taikhoan model = new taikhoan();
