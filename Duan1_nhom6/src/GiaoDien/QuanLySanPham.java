@@ -429,10 +429,16 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
+        insert();
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
+        if (isValidate()) {
+            return;
+        } else {
+            updatetData();
+        }
     }//GEN-LAST:event_btnSuaActionPerformed
 
 
@@ -466,4 +472,41 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTenSp;
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
+
+    private boolean isValidate() {
+       try {
+            if (txtTenSp.getText().trim().equals("")) {
+                
+                return true;
+            } else if (txtDonGia1.getText().trim().equals("")) {
+                
+                return true;
+            
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return true;
+        }
+    }
+
+    private void updatetData() {
+//       Sanpham sp = getFromSP();
+//        try {
+//            daoSP.updateData(sp);
+//            fillTableData();
+//            Msgbox.alert(this, "Cập nhật thành công!");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            Msgbox.alert(this, "Cập nhật thất bại!");
+//        }
+    }
+      Sanpham getFromSP() {
+        DanhMuc dm = (DanhMuc) CboDanhMuc.getSelectedItem();
+        Sanpham sp = new Sanpham();
+        sp.setTensp(txtTenSp.getText());
+        sp.setMadm(sp.getMadm());
+        return sp;
+    }
 }
