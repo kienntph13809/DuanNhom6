@@ -25,6 +25,7 @@ public class HoaDon {
     private Float uudai;
     private Float tongTien;
     private Boolean trangThai;
+    private String ghichu;
 
     public HoaDon() {
     }
@@ -133,6 +134,14 @@ public class HoaDon {
         this.trangThai = trangThai;
     }
 
-    
+    public String getGhichu() {
+        return ghichu;
+    }
+
+    public void setGhichu(String ghichu) {
+        this.ghichu = ghichu;
+    }
+
+ 
 
 }

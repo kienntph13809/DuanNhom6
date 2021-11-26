@@ -19,6 +19,7 @@ import model.Sanpham;
  */
 public class BanHangDao {
 
+
     String SPbyDanhMuc = "select SANPHAM.MASP,tensp,soluong,chatlieu.Macl,dongia,anhsp,mota\n"
             + "FROM SANPHAM\n"
             + "        join dbo.chatlieu on SANPHAM.Macl = chatlieu.Macl\n"

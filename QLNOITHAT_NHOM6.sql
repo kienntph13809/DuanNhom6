@@ -67,7 +67,8 @@ MASK int,
 NGAYLAP DATE DEFAULT GETDATE(),
 UUDAI FLOAT,
 TONGTIENTT MONEY,
-TRANGTHAI BIT
+TRANGTHAI BIT,
+ghichu nvarchar(100)
 PRIMARY KEY (MAHD),
 foreign key(MASP) references SANPHAM,
 foreign key(MAKH) references KHACHHANG,
@@ -91,6 +92,7 @@ select * from HOADON
 select * from CTHOADON
 select * from danhmuc
 select * from chatlieu
+select * from HOADON
 
 insert into KHACHHANG values ('kh15',N'Nguy?n Anh D?ng','0897999565','Hà N?i',1)
 insert into KHACHHANG values ('kh16',N'Phạm Anh Tú','0897999555','Hà N?i',1)
@@ -118,7 +120,10 @@ select SANPHAM.MASP,tensp,soluong,chatlieu.Macl,tendm,dongia,anhsp,mota
 from danhmuc join SANPHAM on danhmuc.madm =  SANPHAM.MADM
 join chatlieu on SANPHAM.Macl = chatlieu.Macl
  where tendm = 'Gương'
- insert into HOADON values ('HD01','sp01','KH15','admintu',NULL,'2021-01-01',NULL,6500000,1)
+ insert into HOADON(MAHD,MASP,MAKH,TENTK,MASK,NGAYLAP,UUDAI,TONGTIENTT,TRANGTHAI,ghichu) values ('HD01','sp01','KH15','admintu',NULL,'2021-01-01',NULL,6500000,1,null)
+  insert into HOADON(MAHD,MASP,MAKH,TENTK,MASK,NGAYLAP,UUDAI,TONGTIENTT,TRANGTHAI,ghichu) values ('HD02','sp01','KH15','adminduc',NULL,'2021-01-01',NULL,6500000,1,null)
+    insert into HOADON(MAHD,MASP,MAKH,TENTK,MASK,UUDAI,TONGTIENTT,TRANGTHAI,ghichu) values (?,?,?,?,?,?,?,?,?,?)
+	  insert into HOADON(MAHD,MASP,MAKH,TENTK,MASK,NGAYLAP,UUDAI,TONGTIENTT,TRANGTHAI,ghichu) values ('HD02','sp01','KH15','adminduc',NULL,NULL,6500000,1,null)
 
   insert into CTHOADON values('HD01',1,1,6500000,6500000,1)
 
@@ -126,3 +131,9 @@ join chatlieu on SANPHAM.Macl = chatlieu.Macl
             FROM HOADON JOIN TAIKHOAN ON HOADON.TENTK = TAIKHOAN.TENTK
             			JOIN KHACHHANG ON KHACHHANG.MAKH = HOADON.MAKH 
             WHERE hoadon.TRANGTHAI LIKE 1
+
+
+
+SELECT *
+            FROM HOADON JOIN TAIKHOAN ON HOADON.TENTK = TAIKHOAN.TENTK
+            			JOIN KHACHHANG ON KHACHHANG.MAKH = HOADON.MAKH 
