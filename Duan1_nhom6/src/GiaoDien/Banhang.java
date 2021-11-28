@@ -8,7 +8,9 @@ package GiaoDien;
 import Dao.BanHangDao;
 import Dao.HoaDonDAO;
 import Dao.SanPhamDao;
+import Helper.Auth;
 import Helper.DialogHelper;
+import Helper.Sharehelper;
 import Helper.XDate;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
@@ -50,6 +52,7 @@ public class Banhang extends javax.swing.JInternalFrame {
         fillCboDanhMuc();
         showHoaDonCho();
 //        fillTable();
+          lblTenNV.setText(Auth.user.getTentk());
     
 
     }
@@ -359,8 +362,18 @@ public class Banhang extends javax.swing.JInternalFrame {
         jButton2.setText("Cập Nhật Hóa Đơn");
 
         jButton3.setText("Làm Mới");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Lưu");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -563,7 +576,7 @@ public class Banhang extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1205, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1196, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -606,6 +619,16 @@ public class Banhang extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         xoaTatCa();
     }//GEN-LAST:event_btnXoaAllActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        lamMoi();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        luuHoaDon();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -673,7 +696,7 @@ public class Banhang extends javax.swing.JInternalFrame {
        HoaDon getForm() {
         HoaDon hd = new HoaDon();
         hd.setMahd(txtMaHd.getText());
-        //hd.setMaNV(Auth.user.getMaNV());
+        hd.setTensk(Auth.user.getTentk());
         hd.setMakh(txtMaKH.getText());
         hd.setTrangThai(false);
         hd.setTongTien(Float.parseFloat(lblTongTien.getText()));
@@ -695,7 +718,7 @@ public class Banhang extends javax.swing.JInternalFrame {
        public void luuHoaDon() {
         try {
             if (txtMaHd.getText().trim().equals("")) {
-                DialogHelper.alert(this, "Vui lòng nhập mã hóa đơn trước khi lưu");
+                DialogHelper.alert(this, "Vui lòng nhập mã hóa đơn trước khi lưu Hóa Đơn");
                 return;
             } else if (txtMaKH.getText().trim().equals("")) {
                 DialogHelper.alert(this, "Vui lòng chọn khách hàng trước khi nhấn lưu hóa đơn");
@@ -823,5 +846,15 @@ public void xoaSanPham() {
 
     }
 
-   
+    public void lamMoi() {
+        model2.setRowCount(0);
+        txtMaHd.setText("");
+        lblGiamGia.setText("");
+        txtMaKH.setText("");
+        lblTongTien.setText("0");
+        lblGiamGia.setText("0");
+        txtTenKH.setText("");
+        
+        row2 = -1;
+    }
 }
