@@ -62,17 +62,7 @@ public class Sharehelper {
 /**
  * Đối tượng này chứa thông tin người sử dụng sau khi đăng nhập
  */
-    public static taikhoan USER = null;
-    /*
-    Kiểm tra xem đăng nhập ngày nào hay chưa
-    @return đăng nhập hay chưa
-    */
-    public static void logoff(){
-        Sharehelper.USER = null;
-    }
-    public static boolean  authenticated(){
-     return Sharehelper.USER != null;
-    }
+ 
 }
 
 

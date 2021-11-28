@@ -93,6 +93,7 @@ select * from CTHOADON
 select * from danhmuc
 select * from chatlieu
 select * from HOADON
+select * from TAIKHOAN
 
 insert into KHACHHANG values ('kh15',N'Nguy?n Anh D?ng','0897999565','Hà N?i',1)
 insert into KHACHHANG values ('kh16',N'Phạm Anh Tú','0897999555','Hà N?i',1)
@@ -137,3 +138,8 @@ join chatlieu on SANPHAM.Macl = chatlieu.Macl
 SELECT *
             FROM HOADON JOIN TAIKHOAN ON HOADON.TENTK = TAIKHOAN.TENTK
             			JOIN KHACHHANG ON KHACHHANG.MAKH = HOADON.MAKH 
+insert into HOADON(MAHD,MAKH,TENTK,TONGTIENTT,TRANGTHAI,ghichu) values ('HD04','KH15','adminduc',6500000,1,null)
+insert into HOADON(MAHD,MAKH,TENTK,TONGTIENTT,TRANGTHAI,ghichu) values (?,?,?,?,?,?,?)
+
+select * from TAIKHOAN
+where TENTK = ?

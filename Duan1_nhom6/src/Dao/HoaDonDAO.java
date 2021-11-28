@@ -17,7 +17,7 @@ import model.HoaDon;
  */
 public class HoaDonDAO {
 
-    String INSERT_SQL = "    insert into HOADON(MAHD,MASP,MAKH,TENTK,MASK,NGAYLAP,UUDAI,TONGTIENTT,TRANGTHAI,ghichu) values (?,?,?,?,?,?,?,?,?,?)";
+    String INSERT_SQL = "insert into HOADON(MAHD,MAKH,TENTK,TONGTIENTT,TRANGTHAI,ghichu) values (?,?,?,?,?,?)";
     String SELECT_ALL_SQL = "SELECT *\n"
             + "            FROM HOADON JOIN TAIKHOAN ON HOADON.TENTK = TAIKHOAN.TENTK\n"
             + "            			JOIN KHACHHANG ON KHACHHANG.MAKH = HOADON.MAKH ";
@@ -27,7 +27,7 @@ public class HoaDonDAO {
             + "            WHERE hoadon.TRANGTHAI LIKE 1";
 
     public void insert(HoaDon model) {
-        jdbcKien.executeUpdate(INSERT_SQL,model.getMahd(),model.getMasp(),model.getMakh(),model.getTentk(),model.getMask(),model.getNgaylap(),model.getUudai(),model.getTrangThai(),model.getGhichu());
+        jdbcKien.executeUpdate(INSERT_SQL, model.getMahd(), model.getMakh(), model.getTentk(),model.getTongTien(), model.getTrangThai(), model.getGhichu());
     }
 
     public List<HoaDon> selectBySQL(String sqlString, Object... args) {

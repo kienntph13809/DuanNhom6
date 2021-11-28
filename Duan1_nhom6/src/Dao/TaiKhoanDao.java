@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import model.Sanpham;
 import model.taikhoan;
 
 /**
@@ -21,6 +22,7 @@ import model.taikhoan;
  * @author kien5
  */
 public class TaiKhoanDao {
+
     static Connection con = Utils.myConnection();
 
     public taikhoan readFromResultSet(ResultSet rs) throws SQLException {
@@ -29,15 +31,15 @@ public class TaiKhoanDao {
         model.setHoten(rs.getString(2));
         model.setMatkhau(rs.getString(3));
         model.setVaitro(rs.getBoolean(4));
-        model.setTrangthai(rs.getString(5));       
+        model.setTrangthai(rs.getString(5));
         return model;
     }
 
     public synchronized static List<taikhoan> HienThi() {
         List<taikhoan> list = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM TAIKHOAN\n" +
-                   "where TRANGTHAI = 1";
+            String sql = "SELECT * FROM TAIKHOAN\n"
+                    + "where TRANGTHAI = 1";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -83,7 +85,6 @@ public class TaiKhoanDao {
 //        return list;
 //
 //    }
-
     //thực hiện truy vấn lấy về 1 tập ResultSet rồi điền tập ResultSet đó vào 1 List
     public List<taikhoan> select(String sql, Object... args) {
         List<taikhoan> list = new ArrayList<>();
@@ -116,13 +117,9 @@ public class TaiKhoanDao {
                 entity.getMatkhau(),
                 entity.getHoten(),
                 entity.isVaitro(),
-                
                 entity.getTrangthai()
-        
         );
-               
-        
-        
+
     }
 
     public static void update(taikhoan entity) {
@@ -160,17 +157,23 @@ public class TaiKhoanDao {
         return list;
     }
 
-    public  taikhoan checkTrungMa(String tenTaiKhoan) {
+    public taikhoan checkTrungMa(String tenTaiKhoan) {
         String sql = "select * from taikhoan \n"
                 + "where tentk = ?";
         List<taikhoan> list = select(sql, tenTaiKhoan);
         return list.size() > 0 ? list.get(0) : null;
     }
+
     public void delete(String tenTaiKhoan) {
         String sql = "UPDATE taikhoan\n"
                 + "SET an = 0\n"
                 + "where tentk = ?";
         jdbcKien.executeUpdate(sql, tenTaiKhoan);
     }
-  
+
+    public List<taikhoan> select_By_TK( String key) {
+        String sql = "select * from TAIKHOAN\n"
+                + "where TENTK = ?";
+        return select(sql,key);
+    }
 }

@@ -6,6 +6,7 @@
 package GiaoDien;
 
 import Dao.DangNhap;
+import Helper.Auth;
 import Helper.DialogHelper;
 import Helper.Sharehelper;
 import javax.swing.JOptionPane;
@@ -26,37 +27,32 @@ public class DANGNHAP extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setResizable(false);
+        setLocationRelativeTo(null);
        
     }
-   void login(){
-         String tendn = txtUser.getText();
-         String matkhau = new String(txtPass.getPassword());
-         try {
-             taikhoan taikhoan = dao.findByTenTaiKhoan(tendn);
-               /*
-            manv là tên đăng nhập
-            nhanVien findbyId(String manv)
-            */
-               if (taikhoan !=null) {
-                 String matkhau2 = taikhoan.getMatkhau();
-                   if (matkhau.equals(matkhau2)) {
-//                       Sharehelper.USER = taikhoan;
-                       DialogHelper.alert(this,"Đăng nhập Thành Công");
-                       this.dispose();
-                   }
-                   else {
-                       DialogHelper.alert(this,"Sai Mật Khẩu");
-                   }
-             }
-               else{
-                   DialogHelper.alert(this,"SAi Tên Đăng Nhập");
-               }
-              
-               
-         } catch (Exception e) {
-             DialogHelper.alert(this,"Lỗi Truy vấn dữ liệu");
-         }
-     }
+    public void login() {
+        try {
+            String username = txtUser.getText();
+            String pass = new String(txtMatKhau.getPassword());
+            taikhoan tk = dao.findByTenTaiKhoan(username);
+            if (username.trim().equals("")) {
+                DialogHelper.alert(this, "Username không được bỏ trống");
+            } else if (pass.trim().equals("")) {
+                DialogHelper.alert(this, "Password không được bỏ trống");
+            } else if (tk == null) {
+                DialogHelper.alert(this, "Sai Username");
+            } else if (!pass.equals(tk.getMatkhau())) {
+                DialogHelper.alert(this, "Sai mật khẩu!");
+            } else {
+                DialogHelper.alert(this, "Đăng nhập thành công!");
+                Auth.user = tk;
+                this.dispose();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            DialogHelper.alert(this, "Đăng nhập thất bại!");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,7 +67,6 @@ public class DANGNHAP extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         txtUser = new javax.swing.JTextField();
-        txtPass = new javax.swing.JPasswordField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -83,13 +78,13 @@ public class DANGNHAP extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
+        txtMatKhau = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(74, 31, 61));
         jPanel2.setLayout(null);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Desktop\\DuanNhom6\\Duan1_nhom6\\src\\icon\\gallery-phong-khach-picart-01.jpg")); // NOI18N
         jLabel3.setText("jLabel3");
         jPanel2.add(jLabel3);
         jLabel3.setBounds(-200, 0, 620, 400);
@@ -100,11 +95,6 @@ public class DANGNHAP extends javax.swing.JDialog {
         txtUser.setBackground(new java.awt.Color(186, 79, 84));
         txtUser.setForeground(new java.awt.Color(51, 51, 51));
         txtUser.setBorder(null);
-
-        txtPass.setEditable(false);
-        txtPass.setBackground(new java.awt.Color(186, 79, 84));
-        txtPass.setForeground(new java.awt.Color(255, 255, 255));
-        txtPass.setBorder(null);
 
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
@@ -129,10 +119,6 @@ public class DANGNHAP extends javax.swing.JDialog {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("ĐĂNG NHẬP");
-
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Desktop\\DuanNhom6\\Duan1_nhom6\\src\\icon\\Lock.png")); // NOI18N
-
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Desktop\\DuanNhom6\\Duan1_nhom6\\src\\icon\\Unknown person.png")); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Forget PassWord");
@@ -183,7 +169,7 @@ public class DANGNHAP extends javax.swing.JDialog {
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel4)
                                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(166, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -201,11 +187,15 @@ public class DANGNHAP extends javax.swing.JDialog {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(10, 10, 10)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel5)
+                        .addGap(13, 13, 13))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -215,7 +205,7 @@ public class DANGNHAP extends javax.swing.JDialog {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -324,7 +314,7 @@ public class DANGNHAP extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JPasswordField txtPass;
+    private javax.swing.JPasswordField txtMatKhau;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

@@ -38,11 +38,15 @@ public class GiaoDienTu extends javax.swing.JFrame {
         HoaDon.setBackground(DefaultColor);
         TaiKhoan.setBackground(DefaultColor);
         Thoat.setBackground(DefaultColor);
+        showLogin();
 
     }
 
     public void showChao() {
         new LoadingTu(this, true).setVisible(true);
+    }
+      public void showLogin() {
+        new DANGNHAP(this, true).setVisible(true);
     }
 
     public void openLogin() {
@@ -58,7 +62,7 @@ public class GiaoDienTu extends javax.swing.JFrame {
 //        new DANGNHAP(this, true).setVisible(true);
 //
 //>>>>>>> origin/master
-    }
+}
 
     void exit() {
         if (DialogHelper.confirm(this, "Bạn thực sự muốn kết thúc?")) {
