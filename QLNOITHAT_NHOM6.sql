@@ -143,3 +143,13 @@ insert into HOADON(MAHD,MAKH,TENTK,TONGTIENTT,TRANGTHAI,ghichu) values (?,?,?,?,
 
 select * from TAIKHOAN
 where TENTK = ?
+UPDATE HOADON SET TONGTIENTT = 1000,MASK = 1,TRANGTHAI = 1,GHICHU = '...'
+WHERE MAHD = 'HD04'
+UPDATE HOADON SET TONGTIENTT = ?,MASK = ?,TRANGTHAI = ?,GHICHU = ?
+WHERE MAHD = ?
+insert into CTHOADON values(?,?,?,?,?,?)
+delete from CTHOADON where MAHD = ?
+select *
+from CTHOADON join SANPHAM on CTHOADON.MASP = SANPHAM.MASP
+       
+              
