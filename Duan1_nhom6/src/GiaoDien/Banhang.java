@@ -6,6 +6,7 @@
 package GiaoDien;
 
 import Dao.BanHangDao;
+import Dao.HoaDonChiTietDao;
 import Dao.HoaDonDAO;
 import Dao.SanPhamDao;
 import Helper.Auth;
@@ -40,6 +41,7 @@ public class Banhang extends javax.swing.JInternalFrame {
     BanHangDao daobh = new BanHangDao();
     Dao.DanhMuc daoDm = new Dao.DanhMuc();
     HoaDonDAO daohd = new HoaDonDAO();
+    HoaDonChiTietDao daohdct = new HoaDonChiTietDao();
         int row1 = -1;
         int row2 = -1;
         int row3 = -1;
@@ -324,7 +326,7 @@ public class Banhang extends javax.swing.JInternalFrame {
         jLabel7.setText("Tổng Tiền :");
 
         lblTongTien.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        lblTongTien.setText(".....................................");
+        lblTongTien.setText("0");
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel8.setText("Khuyến Mãi :");
@@ -360,6 +362,11 @@ public class Banhang extends javax.swing.JInternalFrame {
         jLabel3.setText("Ghi Chú");
 
         jButton2.setText("Cập Nhật Hóa Đơn");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Làm Mới");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -529,8 +536,8 @@ public class Banhang extends javax.swing.JInternalFrame {
                     .addComponent(btnADDSP)
                     .addComponent(cbxDanhMuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -629,6 +636,21 @@ public class Banhang extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         luuHoaDon();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+          try {
+            if (txtMaHd.getText().equals("")) {
+                DialogHelper.alert(this, "Vui lòng chọn hóa đơn trước khi cập nhật hóa đơn");
+            } else {
+                capNhatHoaDon();
+                DialogHelper.alert(this, "Cập nhật hóa đơn thành công!");
+            }
+        } catch (Exception e) {
+            DialogHelper.alert(this, "Cập nhật hóa đơn thất bại");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -738,6 +760,8 @@ public class Banhang extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }
+      
+
    public void donHang() {
         float tongTien = 0;
         int soDong = tbnbanhang.getRowCount();
@@ -831,7 +855,22 @@ public void xoaSanPham() {
         }
     }
 
-   
+//      public void capNhatHoaDon() {
+//        HoaDon hd = getForm();
+//        daohd.update(hd);
+//        daohdct.delete(txtMaHoaDon.getText());
+//        for (int i = 0; i < tblSanPhamChon.getRowCount(); i++) {
+//            //Tạo đối tượng hóa đơn chi tiết và add vào đối tượng để thêm vào vào hóa đơn chi tiết
+//            HoaDonChiTiet hdct = new HoaDonChiTiet();
+//            hdct.setMaSPCT(tblSanPhamChon.getValueAt(i, 0) + "");
+//            hdct.setMaHD(txtMaHoaDon.getText());
+//            hdct.setSoLuong(Integer.parseInt(tblSanPhamChon.getValueAt(i, 3) + ""));
+//            hdct.setDonGia(Float.parseFloat(tblSanPhamChon.getValueAt(i, 2) + ""));
+//            //Thêm từng hóa đơn chi tiết theo điều kiện i
+//            hdctService.insert(hdct);
+//        }
+//
+//    }
 
     void Timkh() {
         try {
