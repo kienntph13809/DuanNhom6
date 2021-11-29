@@ -22,6 +22,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import model.DanhMuc;
 import model.HoaDon;
+import model.HoaDonChiTiet;
 import model.KhachHang;
 import model.Sanpham;
 
@@ -42,9 +43,11 @@ public class Banhang extends javax.swing.JInternalFrame {
     Dao.DanhMuc daoDm = new Dao.DanhMuc();
     HoaDonDAO daohd = new HoaDonDAO();
     HoaDonChiTietDao daohdct = new HoaDonChiTietDao();
-        int row1 = -1;
-        int row2 = -1;
-        int row3 = -1;
+    SanPhamDao daosp = new SanPhamDao();
+    int row1 = -1;
+    int row2 = -1;
+    int row3 = -1;
+
     public Banhang() {
 
         initComponents();
@@ -53,11 +56,10 @@ public class Banhang extends javax.swing.JInternalFrame {
         model3 = (DefaultTableModel) tblHoaDon.getModel();
         fillCboDanhMuc();
         showHoaDonCho();
-//        fillTable();
-          lblTenNV.setText(Auth.user.getTentk());
-    
+        lblTenNV.setText(Auth.user.getTentk());
 
     }
+
     public String dinhDangTien(float so) {
         NumberFormat fomatter = new DecimalFormat("###,###,###,###" + " VND");
         return fomatter.format(so);
@@ -245,8 +247,26 @@ public class Banhang extends javax.swing.JInternalFrame {
             new String [] {
                 "Mã Hóa Đơn", "Nhân Viên Bán", "Ngày Bán"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblHoaDonMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tblHoaDon);
+        if (tblHoaDon.getColumnModel().getColumnCount() > 0) {
+            tblHoaDon.getColumnModel().getColumn(0).setResizable(false);
+            tblHoaDon.getColumnModel().getColumn(1).setResizable(false);
+            tblHoaDon.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -254,15 +274,12 @@ public class Banhang extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(172, 172, 172))
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -571,7 +588,7 @@ public class Banhang extends javax.swing.JInternalFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
                                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(41, Short.MAX_VALUE))))
@@ -595,6 +612,7 @@ public class Banhang extends javax.swing.JInternalFrame {
 
     private void btnthanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthanhtoanActionPerformed
         // TODO add your handling code here:
+        thanhToan();
     }//GEN-LAST:event_btnthanhtoanActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -639,7 +657,7 @@ public class Banhang extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-          try {
+        try {
             if (txtMaHd.getText().equals("")) {
                 DialogHelper.alert(this, "Vui lòng chọn hóa đơn trước khi cập nhật hóa đơn");
             } else {
@@ -651,6 +669,11 @@ public class Banhang extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
+        // TODO add your handling code here:
+        clickHoaDonCho();
+    }//GEN-LAST:event_tblHoaDonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -715,7 +738,7 @@ public class Banhang extends javax.swing.JInternalFrame {
 //            System.out.println(e);
 //        }
 //    }
-       HoaDon getForm() {
+    HoaDon getForm() {
         HoaDon hd = new HoaDon();
         hd.setMahd(txtMaHd.getText());
         hd.setTensk(Auth.user.getTentk());
@@ -725,7 +748,8 @@ public class Banhang extends javax.swing.JInternalFrame {
         hd.setGhichu(txtGhiChu.getText());
         return hd;
     }
-     public boolean checkTrungMaHD(String x) {
+
+    public boolean checkTrungMaHD(String x) {
         boolean check = false;
         List<HoaDon> list = daohd.selectAll();
         for (int i = 0; i < list.size(); i++) {
@@ -737,7 +761,7 @@ public class Banhang extends javax.swing.JInternalFrame {
         return check;
     }
 
-       public void luuHoaDon() {
+    public void luuHoaDon() {
         try {
             if (txtMaHd.getText().trim().equals("")) {
                 DialogHelper.alert(this, "Vui lòng nhập mã hóa đơn trước khi lưu Hóa Đơn");
@@ -750,25 +774,23 @@ public class Banhang extends javax.swing.JInternalFrame {
                 return;
             } else {
                 daohd.insert(getForm());
-                showHoaDonCho();
                 DialogHelper.alert(this, "Lưu hóa đơn thành công");
-
                 txtMaHd.setEditable(false);
             }
         } catch (Exception e) {
             DialogHelper.alert(this, "Lưu hóa đơn thất bại");
             e.printStackTrace();
         }
+        showHoaDonCho();
     }
-      
 
-   public void donHang() {
+    public void donHang() {
         float tongTien = 0;
         int soDong = tbnbanhang.getRowCount();
         if (soDong == 0) {
             lblTongTien.setText("0");
             lblGiamGia.setText("0");
-            
+
         } else {
             for (int i = 0; i < tbnbanhang.getRowCount(); i++) {
                 float donGia = Float.parseFloat(tbnbanhang.getValueAt(i, 2) + "");
@@ -777,11 +799,12 @@ public class Banhang extends javax.swing.JInternalFrame {
 
                 lblTongTien.setText(this.dinhDangTien(tongTien));
                 lblGiamGia.setText("0");
-                
+
             }
 
         }
     }
+
     public void themSanPham() {
         row1 = tblSP.getSelectedRow();
         row3 = tblHoaDon.getSelectedRow();
@@ -815,7 +838,8 @@ public class Banhang extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }
-public void xoaSanPham() {
+
+    public void xoaSanPham() {
         row2 = tbnbanhang.getSelectedRow();
         try {
             if (row2 < 0) {
@@ -833,7 +857,8 @@ public void xoaSanPham() {
             DialogHelper.alert(this, "Xóa sản phẩm thất bại");
         }
     }
- public void xoaTatCa() {
+
+    public void xoaTatCa() {
         try {
             if (DialogHelper.confirm(this, "Bạn chắc chắn muốn xóa hết tất cả sản phẩm này khỏi danh sách đã chọn ?")) {
                 model2.setRowCount(0);
@@ -845,6 +870,7 @@ public void xoaSanPham() {
             DialogHelper.alert(this, "Xóa tất cả sản phẩm thất bại");
         }
     }
+
     public void showHoaDonCho() {
         model3.setRowCount(0);
         List<HoaDon> list = daohd.selectByHDChoThanhToan();
@@ -855,22 +881,22 @@ public void xoaSanPham() {
         }
     }
 
-//      public void capNhatHoaDon() {
-//        HoaDon hd = getForm();
-//        daohd.update(hd);
-//        daohdct.delete(txtMaHoaDon.getText());
-//        for (int i = 0; i < tblSanPhamChon.getRowCount(); i++) {
-//            //Tạo đối tượng hóa đơn chi tiết và add vào đối tượng để thêm vào vào hóa đơn chi tiết
-//            HoaDonChiTiet hdct = new HoaDonChiTiet();
-//            hdct.setMaSPCT(tblSanPhamChon.getValueAt(i, 0) + "");
-//            hdct.setMaHD(txtMaHoaDon.getText());
-//            hdct.setSoLuong(Integer.parseInt(tblSanPhamChon.getValueAt(i, 3) + ""));
-//            hdct.setDonGia(Float.parseFloat(tblSanPhamChon.getValueAt(i, 2) + ""));
-//            //Thêm từng hóa đơn chi tiết theo điều kiện i
-//            hdctService.insert(hdct);
-//        }
-//
-//    }
+    public void capNhatHoaDon() {
+        HoaDon hd = getForm();
+        daohd.update(hd);
+        daohdct.delete(txtMaHd.getText());
+        for (int i = 0; i < tbnbanhang.getRowCount(); i++) {
+            //Tạo đối tượng hóa đơn chi tiết và add vào đối tượng để thêm vào vào hóa đơn chi tiết
+            HoaDonChiTiet hdct = new HoaDonChiTiet();
+            hdct.setMaSP(tbnbanhang.getValueAt(i, 0) + "");
+            hdct.setMahd(txtMaHd.getText());
+            hdct.setSoluong(Integer.parseInt(tbnbanhang.getValueAt(i, 3) + ""));
+            hdct.setDongia(Float.parseFloat(tbnbanhang.getValueAt(i, 2) + ""));
+            //Thêm từng hóa đơn chi tiết theo điều kiện i
+            daohdct.insert(hdct);
+        }
+
+    }
 
     void Timkh() {
         try {
@@ -893,7 +919,74 @@ public void xoaSanPham() {
         lblTongTien.setText("0");
         lblGiamGia.setText("0");
         txtTenKH.setText("");
-        
+
         row2 = -1;
+    }
+       public void thanhToan() {
+           HoaDon hd = new HoaDon();
+        hd.setMahd(txtMaHd.getText());
+        hd.setTrangThai(true);
+        hd.setTongTien(Float.parseFloat(lblTongTien.getText()));
+        hd.setGhichu(txtGhiChu.getText());
+        try {
+            if (txtMaHd.getText().equals("")) {
+                DialogHelper.alert(this, "Vui lòng chọn hóa đơ trước khi thanh toán");
+                return;
+            } else if (tbnbanhang.getRowCount() == 0) {
+                DialogHelper.alert(this, "Vui lòng chọn sản phẩm trước khi nhấn thanh toán");
+                return;
+            } else {
+                if (tbnbanhang.getRowCount() > 0) {
+                    try {
+                        capNhatHoaDon();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        return;
+                    }
+                }
+                daohd.update(hd);
+                for (int i = 0; i < tbnbanhang.getRowCount(); i++) {
+                    //Tạo đối tượng sản phẩm chi tết để lấy ra số lượng tồn dựa vào sanphamchitietService
+                    Sanpham s = daosp.findByMaSp_sp(tbnbanhang.getValueAt(i, 0) + "");
+                    //Tạo biến int lưu lại số lượng còn lại trong kho khi đã bán ra 
+                    int soLuongMoi = (s.getSoluong() - Integer.parseInt(tbnbanhang.getValueAt(i, 3) + ""));
+
+                    //Thực hiện update số lượng trong bảng sản phẩm
+                    Sanpham sp = new Sanpham();
+                    sp.setSoluong(soLuongMoi);
+                    sp.setMasp(tbnbanhang.getValueAt(i, 0) + "");
+                    daosp.updateBanHang(sp);
+                }
+                showHoaDonCho();
+                showProductsDM();
+                lamMoi();
+                DialogHelper.alert(this, "Thanh toán thành công!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            DialogHelper.alert(this, "Thanh toán thất bại");
+        }
+
+    }
+
+    public void clickHoaDonCho() {
+        row3 = tblHoaDon.getSelectedRow();
+        txtMaHd.setText(tblHoaDon.getValueAt(row3, 0) + "");
+        try {
+            HoaDon hd = daohd.selectById(txtMaHd.getText());
+            //txtMaKH.setText(hd.getMakh());
+//            lblTongTien.setText(hd.getTongTien() + "");
+
+            model2.setRowCount(0);
+            List<HoaDonChiTiet> list = daohdct.selectById(txtMaHd.getText());
+            for (HoaDonChiTiet x : list) {
+                model2.addRow(new Object[]{
+                    x.getMaSP() , x.getDongia(), x.getSoluong()
+                });
+            }
+            txtMaHd.setEditable(false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

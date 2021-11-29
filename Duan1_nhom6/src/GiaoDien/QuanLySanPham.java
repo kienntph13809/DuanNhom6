@@ -484,7 +484,7 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
     private void tbnSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbnSanPhamMouseClicked
         // TODO add your handling code here:
           viTri = tbnSanPham.getSelectedRow();
-        clickTable();
+        //clickTable();
     }//GEN-LAST:event_tbnSanPhamMouseClicked
 
 
@@ -548,8 +548,10 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Cập Nhật Không Thành Công");
         } else {
             try {
-                SanPhamDao.getListSanPhamjoinDanhMuc() ;  //cập nhật nhân viên theo maNV
-                this.loadtable();//điền tt mới vào bảng
+         
+                //cập nhật nhân viên theo maNV
+                this.loadtable();
+                //điền tt mới vào bảng
                 JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
             } catch (Exception e) {
                 e.printStackTrace();

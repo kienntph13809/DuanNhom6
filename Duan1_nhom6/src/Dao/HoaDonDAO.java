@@ -28,6 +28,10 @@ public class HoaDonDAO {
             + "            FROM HOADON JOIN TAIKHOAN ON HOADON.TENTK = TAIKHOAN.TENTK\n"
             + "            			JOIN KHACHHANG ON KHACHHANG.MAKH = HOADON.MAKH \n"
             + "            WHERE hoadon.TRANGTHAI LIKE 1";
+    String SELECT_BY_ID_SQL = "   select *\n"
+            + "from HOADON join TAIKHOAN on HOADON.TENTK = TAIKHOAN.TENTK\n"
+            + "            join KHACHHANG on HOADON.MAKH = KHACHHANG.MAKH\n"
+            + "       where MAHD = ?        ";
 
     public void insert(HoaDon model) {
         jdbcKien.executeUpdate(INSERT_SQL, model.getMahd(), model.getMakh(), model.getTentk(), model.getTongTien(), model.getTrangThai(), model.getGhichu());
@@ -61,7 +65,6 @@ public class HoaDonDAO {
             throw new RuntimeException(e);
         }
     }
-  
 
     public List<HoaDon> selectAll() {
         return selectBySQL(SELECT_ALL_SQL);
@@ -70,8 +73,17 @@ public class HoaDonDAO {
     public List<HoaDon> selectByHDChoThanhToan() {
         return selectBySQL(SELECT_BY_CHOTT);
     }
+
     public void update(HoaDon model) {
-        jdbcKien.executeUpdate(UPDATE_SQL, model.getTongTien(),model.getMask(),model.getTrangThai(),model.getGhichu(),
-        model.getMahd());
+        jdbcKien.executeUpdate(UPDATE_SQL, model.getTongTien(), model.getMask(), model.getTrangThai(), model.getGhichu(),
+                model.getMahd());
+    }
+
+    public HoaDon selectById(String key) {
+        List<HoaDon> list = selectBySQL(SELECT_BY_ID_SQL, "%" + key + "%");
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
     }
 }

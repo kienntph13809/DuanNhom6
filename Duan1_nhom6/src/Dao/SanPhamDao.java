@@ -77,6 +77,7 @@ public class SanPhamDao {
     public void insert(Sanpham entity) {
         String sql = "INSERT INTO SanPham(masp,TenSP,soluong,chatlieu,dongia,MaDM,AnhSP,mota,TrangThai) VALUES (?,?,?,?,?,?,?,?,?)";
         jdbcKien.executeUpdate(sql,
+                entity.getMasp(),
                 entity.getTensp(),
                 entity.getSoluong(),
                 entity.getChatlieu(),
@@ -89,7 +90,7 @@ public class SanPhamDao {
 
     }
 
-    //update món ăn
+    
     public void updatesanPham(Sanpham sp) {
         String sql = "update sanpham\n"
                 + "set TenSP = ?,\n"
@@ -110,7 +111,7 @@ public class SanPhamDao {
     }
 
     //
-    public Sanpham findByMaSp(Integer MaSP) {
+    public Sanpham findByMaSp(String MaSP) {
         String sql = "select * from SanPham\n"
                 + "where TrangThai = 1 and MaSP = ?";
         List<Sanpham> list = select(sql, MaSP);
@@ -138,5 +139,14 @@ public class SanPhamDao {
 //        List<TaiKhoanMode> list = select(sql, tenTaiKhoan);
 //        return list.size() > 0 ? list.get(0) : null;
 //    }
-
+    public Sanpham findByMaSp_sp(String MaSP) {
+        String sql = "select * from SanPham\n"
+                + "where MaSP = ?";
+        List<Sanpham> list = select(sql, MaSP);
+        return list.size() > 0 ? list.get(0) : null;
+    }
+  public void updateBanHang(Sanpham entity) {
+        String sql = "UPDATE SANPHAM SET SOLUONG = ? WHERE MAsp = ?";
+        jdbcKien.executeUpdate(sql, entity.getSoluong(), entity.getMasp());
+    }
 }
