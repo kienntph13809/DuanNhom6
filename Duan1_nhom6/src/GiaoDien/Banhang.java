@@ -643,7 +643,7 @@ public class Banhang extends javax.swing.JInternalFrame {
             if (txtMaHd.getText().equals("")) {
                 DialogHelper.alert(this, "Vui lòng chọn hóa đơn trước khi cập nhật hóa đơn");
             } else {
-                capNhatHoaDon();
+//                capNhatHoaDon();
                 DialogHelper.alert(this, "Cập nhật hóa đơn thành công!");
             }
         } catch (Exception e) {
