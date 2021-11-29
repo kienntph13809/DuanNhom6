@@ -13,6 +13,7 @@ import java.io.File;
 import java.sql.PreparedStatement;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -33,6 +34,10 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
     SanPhamDao daoSP = new SanPhamDao();
     ChatLieuDAO daocl = new ChatLieuDAO();
     JFileChooser fileChooser = new JFileChooser();
+    DefaultTableModel model1;
+     int viTri = 0;
+    int row = 0;
+    int vitriSPCT;
 
     public QuanLySanPham() {
         initComponents();
@@ -267,15 +272,20 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Mã Sản Phẩm", "TÊN SẢN PHẨM", "SỐ LƯỢNG", "Chất Liệu", "Đơn Giá", "ẢNh", "Mô Tả"
+                "TÊN SẢN PHẨM", "SỐ LƯỢNG", "Chất Liệu", "Đơn Giá", "ẢNh", "Mô Tả"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, false
+                false, false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tbnSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbnSanPhamMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(tbnSanPham);
@@ -294,7 +304,12 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
             }
         });
 
-        btnXoa.setText("Xóa SP");
+        btnXoa.setText("Làm Mới");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -350,13 +365,13 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
                                             .addComponent(rboHetHang, javax.swing.GroupLayout.Alignment.TRAILING)))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(79, 79, 79)
-                                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnXoa))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(262, 262, 262)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(71, 71, 71)
                         .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -405,7 +420,7 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -417,7 +432,7 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
         );
 
         pack();
@@ -440,6 +455,22 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
             updatetData();
         }
     }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        txtTenSp.setText("");
+        txtDonGia1.setText("");
+        txtSoLuong.setText("");
+        txtTimKiem.setText("");
+        CboDanhMuc.setSelectedItem(0);
+        loadtable();
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void tbnSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbnSanPhamMouseClicked
+        // TODO add your handling code here:
+          viTri = tbnSanPham.getSelectedRow();
+        clickTable();
+    }//GEN-LAST:event_tbnSanPhamMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -491,22 +522,72 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
         }
     }
 
-    private void updatetData() {
-//       Sanpham sp = getFromSP();
-//        try {
-//            daoSP.updateData(sp);
-//            fillTableData();
-//            Msgbox.alert(this, "Cập nhật thành công!");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            Msgbox.alert(this, "Cập nhật thất bại!");
-//        }
-    }
+  private void updatetData() {
+       Sanpham sp = getFromSP();
+            
+             try {
+                daoSP.updateAnSanPham(sp);
+                this.loadtable();
+                DialogHelper.alert(this, "Sửa thành công!");
+            } catch (Exception e) {
+                DialogHelper.alert(this, "Sửa thất bại!");
+            }
+  }
       Sanpham getFromSP() {
         DanhMuc dm = (DanhMuc) CboDanhMuc.getSelectedItem();
         Sanpham sp = new Sanpham();
         sp.setTensp(txtTenSp.getText());
         sp.setMadm(sp.getMadm());
         return sp;
+    }
+
+// void fillToTable() {
+//         
+//        model1 = (DefaultTableModel) tbnSanPham.getModel();
+//        model1.setRowCount(0);
+//        try {
+//           
+//            for (Sanpham x : ) {
+//                model1.addRow(new Object[]{
+//                    x.getMaSp(), x.getTenSp(), x.getTenDanhMuc(), x.getNhaSX(), x.getNuocSX()
+//                });
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    
+//    }
+
+    private void fillTableData() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void clickTable() {
+         txtTenSp.setText(model1.getValueAt(viTri, 0).toString());
+        txtSoLuong.setText(model1.getValueAt(viTri, 1).toString());
+        setSelectedComboboxCL(tbnSanPham.getValueAt(viTri, 3).toString() + " - " + tbnSanPham.getValueAt(viTri, 4).toString(), cbChatLieu);
+        setSelectedComboboxDM(tbnSanPham.getValueAt(viTri, 2).toString(), CboDanhMuc);
+
+    }
+     public void setSelectedComboboxDM(String cbbselected, JComboBox cbb) {
+        for (int i = 0; i < cbb.getItemCount(); i++) {
+            DanhMuc m = (DanhMuc) cbb.getItemAt(i);
+            if (m != null) {
+                if (cbbselected.trim().equals(m.getTendm())) {
+                    cbb.setSelectedItem(m);
+                }
+            }
+        }
+    }
+
+    public void setSelectedComboboxCL(String cbbselected, JComboBox cbb) {
+        for (int i = 0; i < cbb.getItemCount(); i++) {
+            ChatLieu m = (ChatLieu) cbb.getItemAt(i);
+            if (m != null) {
+                 if (cbbselected.trim().equals(m.getTencl())) {
+                    cbb.setSelectedItem(m);
+                }
+            }
+        }
     }
 }
