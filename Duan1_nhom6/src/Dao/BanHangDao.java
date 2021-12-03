@@ -68,13 +68,13 @@ public class BanHangDao {
     //lấy list danh sách sản phẩm
 
     public List<Sanpham> selectsanpham(String sql, Object... args) {
-        List<Sanpham> monAn = new ArrayList<>();
+        List<Sanpham> sp = new ArrayList<>();
         try {
             ResultSet rs = null;
             try {
                 rs = jdbcKien.executeQuery(sql, args);
                 while (rs.next()) {
-                    monAn.add(readFromResultSet(rs));
+                    sp.add(readFromResultSet(rs));
                 }
             } finally {
                 rs.getStatement().getConnection().close();
@@ -83,7 +83,7 @@ public class BanHangDao {
             e.printStackTrace();
             throw new RuntimeException();
         }
-        return monAn;
+        return sp;
     }
 //truy vấn danh sách sản phẩm
 
@@ -141,5 +141,28 @@ public class BanHangDao {
 
         return selectBySQL(SPbyDanhMuc, key);
     }
+     public Integer getSoHD() {
+        String sql = "select max(soHD) from HoaDon";
+        Integer soHD = 1;
+        try {
+            ResultSet rs = null;
+            try {
+                rs = jdbcKien.executeQuery(sql);
+                if (rs.next()) {
+                    soHD = rs.getInt(1) + 1;
+                } else {
+                    soHD = 1;
+                }
+            } finally {
+                rs.getStatement().getConnection().close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+
+        }
+        return soHD;
+    }
+
 
 }

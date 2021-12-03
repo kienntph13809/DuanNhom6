@@ -69,7 +69,8 @@ public class jdbcKien {
             try {
                 pstmt.executeUpdate();
             } finally {
-                pstmt.getConnection().close();            //đóng Connection từ statement
+                pstmt.getConnection().close();            
+//đóng Connection từ statement
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);

@@ -18,23 +18,23 @@ import model.HoaDon;
  */
 public class HoaDonDAO {
 
-    String INSERT_SQL = "insert into HOADON(MAHD,MAKH,TENTK,TONGTIENTT,TRANGTHAI,ghichu) values (?,?,?,?,?,?)";
-    String UPDATE_SQL = "UPDATE HOADON SET TONGTIENTT = ?,MASK = ?,TRANGTHAI = ?,GHICHU = ?\n"
+    String INSERT_SQL = "insert into HOADON(MAHD,TENTK,TONGTIENTT,TRANGTHAI,ghichu) values (?,?,?,?,?)";
+    String UPDATE_SQL = "UPDATE HOADON SET TONGTIENTT = ?,TRANGTHAI = ?,GHICHU = ?\n"
             + "WHERE MAHD = ?";
     String SELECT_ALL_SQL = "SELECT *\n"
             + "            FROM HOADON JOIN TAIKHOAN ON HOADON.TENTK = TAIKHOAN.TENTK\n"
             + "            			JOIN KHACHHANG ON KHACHHANG.MAKH = HOADON.MAKH ";
-    String SELECT_BY_CHOTT = "  SELECT *\n"
-            + "            FROM HOADON JOIN TAIKHOAN ON HOADON.TENTK = TAIKHOAN.TENTK\n"
-            + "            			JOIN KHACHHANG ON KHACHHANG.MAKH = HOADON.MAKH \n"
-            + "            WHERE hoadon.TRANGTHAI LIKE 1";
+    String SELECT_BY_CHOTT = "    select * from HOADON\n"
+            + "	 where TRANGTHAI = 0";
     String SELECT_BY_ID_SQL = "   select *\n"
             + "from HOADON join TAIKHOAN on HOADON.TENTK = TAIKHOAN.TENTK\n"
             + "            join KHACHHANG on HOADON.MAKH = KHACHHANG.MAKH\n"
             + "       where MAHD = ?        ";
+    String UPDATE_HD = " update HOADON set MASP = ?,TONGTIENTT= ?\n"
+            + "		 where MAHD = ?";
 
     public void insert(HoaDon model) {
-        jdbcKien.executeUpdate(INSERT_SQL, model.getMahd(), model.getMakh(), model.getTentk(), model.getTongTien(), model.getTrangThai(), model.getGhichu());
+        jdbcKien.executeUpdate(INSERT_SQL, model.getMahd(), model.getTentk() ,model.getTongTien(), model.getTrangThai(), model.getGhichu());
     }
 
     public List<HoaDon> selectBySQL(String sqlString, Object... args) {
@@ -46,9 +46,9 @@ public class HoaDonDAO {
                 hd.setMahd(rs.getString("MaHd"));
                 hd.setMasp(rs.getString("Masp"));
                 hd.setMakh(rs.getString("Makh"));
-                hd.setTenkh(rs.getString("TENKH"));
+//                hd.setTenkh(rs.getString("TENKH"));
                 hd.setTentk(rs.getString("TENTK"));
-                hd.setHoten(rs.getString("HOTEN"));
+//                hd.setHoten(rs.getString("HOTEN"));
                 hd.setMask(rs.getInt("MASK"));
                 hd.setNgaylap(rs.getDate("NGAYLAP"));
                 hd.setUudai(rs.getFloat("UUDAI"));
@@ -75,7 +75,7 @@ public class HoaDonDAO {
     }
 
     public void update(HoaDon model) {
-        jdbcKien.executeUpdate(UPDATE_SQL, model.getTongTien(), model.getMask(), model.getTrangThai(), model.getGhichu(),
+        jdbcKien.executeUpdate(UPDATE_SQL, model.getTongTien(), model.getTrangThai(), model.getGhichu(),
                 model.getMahd());
     }
 
@@ -85,5 +85,10 @@ public class HoaDonDAO {
             return null;
         }
         return list.get(0);
+    }
+
+    public void updateHD(HoaDon model) {
+        jdbcKien.executeUpdate(UPDATE_SQL, model.getMasp(), model.getTongTien(),
+                model.getMahd());
     }
 }
