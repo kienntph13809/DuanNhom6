@@ -59,7 +59,7 @@ PRIMARY KEY (MASK)
 )
 --HÓA ??N
 CREATE TABLE HOADON (
-MAHD VARCHAR(15),
+MAHD varchar(15) ,
 MASP VARCHAR(15),
 MAKH VARCHAR(15),
 TENTK VARCHAR(15),
@@ -68,7 +68,8 @@ NGAYLAP DATE DEFAULT GETDATE(),
 UUDAI FLOAT,
 TONGTIENTT MONEY,
 TRANGTHAI BIT,
-ghichu nvarchar(100)
+ghichu nvarchar(100),
+sohd int identity
 PRIMARY KEY (MAHD),
 foreign key(MASP) references SANPHAM,
 foreign key(MAKH) references KHACHHANG,
@@ -152,4 +153,6 @@ delete from CTHOADON where MAHD = ?
 select *
 from CTHOADON join SANPHAM on CTHOADON.MASP = SANPHAM.MASP
        
-              
+         select max('soHD') from HoaDon   
+		 UPDATE HOADON SET TONGTIENTT = 1000000,TRANGTHAI = 0,GHICHU = null
+            WHERE MAHD = 'hd02'
