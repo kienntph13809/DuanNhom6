@@ -12,8 +12,7 @@ package model;
 public class Sanpham {
     private String masp;
     private String tensp;
-    private int chatlieu;
-    private  String TenCL;
+    private String chatlieu;
     private String mota;
     private String anh;
     private int madm;
@@ -21,15 +20,15 @@ public class Sanpham {
     private int soluong;
     private Float dongia;
     private Boolean trangthai;
+    private int MaCL;
 
     public Sanpham() {
     }
 
-    public Sanpham(String masp, String tensp, int chatlieu, String TenCL, String mota, String anh, int madm, String TenDm, int soluong, Float dongia, Boolean trangthai) {
+    public Sanpham(String masp, String tensp, String chatlieu, String mota, String anh, int madm, String TenDm, int soluong, Float dongia, Boolean trangthai, int MaCL) {
         this.masp = masp;
         this.tensp = tensp;
         this.chatlieu = chatlieu;
-        this.TenCL = TenCL;
         this.mota = mota;
         this.anh = anh;
         this.madm = madm;
@@ -37,6 +36,7 @@ public class Sanpham {
         this.soluong = soluong;
         this.dongia = dongia;
         this.trangthai = trangthai;
+        this.MaCL = MaCL;
     }
 
     public String getMasp() {
@@ -55,20 +55,12 @@ public class Sanpham {
         this.tensp = tensp;
     }
 
-    public int getChatlieu() {
+    public String getChatlieu() {
         return chatlieu;
     }
 
-    public void setChatlieu(int chatlieu) {
+    public void setChatlieu(String chatlieu) {
         this.chatlieu = chatlieu;
-    }
-
-    public String getTenCL() {
-        return TenCL;
-    }
-
-    public void setTenCL(String TenCL) {
-        this.TenCL = TenCL;
     }
 
     public String getMota() {
@@ -127,6 +119,13 @@ public class Sanpham {
         this.trangthai = trangthai;
     }
 
-  
+    public int getMaCL() {
+        return MaCL;
+    }
+
+    public void setMaCL(int MaCL) {
+        this.MaCL = MaCL;
+    }
  
+    
 }

@@ -21,15 +21,14 @@ public class SanPhamDao {
 
     private static Sanpham readFromResultSet(ResultSet rs) throws SQLException {
         Sanpham model = new Sanpham();
-        model.setMasp(rs.getString("MASP"));
-        model.setTensp(rs.getString("TENSP"));
-        model.setSoluong(rs.getInt("SOLUONG"));
-        model.setChatlieu(rs.getInt("MaCl"));
-        model.setDongia(rs.getFloat("DONGIA"));
-        model.setMadm(rs.getInt("MADM"));
-        model.setAnh(rs.getString("ANHSP"));
-        model.setMota(rs.getString("MoTa"));
-        model.setTrangthai(rs.getBoolean("trangthai"));
+        model.setMasp(rs.getString(1));
+        model.setTensp(rs.getString(2));
+        model.setSoluong(rs.getInt(3));
+        model.setChatlieu(rs.getString(4));
+        model.setDongia(rs.getFloat(5));
+        model.setTenDm(rs.getString(6));
+        model.setMota(rs.getString(7));
+        model.setTrangthai(rs.getBoolean(8));
         return model;
 
     }
@@ -55,14 +54,14 @@ public class SanPhamDao {
 
     //lấy về list món
     public static List<Sanpham> getListSanPham() {
-        String sql = "select * from SanPham\n"
-                + "where TrangThai=1";
+        String sql = "select MASP,TENSP,SOLUONG,TenCl,DONGIA,tendm,MOTA,SANPHAM.TRANGTHAI from SANPHAM join chatlieu on SANPHAM.Macl = chatlieu.Macl join danhmuc on SANPHAM.MADM = danhmuc.madm\n"
+                + "where SANPHAM.TRANGTHAI = 1";
         return select(sql);
 
     }
 
     public static List<Sanpham> getListSanPhamjoinDanhMuc() {
-        String sql = "select SANPHAM.MASP,TENSP,dongia,soluong,chatlieu,tendm,ANHSP\n"
+        String sql = "select SANPHAM.MASP,TENSP,dongia,soluong,chatlieu,tendm\n"
                 + "from SANPHAM join danhmuc on SANPHAM.MADM = danhmuc.madm\n"
                 + "where sanpham.TRANGTHAI = 1";
         return select(sql);
@@ -75,31 +74,28 @@ public class SanPhamDao {
      * @param entity là thực thể chứa thông tin bản ghi mới
      */
     public void insert(Sanpham entity) {
-        String sql = "INSERT INTO SanPham(masp,TenSP,soluong,chatlieu,dongia,MaDM,AnhSP,mota,TrangThai) VALUES (?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into SANPHAM (MASP,TENSP,SOLUONG,Macl,DONGIA,MADM,MOTA,TRANGTHAI) values (?,?,?,?,?,?,?,?)";
         jdbcKien.executeUpdate(sql,
                 entity.getMasp(),
                 entity.getTensp(),
                 entity.getSoluong(),
-                entity.getChatlieu(),
+                entity.getMaCL(),
                 entity.getDongia(),
                 entity.getMadm(),
-                entity.getAnh(),
                 entity.getMota(),
                 entity.getTrangthai()
         );
 
     }
 
-    
     public void updatesanPham(Sanpham sp) {
         String sql = "update sanpham\n"
                 + "set TenSP = ?,\n"
                 + "    soluong = ?,\n"
                 + "    chatlieu = ?,\n"
                 + "	DonGia = ?,\n"
-                + "	anhSP = ?\n"
                 + "where Masp = ?";
-        jdbcKien.executeUpdate(sql, sp.getTensp(), sp.getSoluong(), sp.getChatlieu(), sp.getDongia(), sp.getAnh(), sp.getMasp());
+        jdbcKien.executeUpdate(sql, sp.getTensp(), sp.getSoluong(), sp.getChatlieu(), sp.getDongia(), sp.getMasp());
     }
 
     //update ẩn món ăn
@@ -139,14 +135,38 @@ public class SanPhamDao {
 //        List<TaiKhoanMode> list = select(sql, tenTaiKhoan);
 //        return list.size() > 0 ? list.get(0) : null;
 //    }
+
     public Sanpham findByMaSp_sp(String MaSP) {
         String sql = "select * from SanPham\n"
                 + "where MaSP = ?";
         List<Sanpham> list = select(sql, MaSP);
         return list.size() > 0 ? list.get(0) : null;
     }
-  public void updateBanHang(Sanpham entity) {
+
+    public void updateBanHang(Sanpham entity) {
         String sql = "UPDATE SANPHAM SET SOLUONG = ? WHERE MAsp = ?";
         jdbcKien.executeUpdate(sql, entity.getSoluong(), entity.getMasp());
+    }
+public Integer getSoSP() {
+        String sql = "select max(soSP) from SANPHAM ";
+        Integer soSP = 1;
+        try {
+            ResultSet rs = null;
+            try {
+                rs = jdbcKien.executeQuery(sql);
+                if (rs.next()) {
+                    soSP = rs.getInt(1) + 1;
+                } else {
+                    soSP = 1;
+                }
+            } finally {
+                rs.getStatement().getConnection().close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+
+        }
+        return soSP;
     }
 }

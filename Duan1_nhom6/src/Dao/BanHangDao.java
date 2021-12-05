@@ -31,7 +31,7 @@ public class BanHangDao {
         model.setMasp(rs.getString("MASP"));
         model.setTensp(rs.getString("TENSP"));
         model.setSoluong(rs.getInt("SOLUONG"));
-        model.setChatlieu(rs.getInt("MaCl"));
+        model.setMaCL(rs.getInt("MaCl"));
         model.setDongia(rs.getFloat("DONGIA"));
         model.setMadm(rs.getInt("MADM"));
         model.setAnh(rs.getString("ANHSP"));
@@ -50,7 +50,7 @@ public class BanHangDao {
                 model.setMasp(rs.getString("MASP"));
                 model.setTensp(rs.getString("TENSP"));
                 model.setSoluong(rs.getInt("SOLUONG"));
-                model.setChatlieu(rs.getInt("MaCl"));
+                model.setMaCL(rs.getInt("MaCl"));
                 model.setDongia(rs.getFloat("DONGIA"));
                 model.setMadm(rs.getInt("MADM"));
                 model.setAnh(rs.getString("ANHSP"));

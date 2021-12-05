@@ -79,7 +79,7 @@ public class Banhang extends javax.swing.JInternalFrame {
         List<Sanpham> list = daobh.selectListSanPham();
         for (Sanpham x : list) {
             model.addRow(new Object[]{
-                x.getMasp(), x.getTensp(), x.getSoluong(), x.getChatlieu(), x.getDongia(), x.getAnh(), x.getMota()
+                x.getMasp(), x.getTensp(), x.getSoluong(), x.getChatlieu(), x.getDongia(), x.getMota()
             });
         }
     }
@@ -94,7 +94,7 @@ public class Banhang extends javax.swing.JInternalFrame {
             List<Sanpham> list = daobh.selectByDM(cbxDanhMuc.getSelectedItem() + "");
             for (Sanpham x : list) {
                 model1.addRow(new Object[]{
-                    x.getMasp(), x.getTensp(), x.getSoluong(), x.getChatlieu(), x.getDongia(), x.getAnh(), x.getMota()
+                    x.getMasp(), x.getTensp(), x.getSoluong(), x.getChatlieu(), x.getDongia(),  x.getMota()
                 });
             }
         }
@@ -491,11 +491,11 @@ public class Banhang extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Mã Sản Phẩm", "TÊN SẢN PHẨM", "SỐ LƯỢNG", "Chất Liệu", "Đơn Giá", "ẢNh", "Mô Tả"
+                "Mã Sản Phẩm", "TÊN SẢN PHẨM", "SỐ LƯỢNG", "Chất Liệu", "Đơn Giá", "Mô Tả"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
