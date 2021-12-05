@@ -607,7 +607,7 @@ public class GiaoDienTu_1 extends javax.swing.JFrame {
 
     private void SanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SanPhamMouseClicked
         // TODO add your handling code here:
-        Banhang bh = new Banhang();
+        formdanhmuc bh = new formdanhmuc();
         jDesktopPane1.removeAll();
         jDesktopPane1.add(bh).setVisible(true);
     }//GEN-LAST:event_SanPhamMouseClicked

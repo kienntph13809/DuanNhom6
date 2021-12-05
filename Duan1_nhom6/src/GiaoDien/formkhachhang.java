@@ -260,6 +260,7 @@ public class formkhachhang extends javax.swing.JInternalFrame {
 
         buttonGroup1.add(rdhoatdong);
         rdhoatdong.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        rdhoatdong.setSelected(true);
         rdhoatdong.setText("Hoạt động");
 
         buttonGroup1.add(rdkhonghoatdong);

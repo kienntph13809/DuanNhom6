@@ -102,4 +102,12 @@ public class jdbcKien {
         
        
     }
+
+    public static void excuteUpdate(String insertSQL, int madm, String tendm, boolean trangThai) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static void excuteUpdate(String delete_SQL, String key) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
