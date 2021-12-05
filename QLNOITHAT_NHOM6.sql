@@ -2,6 +2,8 @@
 GO
 
 --KHÁCH HÀNG
+if OBJECT_ID('KHACHHANG')is not null
+drop table KHACHHANG
 CREATE TABLE KHACHHANG(
 MAKH VARCHAR(15),
 TENKH NVARCHAR(50),
@@ -10,19 +12,25 @@ DIACHI NVARCHAR(50),
 TRANGTHAI BIT
 CONSTRAINT PK_KHACHHANG PRIMARY KEY (MAKH))
 --DOANH MỤC
+if OBJECT_ID('danhmuc')is not null
+drop table danhmuc
 create table danhmuc(
 madm int identity,
 tendm nvarchar(100),
 trangthai bit
 primary key (madm)
 )
--- chất Liệu 
+-- chất Liệu
+if OBJECT_ID('chatlieu')is not null
+drop table chatlieu
 create table chatlieu(
 Macl int identity,
 TenCl nvarchar(50),
 trangThai bit
 primary key (macl))
 -- CHI TI?T S?N PH?M
+if OBJECT_ID('SANPHAM')is not null
+drop table SANPHAM
 CREATE TABLE SANPHAM(
 MASP VARCHAR(15),
 TENSP NVARCHAR(100),
@@ -40,6 +48,8 @@ foreign key(MaCl) references chatlieu
 
 )
 --TÀI KHO?N
+if OBJECT_ID('TAIKHOAN')is not null
+drop table TAIKHOAN
 CREATE TABLE TAIKHOAN(
 TENTK VARCHAR(15),
 MATKHAU NVARCHAR(20),
@@ -48,6 +58,8 @@ VAITRO BIT,
 TRANGTHAI BIT,
 PRIMARY KEY (TENTK))
 --S? KI?N
+if OBJECT_ID('SUKIEN')is not null
+drop table SUKIEN
 CREATE TABLE SUKIEN(
 MASK int identity,
 TENSK NVARCHAR(50),
@@ -58,6 +70,8 @@ TRANGTHAI BIT
 PRIMARY KEY (MASK)
 )
 --HÓA ??N
+if OBJECT_ID('HOADON')is not null
+drop table HOADON
 CREATE TABLE HOADON (
 MAHD varchar(15) ,
 MASP VARCHAR(15),
@@ -76,6 +90,8 @@ foreign key(MAKH) references KHACHHANG,
 foreign key(TENTK) references TAIKHOAN,
 foreign key(MASK) references SUKIEN)
 --CT HÓA ??N 
+if OBJECT_ID('CTHOADON')is not null
+drop table CTHOADON
 CREATE TABLE CTHOADON(
 MAHD VARCHAR(15),
 MASP VARCHAR(15),
