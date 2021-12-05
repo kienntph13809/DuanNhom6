@@ -23,7 +23,7 @@ public class jdbcKien {
      public static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     public static String dburl = "jdbc:sqlserver://localhost:1433;databaseName=QLNOITHAT_NHOM6";
     public static String username = "sa";
-    public static String password = "123";
+    public static String password = "1";
 
     //nạp driver
     static {
@@ -96,18 +96,5 @@ public class jdbcKien {
         } catch (SQLException ex) {
             throw new RuntimeException(ex);         //throw các lỗi khi chạy CT, VD không có return khi try bị lỗi
         }
-    }
-
-    public static void excuteUpdate(String insertSQL, String makh, String tenkh, String sdt, String diaChi, boolean trangThai) {
-        
-       
-    }
-
-    public static void excuteUpdate(String insertSQL, int madm, String tendm, boolean trangThai) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public static void excuteUpdate(String delete_SQL, String key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

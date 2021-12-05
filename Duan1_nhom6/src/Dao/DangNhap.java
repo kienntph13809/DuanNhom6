@@ -55,7 +55,7 @@ public class DangNhap {
                 rs.getStatement().getConnection().close(); //đóng kết nối từ resultset
             }
         } catch (Exception e) {
-            throw new RuntimeException();
+           
         }
         return list;
     }
@@ -74,7 +74,7 @@ public class DangNhap {
 //    }
     public taikhoan findByTenTaiKhoan(String tenTaiKhoan) {
         String sql = "select * from TaiKhoan\n"
-                + "where TenTk = ? ";
+                + "where TenTk = ? and trangThai = 1";
         List<taikhoan> list = select(sql, tenTaiKhoan);
         return list.size() > 0 ? list.get(0) : null;
     }
