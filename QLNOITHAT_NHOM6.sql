@@ -40,7 +40,8 @@ DONGIA MONEY,
 MADM int,
 ANHSP NVARCHAR(50),
 MOTA NVARCHAR(100),
-TRANGTHAI BIT
+TRANGTHAI BIT,
+SoSP int identity
 CONSTRAINT PK_SANPHAM PRIMARY KEY (MASP),
 foreign key(MADM) references danhmuc,
 foreign key(MaCl) references chatlieu
@@ -128,7 +129,7 @@ insert into SANPHAM values ('SP01',N'Bàn trạm hình rồng',5,1,6500000,1,'Ba
 insert into SANPHAM values ('SP02',N'Ghế trạm hình rồng',3,1,4500000,2,'Ghe Hinh Rong.jpg',N'Ghế đẹp hình Rồng uốn lượn',1)
 insert into SANPHAM values ('SP03',N'Gương trạm hình rồng',2,1,2500000,3,'Guong Hinh Rong.jpg',N'Gương đẹp hình Rồng uốn lượn',1)
 insert into TAIKHOAN values ('adminkien','123',N'Nguyễn Trung Kiên',0,1)
-insert into TAIKHOAN values ('admintu','123',N'Phạm Anh Tú',0,0)
+insert into TAIKHOAN values ('admintu','123',N'Phạm Anh Tú',0,1)
 insert into TAIKHOAN values ('adminduc','123',N'Đào Văn Đức',1,1)
 insert into SUKIEN values (N'KHUYẾN MÃI',20,GETDATE(),NULL,1)
 insert into SUKIEN values (N'KHUYẾN MÃI 30%',30,GETDATE(),NULL,1)
@@ -143,7 +144,7 @@ join chatlieu on SANPHAM.Macl = chatlieu.Macl
     insert into HOADON(MAHD,MASP,MAKH,TENTK,MASK,UUDAI,TONGTIENTT,TRANGTHAI,ghichu) values (?,?,?,?,?,?,?,?,?,?)
 	  insert into HOADON(MAHD,MASP,MAKH,TENTK,MASK,NGAYLAP,UUDAI,TONGTIENTT,TRANGTHAI,ghichu) values ('HD02','sp01','KH15','adminduc',NULL,NULL,6500000,1,null)
 
-  insert into CTHOADON values('HD01',1,1,6500000,6500000,1)
+  insert into CTHOADON values('HD01','SP01',1,6500000,6500000,1)
 
   SELECT *
             FROM HOADON JOIN TAIKHOAN ON HOADON.TENTK = TAIKHOAN.TENTK
@@ -169,6 +170,6 @@ delete from CTHOADON where MAHD = ?
 select *
 from CTHOADON join SANPHAM on CTHOADON.MASP = SANPHAM.MASP
        
-         select max('soHD') from HoaDon   
+         select max(soSP) from SANPHAM   
 		 UPDATE HOADON SET TONGTIENTT = 1000000,TRANGTHAI = 0,GHICHU = null
             WHERE MAHD = 'hd02'
