@@ -91,4 +91,8 @@ public class HoaDonDAO {
         jdbcKien.executeUpdate(UPDATE_SQL, model.getMasp(), model.getTongTien(),
                 model.getMahd());
     }
+
+    public List<Integer> selectNam() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

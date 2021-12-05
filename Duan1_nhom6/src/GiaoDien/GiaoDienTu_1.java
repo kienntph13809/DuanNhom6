@@ -166,11 +166,9 @@ public class GiaoDienTu_1 extends javax.swing.JFrame {
 
         user.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         user.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        user.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Desktop\\DuanNhom6\\Duan1_nhom6\\src\\icon\\Unknown person.png")); // NOI18N
         user.setText("USER :");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Desktop\\DuanNhom6\\Duan1_nhom6\\src\\icon\\Alarm.png")); // NOI18N
         jLabel3.setText("Time :");
 
         lbtime.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -392,7 +390,7 @@ public class GiaoDienTu_1 extends javax.swing.JFrame {
             .addGroup(sukienLayout.createSequentialGroup()
                 .addGap(107, 107, 107)
                 .addComponent(lbsk, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         sukienLayout.setVerticalGroup(
             sukienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -411,8 +409,11 @@ public class GiaoDienTu_1 extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Thống Kê");
+        jLabel8.setText("Khách Hàng");
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jLabel8MousePressed(evt);
             }
@@ -424,8 +425,8 @@ public class GiaoDienTu_1 extends javax.swing.JFrame {
             thongkeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(thongkeLayout.createSequentialGroup()
                 .addGap(98, 98, 98)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         thongkeLayout.setVerticalGroup(
             thongkeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -508,8 +509,6 @@ public class GiaoDienTu_1 extends javax.swing.JFrame {
         jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 123, 330, 830));
 
         jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Desktop\\DuanNhom6\\Duan1_nhom6\\src\\icon\\02600294606895.5e832b1f06bcf.jpg")); // NOI18N
 
         jDesktopPane1.setLayer(jLabel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -696,6 +695,14 @@ public class GiaoDienTu_1 extends javax.swing.JFrame {
         thongke.setBackground(ClickerColor);
         sukien.setBackground(DefaultColor);
     }//GEN-LAST:event_jLabel8MousePressed
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        // TODO add your handling code here:
+          formkhachhang qlkh = new formkhachhang();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(qlkh).setVisible(true);
+        
+    }//GEN-LAST:event_jLabel8MouseClicked
 
     /**
      * @param args the command line arguments

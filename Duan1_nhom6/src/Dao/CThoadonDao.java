@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GiaoDien;
+package Dao;
 
 /**
  *
- * @author dfg
+ * @author Admin
  */
-class cbb {
+public class CThoadonDao {
     
 }

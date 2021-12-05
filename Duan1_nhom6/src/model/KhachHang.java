@@ -10,37 +10,38 @@ package model;
  * @author kien5
  */
 public class KhachHang {
-    private String makh;
-    private String tenkh;
+    private String Makh;
+    private String Tenkh;
+   
     private String SDT;
+   
     private String DiaChi;
-    private Boolean trangThai;
-
+    private boolean TrangThai;
     public KhachHang() {
     }
 
-    public KhachHang(String makh, String tenkh, String SDT, String DiaChi, Boolean trangThai) {
-        this.makh = makh;
-        this.tenkh = tenkh;
+    public KhachHang(String Makh, String Tenkh, String SDT, String DiaChi, boolean TrangThai) {
+        this.Makh = Makh;
+        this.Tenkh = Tenkh;
         this.SDT = SDT;
         this.DiaChi = DiaChi;
-        this.trangThai = trangThai;
+        this.TrangThai = TrangThai;
     }
 
     public String getMakh() {
-        return makh;
+        return Makh;
     }
 
-    public void setMakh(String makh) {
-        this.makh = makh;
+    public void setMakh(String Makh) {
+        this.Makh = Makh;
     }
 
     public String getTenkh() {
-        return tenkh;
+        return Tenkh;
     }
 
-    public void setTenkh(String tenkh) {
-        this.tenkh = tenkh;
+    public void setTenkh(String Tenkh) {
+        this.Tenkh = Tenkh;
     }
 
     public String getSDT() {
@@ -59,14 +60,18 @@ public class KhachHang {
         this.DiaChi = DiaChi;
     }
 
-    public Boolean getTrangThai() {
-        return trangThai;
+    public boolean isTrangThai() {
+        return TrangThai;
     }
 
-    public void setTrangThai(Boolean trangThai) {
-        this.trangThai = trangThai;
+    public void setTrangThai(boolean TrangThai) {
+        this.TrangThai = TrangThai;
     }
 
+    
+   
+    
+   
   
     
 }

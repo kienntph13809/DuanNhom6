@@ -97,4 +97,9 @@ public class jdbcKien {
             throw new RuntimeException(ex);         //throw các lỗi khi chạy CT, VD không có return khi try bị lỗi
         }
     }
+
+    public static void excuteUpdate(String insertSQL, String makh, String tenkh, String sdt, String diaChi, boolean trangThai) {
+        
+       
+    }
 }
