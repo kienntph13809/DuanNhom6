@@ -170,11 +170,9 @@ public class GiaoDienTu_1 extends javax.swing.JFrame {
 
         user.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         user.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        user.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Desktop\\DuanNhom6\\Duan1_nhom6\\src\\icon\\Unknown person.png")); // NOI18N
         user.setText("USER :");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Desktop\\DuanNhom6\\Duan1_nhom6\\src\\icon\\Alarm.png")); // NOI18N
         jLabel3.setText("Time :");
 
         lbtime.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -499,6 +497,9 @@ public class GiaoDienTu_1 extends javax.swing.JFrame {
 
         thongke.setBackground(new java.awt.Color(176, 228, 246));
         thongke.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                thongkeMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 thongkeMousePressed(evt);
             }
@@ -796,6 +797,13 @@ public class GiaoDienTu_1 extends javax.swing.JFrame {
         thongke.setBackground(ClickerColor);
         HoaDon.setBackground(DefaultColor);
     }//GEN-LAST:event_thongkeMousePressed
+
+    private void thongkeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thongkeMouseClicked
+        // TODO add your handling code here:
+          ThongKe qlsp = new ThongKe();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(qlsp).setVisible(true);
+    }//GEN-LAST:event_thongkeMouseClicked
 
     /**
      * @param args the command line arguments
