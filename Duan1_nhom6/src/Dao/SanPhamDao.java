@@ -147,7 +147,8 @@ public class SanPhamDao {
         String sql = "UPDATE SANPHAM SET SOLUONG = ? WHERE MAsp = ?";
         jdbcKien.executeUpdate(sql, entity.getSoluong(), entity.getMasp());
     }
-public Integer getSoSP() {
+
+    public Integer getSoSP() {
         String sql = "select max(soSP) from SANPHAM ";
         Integer soSP = 1;
         try {
@@ -169,4 +170,7 @@ public Integer getSoSP() {
         }
         return soSP;
     }
+
+ 
+    
 }

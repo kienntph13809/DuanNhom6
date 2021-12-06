@@ -66,7 +66,7 @@ public class Banhang extends javax.swing.JInternalFrame {
     }
 
     public void fillCboDanhMuc() {
-        cbxDanhMuc.addItem("   ");
+        cbxDanhMuc.addItem("");
         List<DanhMuc> list = daoDm.selectListDanhMuc();
         for (int i = 0; i < list.size(); i++) {
             cbxDanhMuc.addItem(list.get(i).getTendm());
@@ -76,7 +76,7 @@ public class Banhang extends javax.swing.JInternalFrame {
     public void fillTable() {
         DefaultTableModel model = (DefaultTableModel) tblSP.getModel();
         model.setRowCount(0);
-        List<Sanpham> list = daobh.selectListSanPham();
+        List<Sanpham> list = daosp.getListSanPham();
         for (Sanpham x : list) {
             model.addRow(new Object[]{
                 x.getMasp(), x.getTensp(), x.getSoluong(), x.getChatlieu(), x.getDongia(), x.getMota()
@@ -85,13 +85,14 @@ public class Banhang extends javax.swing.JInternalFrame {
     }
 
     public void showProductsDM() {
-
+         
         if (cbxDanhMuc.getSelectedIndex() == 0) {
             fillTable();
         }
         if (cbxDanhMuc.getSelectedIndex() > 0) {
             model1.setRowCount(0);
-            List<Sanpham> list = daobh.selectByDM(cbxDanhMuc.getSelectedItem() + "");
+         
+            List<Sanpham> list =  daobh.spBm_SP(cbxDanhMuc.getSelectedItem()+"");
             for (Sanpham x : list) {
                 model1.addRow(new Object[]{
                     x.getMasp(), x.getTensp(), x.getSoluong(), x.getChatlieu(), x.getDongia(),  x.getMota()
@@ -584,7 +585,7 @@ public class Banhang extends javax.swing.JInternalFrame {
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
                                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(40, Short.MAX_VALUE))))
+                        .addContainerGap(36, Short.MAX_VALUE))))
         );
 
         jPanel3.getAccessibleContext().setAccessibleName("Hóa Đơn");
@@ -593,11 +594,11 @@ public class Banhang extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1196, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1196, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
         );
 
         pack();

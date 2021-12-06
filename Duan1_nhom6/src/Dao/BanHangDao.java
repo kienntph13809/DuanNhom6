@@ -5,6 +5,7 @@
  */
 package Dao;
 
+import static Dao.SanPhamDao.select;
 import Helper.jdbcKien;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,52 +20,51 @@ import model.Sanpham;
  */
 public class BanHangDao {
 
-
-    String SPbyDanhMuc = "select SANPHAM.MASP,tensp,soluong,chatlieu.Macl,dongia,anhsp,mota\n"
-            + "FROM SANPHAM\n"
-            + "        join dbo.chatlieu on SANPHAM.Macl = chatlieu.Macl\n"
-            + "		join danhmuc on danhmuc.madm = SANPHAM.MADM\n"
-            + "		 WHERE TENDM = ?";
+    String SPbyDanhMuc = "select SANPHAM.MASP,tensp,soluong,TenCl,dongia,tendm,mota,sanpham.TRANGTHAI\n"
+            + "            FROM SANPHAM\n"
+            + "                   join dbo.chatlieu on SANPHAM.Macl = chatlieu.Macl\n"
+            + "            	join danhmuc on danhmuc.madm = SANPHAM.MADM\n"
+            + "				where sanpham.TRANGTHAI = 1 and\n"
+            + "            	   TENDM = ?";
 
     private static Sanpham readFromResultSet(ResultSet rs) throws SQLException {
         Sanpham model = new Sanpham();
-        model.setMasp(rs.getString("MASP"));
-        model.setTensp(rs.getString("TENSP"));
-        model.setSoluong(rs.getInt("SOLUONG"));
-        model.setMaCL(rs.getInt("MaCl"));
-        model.setDongia(rs.getFloat("DONGIA"));
-        model.setMadm(rs.getInt("MADM"));
-        model.setAnh(rs.getString("ANHSP"));
-        model.setMota(rs.getString("MoTa"));
-        model.setTrangthai(rs.getBoolean("trangthai"));
+
+        model.setMasp(rs.getString(1));
+        model.setTensp(rs.getString(2));
+        model.setSoluong(rs.getInt(3));
+        model.setChatlieu(rs.getString(4));
+        model.setDongia(rs.getFloat(5));
+        model.setTenDm(rs.getString(6));
+        model.setMota(rs.getString(7));
+        model.setTrangthai(rs.getBoolean(8));
         return model;
 
     }
-
-    public List<Sanpham> selectBySQL(String sql, Object... args) {
-        List<Sanpham> list = new ArrayList<>();
-        try {
-            ResultSet rs = jdbcKien.executeQuery(sql, args);
-            while (rs.next()) {
-                Sanpham model = new Sanpham();
-                model.setMasp(rs.getString("MASP"));
-                model.setTensp(rs.getString("TENSP"));
-                model.setSoluong(rs.getInt("SOLUONG"));
-                model.setMaCL(rs.getInt("MaCl"));
-                model.setDongia(rs.getFloat("DONGIA"));
-                model.setMadm(rs.getInt("MADM"));
-                model.setAnh(rs.getString("ANHSP"));
-                model.setMota(rs.getString("MoTa"));
-                model.setTrangthai(rs.getBoolean("trangthai"));
-                list.add(model);
-            }
-            rs.getStatement().getConnection().close();
-            return list;
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-    }
+//
+//    public List<Sanpham> selectBySQL(String sql, Object... args) {
+//        List<Sanpham> list = new ArrayList<>();
+//        try {
+//            ResultSet rs = jdbcKien.executeQuery(sql, args);
+//            while (rs.next()) {
+//                Sanpham model = new Sanpham();
+//                model.setMasp(rs.getString(1));
+//                model.setTensp(rs.getString(2));
+//                model.setSoluong(rs.getInt(3));
+//                model.setChatlieu(rs.getString(4));
+//                model.setDongia(rs.getFloat(5));
+//                model.setTenDm(rs.getString(6));
+//                model.setMota(rs.getString(7));
+//                model.setTrangthai(rs.getBoolean(8));
+//                list.add(model);
+//            }
+//            rs.getStatement().getConnection().close();
+//            return list;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            throw new RuntimeException(e);
+//        }
+//    }
     //lấy list danh sách sản phẩm
 
     public List<Sanpham> selectsanpham(String sql, Object... args) {
@@ -137,11 +137,9 @@ public class BanHangDao {
         return selectkhachhang(sql, makh);
     }
 
-    public List<Sanpham> selectByDM(String key) {
+ 
 
-        return selectBySQL(SPbyDanhMuc, key);
-    }
-     public Integer getSoHD() {
+    public Integer getSoHD() {
         String sql = "select max(soHD) from HoaDon";
         Integer soHD = 1;
         try {
@@ -164,5 +162,13 @@ public class BanHangDao {
         return soHD;
     }
 
-
-}
+    public static List<Sanpham> spBm_SP(String key) {
+        String sql = "	select SANPHAM.MASP,tensp,soluong,TenCl,dongia,tendm,mota,sanpham.TRANGTHAI\n"
+                + "            FROM SANPHAM\n"
+                + "                   join dbo.chatlieu on SANPHAM.Macl = chatlieu.Macl\n"
+                + "            	join danhmuc on danhmuc.madm = SANPHAM.MADM\n"
+                + "				where sanpham.TRANGTHAI = 1 and\n"
+                + "            	   TENDM = ?";
+        return select(sql,key);
+    }
+    }

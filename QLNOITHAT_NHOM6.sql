@@ -173,3 +173,13 @@ from CTHOADON join SANPHAM on CTHOADON.MASP = SANPHAM.MASP
          select max(soSP) from SANPHAM   
 		 UPDATE HOADON SET TONGTIENTT = 1000000,TRANGTHAI = 0,GHICHU = null
             WHERE MAHD = 'hd02'
+			select SANPHAM.MASP,tensp,soluong,TenCl,dongia,tendm,mota,sanpham.TRANGTHAI
+            FROM SANPHAM
+                   join dbo.chatlieu on SANPHAM.Macl = chatlieu.Macl
+            	join danhmuc on danhmuc.madm = SANPHAM.MADM
+				where sanpham.TRANGTHAI = 1 and
+            	   TENDM = ?
+				select CTHOADON.MASP, TENSP, SANPHAM.TRANGTHAI, RIGHT(CONVERT(varchar(20),NGAYLAP,105),7) as Thoigian, SUM(THANHTIEN) AS DOANHTHU
+                FROM SANPHAM JOIN CTHOADON ON SANPHAM.MASP = CTHOADON.MASP
+                JOIN HOADON ON HOADON.MAHD = CTHOADON.MAHD
+                GROUP BY CTHOADON.MASP, TENSP, SANPHAM.TRANGTHAI, RIGHT(CONVERT(varchar(20),NGAYLAP,105),7)

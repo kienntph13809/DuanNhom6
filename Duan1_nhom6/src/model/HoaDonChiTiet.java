@@ -12,6 +12,7 @@ package model;
 public class HoaDonChiTiet {
     private String Mahd;
     private String MaSP;
+    private String Tensp;
     private int soluong;
     private Float dongia;
     private Float thanhtien;
@@ -34,6 +35,14 @@ public class HoaDonChiTiet {
 
     public void setMaSP(String MaSP) {
         this.MaSP = MaSP;
+    }
+
+    public String getTensp() {
+        return Tensp;
+    }
+
+    public void setTensp(String Tensp) {
+        this.Tensp = Tensp;
     }
 
     public int getSoluong() {
@@ -67,6 +76,7 @@ public class HoaDonChiTiet {
     public void setTrangthai(Boolean trangthai) {
         this.trangthai = trangthai;
     }
-    
+
+ 
     
 }
