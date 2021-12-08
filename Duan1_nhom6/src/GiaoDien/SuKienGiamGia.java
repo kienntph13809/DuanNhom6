@@ -409,31 +409,33 @@ public class SuKienGiamGia extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_CBBItemStateChanged
 
     private void btthemskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btthemskActionPerformed
-        try {
-            String sql = " insert into SUKIEN(MASK,TENSK,UUDAI,TGKETTHIC)values(?,?,?,GETDATE)";
+         if (check()) {
+            sukien sk = new sukien();
+            sk.setMaSuKien(txtmask.getText());
+            sk.setTenSuKien(txttensk.getText());
+            Integer ud = (Integer) uudai.getValue();
+            sk.setUuDai(ud);
+            try {
+                if (cothan.isSelected()) {
+//                    sk.setTgKetThuc(ChuyenDoi.chuyenDoiNgayVeString1(jdateNgayKT.getDate()));
+                    sk.setLoaiSuKien(true);
+                    skd.insertSuKien(sk, true);
+                } else {
 
-            PreparedStatement pre = cn.prepareStatement(sql);
-            pre.setString(1,txtmask.getText());
-            pre.setString(2,txttensk.getText());
-            pre.setString(3,uudai.getValue().toString());
-//            pre.setString(4,txtngaybatdau.getText());
-            pre.setString(4,ngayketthuc.getText());
-//            String lsk = "";
-//             if (cothan.isSelected()) {
-//                lsk = "1";
-//            } else {
-//                lsk = "0";
-//            }
-//            pre.setString(6, lsk);
-            pre.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Thêm Thành công");
-            showdetail();
-            
-           
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-           
-        }
+                    skd.insertSuKien(sk, false);
+                }
+                JOptionPane.showMessageDialog(this, "Thêm thành công");
+                if (CBB.getSelectedIndex() == 1) {
+                    btxoa.setEnabled(true);
+                    skd.loadDatatoTable(tb_model, false);
+                } else {
+                    btxoa.setEnabled(false);
+                    skd.loadDatatoTable(tb_model, true);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Thêm lỗi");
+            }
+        };
 
     }//GEN-LAST:event_btthemskActionPerformed
 
@@ -646,5 +648,21 @@ public class SuKienGiamGia extends javax.swing.JInternalFrame {
         } catch (Exception e) {
         }
     }
+
+//    private void DoVaoDanhSachSP() {
+//        LoaiSP lsp = (LoaiSP) model_cbbLoaiSP.getSelectedItem();
+//        System.out.println(lsp.getMaLoaiSP());
+//
+//        List<SanPham> list = daoSP.selectAll_4(lsp.getMaLoaiSP());
+//        model_SP.setRowCount(0);
+//        int sk = 1;
+//
+//        for (SanPham x : list) {
+//            model_SP.addRow(new Object[]{sk, x.getMaCTSP(), x.getTenSP(), x.getTenKichThuoc(), x.getTenMauSac(), x.getTenChatLieu(),
+//                x.getGia(), true});
+//            sk++;
+//        }
+//
+//    }
 
 }
