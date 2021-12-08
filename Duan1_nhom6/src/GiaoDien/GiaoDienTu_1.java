@@ -670,10 +670,10 @@ public class GiaoDienTu_1 extends javax.swing.JFrame {
 
     private void TrangChuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TrangChuMouseClicked
         // TODO add your handling code here:
-  SuKienGiamGia sk = new SuKienGiamGia();
+        SuKienGiamGia sk = new SuKienGiamGia();
         jDesktopPane1.removeAll();
         jDesktopPane1.add(sk).setVisible(true);
-     
+
 
     }//GEN-LAST:event_TrangChuMouseClicked
 
@@ -709,7 +709,7 @@ public class GiaoDienTu_1 extends javax.swing.JFrame {
         BanHang.setBackground(DefaultColor);
         SanPham.setBackground(DefaultColor);
         TaiKhoan.setBackground(DefaultColor);
-        Thoat.setBackground(ClickerColor); 
+        Thoat.setBackground(ClickerColor);
         khachhang.setBackground(DefaultColor);
         sukien.setBackground(DefaultColor);
         thongke.setBackground(DefaultColor);
@@ -804,7 +804,7 @@ public class GiaoDienTu_1 extends javax.swing.JFrame {
 
     private void thongkeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thongkeMouseClicked
         // TODO add your handling code here:
-          ThongKe qlsp = new ThongKe();
+        ThongKe qlsp = new ThongKe();
         jDesktopPane1.removeAll();
         jDesktopPane1.add(qlsp).setVisible(true);
     }//GEN-LAST:event_thongkeMouseClicked

@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.Helperduc;
+
 
 /**
  *
@@ -42,7 +42,7 @@ public class SuKienGiamGia extends javax.swing.JInternalFrame {
     public SuKienGiamGia() {
         initComponents();
 //        init();
-        cn = Helperduc.ketnoi("QLNOITHAT_NHOM6");
+       // cn = Helperduc.ketnoi("QLNOITHAT_NHOM6");
         if (cn != null) {
 //            JOptionPane.showMessageDialog(this, "kết nối thành công");
         } else {
@@ -531,17 +531,19 @@ public class SuKienGiamGia extends javax.swing.JInternalFrame {
             ++d;
         }
 
-        if (cothan.isSelected()) {
-            try {
-                if (!skd.checkNgayThem(XDate.getDate())) {
-                    JOptionPane.showMessageDialog(this, "Ngày kết thúc sự kiện phải lớn hơn bằng ngày hiện tại");
-                    ++d;
-                };
-            } catch (Exception e) {
-            }
-        }
-        return d == 0 ? true : false;
+//        if (cothan.isSelected()) {
+//            try {
+//                if (!skd.checkNgayThem(XDate.getDate)) {
+//                    JOptionPane.showMessageDialog(this, "Ngày kết thúc sự kiện phải lớn hơn bằng ngày hiện tại");
+//                    ++d;
+//                };
+//            } catch (Exception e) {
+//            }
+//     }
+//        return d == 0 ? true : false;
+        return false;
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CBB;

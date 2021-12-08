@@ -24,10 +24,7 @@ public class HoaDonChiTietDao {
             + "       where MAHD = ?";
     String INSERT_SQL = "  insert into CTHOADON(MAHD,MASP,SOLUONG,DONGIA,THANHTIEN,TRANGTHAI) values(?,?,?,?,?,?)";
     String DELETE_SQL = "delete from CTHOADON where MAHD = ?";
-    String THONGKESPTHEOTHANG_SQL = "	select CTHOADON.MASP, TENSP, SANPHAM.TRANGTHAI, RIGHT(CONVERT(varchar(20),NGAYLAP,105),7), SUM(THANHTIEN) AS DOANHTHU\n"
-            + "                FROM SANPHAM JOIN CTHOADON ON SANPHAM.MASP = CTHOADON.MASP\n"
-            + "                JOIN HOADON ON HOADON.MAHD = CTHOADON.MAHD\n"
-            + "                GROUP BY CTHOADON.MASP, TENSP, SANPHAM.TRANGTHAI, RIGHT(CONVERT(varchar(20),NGAYLAP,105),7)";
+   
 
     public List<HoaDonChiTiet> selectBySQL(String sqlString, Object... args) {
         List<HoaDonChiTiet> list = new ArrayList<>();
@@ -68,8 +65,5 @@ public class HoaDonChiTietDao {
     public List<HoaDonChiTiet> selectAll() {
         return selectBySQL(SELECT_ALL);
     }
-     public List<HoaDonChiTiet> selectTHONGKE() {
-        return selectBySQL(THONGKESPTHEOTHANG_SQL
-        );
-    }
+    
 }

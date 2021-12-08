@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author kien5
@@ -14,9 +16,11 @@ public class HoaDonChiTiet {
     private String MaSP;
     private String Tensp;
     private int soluong;
+    private Date ngay;
     private Float dongia;
     private Float thanhtien;
     private Boolean trangthai;
+    private  Float tongdoanhthu;
 
     public HoaDonChiTiet() {
     }
@@ -53,6 +57,14 @@ public class HoaDonChiTiet {
         this.soluong = soluong;
     }
 
+    public Date getNgay() {
+        return ngay;
+    }
+
+    public void setNgay(Date ngay) {
+        this.ngay = ngay;
+    }
+
     public Float getDongia() {
         return dongia;
     }
@@ -77,6 +89,15 @@ public class HoaDonChiTiet {
         this.trangthai = trangthai;
     }
 
- 
+    public Float getTongdoanhthu() {
+        return tongdoanhthu;
+    }
+
+    public void setTongdoanhthu(Float tongdoanhthu) {
+        this.tongdoanhthu = tongdoanhthu;
+    }
+
+
+    
     
 }
