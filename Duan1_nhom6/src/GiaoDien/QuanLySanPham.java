@@ -41,6 +41,7 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
     int viTri = 0;
     int row = 0;
     int vitriSPCT;
+  
 
     public QuanLySanPham() {
         initComponents();
@@ -132,8 +133,10 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
     }
 
     void insert() {
+        int so;
         Sanpham model = getModel();
         try {
+         
             daoSP.insert(model);
             this.loadtable();
             this.clear();
@@ -277,6 +280,11 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
         jLabel9.setText("Mã Sản Phẩm :");
 
         txtMaSp.setEnabled(false);
+        txtMaSp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaSpActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -405,7 +413,7 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
         );
 
         pack();
@@ -417,12 +425,17 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        insert();
+        if (Check()) {
+           return;
+        } else {
+             insert();
+        }
+        
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
-
+        Update();
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
@@ -431,15 +444,25 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
         txtDonGia1.setText("");
         txtSoLuong.setText("");
         txtTimKiem.setText("");
+        txtMoTa.setText("");
         CboDanhMuc.setSelectedItem(0);
+        cbChatLieu.setSelectedItem(0);
         loadtable();
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void tbnSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbnSanPhamMouseClicked
         // TODO add your handling code here:
-        viTri = tbnSanPham.getSelectedRow();
+        
         //clickTable();
+        if (evt.getClickCount() == 2) {
+            row = tbnSanPham.getSelectedRow();      
+            setForm();
+        }
     }//GEN-LAST:event_tbnSanPhamMouseClicked
+
+    private void txtMaSpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaSpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaSpActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -573,4 +596,58 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
         model.setChatlieu(chatlieu.getTencl());
 
     }
+
+    private void setForm() {
+        int index = 0;
+        txtMaSp.setText(tbnSanPham.getValueAt(row, 0).toString());
+        txtTenSp.setText(tbnSanPham.getValueAt(row, 1).toString());
+        txtSoLuong.setText(tbnSanPham.getValueAt(viTri, 2).toString());
+       cbChatLieu.setSelectedItem(tbnSanPham.getValueAt(row, 3));
+       txtDonGia1.setText(tbnSanPham.getValueAt(row, 4).toString());
+       txtMoTa.setText(tbnSanPham.getValueAt(row, 5).toString());
+       CboDanhMuc.setSelectedItem(tbnSanPham.getValueAt(row,6));
+        if (tbnSanPham.getValueAt(row, 7).toString().equals("Con Hang")) {
+            rboConHang.setSelected(true);
+        }else{
+            rboHetHang.setSelected(true);
+        }
+       
+    }
+
+    private void Update() {
+      
+    }
+
+    boolean Check() {
+       try {
+            if (txtTenSp.getText().trim().equals("")) {
+                DialogHelper.alert(this, "Tên sản phẩm không được để trống");
+                return true;
+            } else if (txtDonGia1.getText().trim().equals("")) {
+                DialogHelper.alert(this, "Đơn Giá không được để trống");
+                return true;
+            } 
+             else if (txtSoLuong.getText().trim().equals("")) {
+                DialogHelper.alert(this, "Số Lượng không được để trống");
+                return true;
+            }  else if(Double.parseDouble(txtDonGia1.getText())<0){
+                DialogHelper.alert(this, "Giá Sản Phẩm Không được <0");
+                return true;
+            } else if(Integer.parseInt(txtSoLuong.getText())<0){
+                DialogHelper.alert(this, "Số Lượng Không Được < 0");
+                return true;
+            }
+            else{
+                return false;
+            }
+        }catch (NumberFormatException e) {
+            DialogHelper.alert(this, "Số lượng và giá tiền phải là số");
+            return true;
+        }  catch (Exception e) {
+            e.printStackTrace();
+            return true ;
+        }
+    }
+     
+    
 }
