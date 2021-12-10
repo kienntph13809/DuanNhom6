@@ -1,10 +1,10 @@
+package Dao;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Dao;
-
 import Helper.Utils;
 import Helper.jdbcKien;
 import java.sql.Connection;
@@ -25,27 +25,114 @@ import model.sukien;
  */
 public class Sukiendao {
 
+    String INSERT_SQL = "INSERT INTO SUKIEN(MASK,TENSK,UUDAI,TGBATDAU,TGKETTHIC,LoaiSuKien,TRANGTHAI,MASP) VALUES (?,?,?,?,?,?,?,?)";
+    String UPDATE_SQL = "UPDATE SUKIEN SET TENSK =? ,UUDAI=? WHERE MASK =?";
+    String DELETE_SQL = "DDELETE FROM SUKIEN WHERE MASK =?";
+    String SELECT_ALL_SQL = "SELECT * FROM SUKIEN";
+    String SELECT_BY_ID_SQL = "SELECT * FROM SUKIEN WHERE TRANGTHAI = 1";
+
+    public void insert(sukien x) {
+        jdbcKien.executeUpdate(INSERT_SQL, x.getMaSuKien(), x.getTenSuKien(), x.getUuDai(), x.getTgBatDau(),
+                x.getTgKetThuc());
+    }
+
+    public void update(sukien x) {
+        jdbcKien.executeUpdate(UPDATE_SQL, x.getTenSuKien(), x.getUuDai(), x.getTgBatDau(),
+                x.getTgKetThuc());
+    }
+
+    public void delete(String key) {
+        jdbcKien.executeUpdate(DELETE_SQL, key);
+    }
+
+    public List<sukien> selectAll() {
+        return this.selectBySql(SELECT_ALL_SQL);
+    }
+    
+
+    public sukien selectById(String key) {
+        List<sukien> list = this.selectBySql(SELECT_BY_ID_SQL, key);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
+
+    protected List<sukien> selectBySql(String sql, Object... args) {
+        List<sukien> list = new ArrayList<>();
+        try {
+            ResultSet rs = jdbcKien.executeQuery(sql, args);
+            while (rs.next()) {
+                sukien sk = new sukien();
+                sk.setMaSuKien(rs.getString("MASK"));
+                sk.setTenSuKien(rs.getString("TENSK"));
+                sk.setUuDai(rs.getFloat("UUDAI"));
+                sk.setTgBatDau(rs.getString("TGBD"));
+                sk.setTgKetThuc(rs.getString("TGKT"));
+                sk.setLoaiSuKien(rs.getBoolean("LOAISK"));
+                sk.setTrangThai(rs.getBoolean("TrangThai"));
+
+                list.add(sk);
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<sukien> selectByKeyWord(String key) {
+        String sql = "SELECT * FROM NGUOIHOC WHERE Hoten LIKE ?";
+        return selectBySql(sql, "%" + key + "%");
+    }
+
+    public List<sukien> selectnotlnCourse(int makh, String keyword) {
+        String sql = "SELECT * FROM NGUOIHOC"
+                + " WHERE HoTen LIKE ? AND"
+                + " MaNH NOT IN (SELECT MaNH FROM HOCVIEN WHERE MaKH = ?)";
+        return selectBySql(sql, "%" + keyword + "%", makh);
+    }
+
     public sukien readSuKienFromResultSet(ResultSet rs) throws SQLException {
         sukien mode = new sukien();
-//        mode.setMaSuKien(rs.getString(1));
-//        mode.setTenSuKien(rs.getString(2));
-//        mode.setUuDai(rs.getInt(3));
-//        mode.setTgBatDau(rs.getString(4));
-//        mode.setTgKetThuc(rs.getString(5));
-//        mode.setLoaiSuKien(rs.getBoolean(6));
-//        mode.setTrangThai(rs.getBoolean(7));
-//        System.out.println(mode);
-        mode.setMaSuKien(rs.getString("mask"));
-        mode.setTenSuKien(rs.getString("tensk"));
-        mode.setUuDai(rs.getInt("uudai"));
-        mode.setTgBatDau(rs.getString("Tgbatdau"));
-        mode.setTgKetThuc(rs.getString("tgianketthuc"));
-        mode.setLoaiSuKien(rs.getBoolean("loaisk"));
-        mode.setTrangThai(rs.getBoolean("trangthai"));
+        mode.setMaSuKien(rs.getString(1));
+        mode.setTenSuKien(rs.getString(2));
+        mode.setUuDai(rs.getInt(3));
+        mode.setTgBatDau(rs.getString(4));
+        mode.setTgKetThuc(rs.getString(5));
+        mode.setLoaiSuKien(rs.getBoolean(6));
+        mode.setTrangThai(rs.getBoolean(7));
+        System.out.println(mode);
+//        mode.setMaSuKien(rs.getString("mask"));
+//        mode.setTenSuKien(rs.getString("tensk"));
+//        mode.setUuDai(rs.getInt("uudai"));
+//        mode.setTgBatDau(rs.getString("Tgbatdau"));
+//        mode.setTgKetThuc(rs.getString("tgianketthuc"));
+//        mode.setLoaiSuKien(rs.getBoolean("loaisk"));
+//        mode.setTrangThai(rs.getBoolean("trangthai"));
 
         return mode;
     }
+//    String INSERT_SQL = "insert into SUKIEN (TENSK,UUDAI,TGBATDAU,TGKETTHIC,LoaiSuKien,TRANGTHAI) values(?,?,?,?,1,1)";
+//
+//    public void insert(sukien sk) {
+//        jdbcKien.executeUpdate(INSERT_SQL, sk.getMaSuKien(), sk.getTenSuKien(), sk.getUuDai(), sk.getTgBatDau(),
+//                sk.getTgKetThuc());
+//    }
+//    String SELECT_ALL_SQL = "SELECT * FROM SUKIEN";
+//
+//    public List<sukien> selectAll() {
+//        return this.selectBySql(SELECT_ALL_SQL);
+//    }
 
+//    public sukien selectById(String key) {
+//        List<sukien> list = this.selectBySql(SELECT_BY_ID_SQL, key);
+//        if (list.isEmpty()) {
+//            return null;
+//        }
+//        return list.get(0);
+//    }
     //lấy list danh sách sự kiện
     public List<sukien> selectSuKien(String sql, Object... args) {
         List<sukien> list = new ArrayList<>();
@@ -57,7 +144,7 @@ public class Sukiendao {
                     list.add(readSuKienFromResultSet(rs));
                 }
             } finally {
-              
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -80,14 +167,15 @@ public class Sukiendao {
 
     //lấy list sự kiện
     public List<sukien> getlistSuKienBH() {
-        String sql = "  select * from SUKIEN";
+        String sql = "select MASK,TENSK,UUDAI,CONVERT(nvarchar,TGBATDAU,103),\n"
+                + "CONVERT(nvarchar,TGKETTHIC,103),LoaiSuKien,TrangThai from SuKien";
         List<sukien> listSK = selectSuKien(sql);
         return listSK;
     }
 
     //load datatoTable
     public void loadDatatoTable(DefaultTableModel mode, boolean trangThai) {
-
+        updateSukienAn();
         List<sukien> list = getlistSuKienBH();
         mode.setRowCount(0);
         for (int i = 0; i < list.size(); i++) {
@@ -105,6 +193,32 @@ public class Sukiendao {
         }
     }
 
+    public void updateSukienAn() {
+        String sql = "update SUKIEN\n"
+                + "set ANSK = 0\n"
+                + "where datediff(day,GETDATE(),TGKETTHIC) <0 and LoaiSuKien = 1";
+        jdbcKien.executeUpdate(sql);
+    }
+
+    //load datatoTable
+//    public void loadDatatoTable(DefaultTableModel mode, boolean trangThai) {
+//
+//        List<sukien> list = getlistSuKienBH();
+//        mode.setRowCount(0);
+//        for (int i = 0; i < list.size(); i++) {
+//            sukien sk = list.get(i);
+//            if (sk.isTrangThai() == trangThai) {
+//                Vector v = new Vector();
+//                v.add(sk.getMaSuKien());
+//                v.add(sk.getTenSuKien());
+//                v.add(sk.getUuDai());
+//                v.add(sk.getTgBatDau());
+//                v.add(sk.getTgKetThuc());
+//                mode.addRow(v);
+//
+//            }
+//        }
+//    }
     public void updateSukienDuc() {
         String sql = "update SUKIEN\n"
                 + "set MASK = 0\n"
@@ -151,6 +265,13 @@ public class Sukiendao {
         }
     }
 
+    public void anSuKien(sukien sk) {
+        String sql = "update SUKIEN\n"
+                + "set ANSK = 0\n"
+                + "where MASK = ?";
+        jdbcKien.executeUpdate(sql, sk.getMaSuKien());
+    }
+
     //ẩn sự kiện
 //    public void anSuKien(sukien sk) {
 //        String sql = "update SuKien\n"
@@ -161,14 +282,14 @@ public class Sukiendao {
     //insert một sự kiện
     public void insertSuKien(sukien sk, boolean loaiSK) {
         if (loaiSK) {
-            String sql = "insert into SUKIEN VALUES(?,?,?,GETDATE(),?,1,1,1)";
+            String sql = "insert into SUKIEN (TENSK,UUDAI,TGBATDAU,TGKETTHIC) values(?,?,?,?))";
             jdbcKien.executeUpdate(sql,
-                    sk.getMaSuKien(),
                     sk.getTenSuKien(),
                     sk.getUuDai(),
+                    sk.getTgBatDau(),
                     sk.getTgKetThuc());
         } else {
-            String sql = "insert into SUKIEN VALUES(?,?,?,GETDATE(),null,0,1,1)";
+            String sql = "insert into SUKIEN VALUES(?,?,?,?,0,1,1)";
             jdbcKien.executeUpdate(sql,
                     sk.getMaSuKien(),
                     sk.getTenSuKien(),
@@ -219,5 +340,21 @@ public class Sukiendao {
         }
         return soNgay < 0 ? false : true;
     }
+
+    public List<sukien> loadDatatoTable(DefaultTableModel tb_model, int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+//    private List<sukien> selectBySql(String SELECT_ALL_SQL) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    private List<sukien> selectBySql(String SELECT_BY_ID_SQL, String key) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    public void delete(sukien sk) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
 }
