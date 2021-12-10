@@ -22,7 +22,7 @@ public class ChatLieuDAO {
          ChatLieu mode = new ChatLieu();
         mode.setMacl(rs.getInt(1));
         mode.setTencl(rs.getString(2));
-        mode.setTrangthai(rs.getInt(3));
+        mode.setTrangthai(rs.getBoolean(3));
 
         return mode;
     }

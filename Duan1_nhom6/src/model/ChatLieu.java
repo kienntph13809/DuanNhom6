@@ -14,12 +14,12 @@ public class ChatLieu {
    
     private int macl;
     private String tencl;
-    private int trangthai;
+    private boolean trangthai;
 
     public ChatLieu() {
     }
 
-    public ChatLieu(int macl, String tencl, int trangthai) {
+    public ChatLieu(int macl, String tencl, boolean trangthai) {
         this.macl = macl;
         this.tencl = tencl;
         this.trangthai = trangthai;
@@ -41,18 +41,14 @@ public class ChatLieu {
         this.tencl = tencl;
     }
 
-    public int getTrangthai() {
+    public boolean isTrangthai() {
         return trangthai;
     }
 
-    public void setTrangthai(int trangthai) {
+    public void setTrangthai(boolean trangthai) {
         this.trangthai = trangthai;
     }
 
-   
-    @Override
-    public String toString() {
-        return tencl;
-    }
+  
     
 }

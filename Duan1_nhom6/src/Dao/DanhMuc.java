@@ -22,7 +22,7 @@ public class DanhMuc {
         model.DanhMuc mode = new model.DanhMuc();
         mode.setMadm(rs.getInt(1));
         mode.setTendm(rs.getString(2));
-        mode.setTrangThai(rs.getInt(3));
+        mode.setTrangThai(rs.getBoolean(3));
 
         return mode;
     }

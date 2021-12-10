@@ -740,6 +740,10 @@ public class GiaoDienTu_1 extends javax.swing.JFrame {
 
     private void khachhangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khachhangMouseClicked
         // TODO add your handling code here:
+         formkhachhang qlkh = new formkhachhang();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(qlkh).setVisible(true);
+        
     }//GEN-LAST:event_khachhangMouseClicked
 
     private void khachhangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khachhangMousePressed
