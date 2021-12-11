@@ -808,7 +808,7 @@ public class GiaoDienTu_1 extends javax.swing.JFrame {
 
     private void thongkeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thongkeMouseClicked
         // TODO add your handling code here:
-        Danhmuc qlsp = new Danhmuc();
+        ThongKe qlsp = new ThongKe();
         jDesktopPane1.removeAll();
         jDesktopPane1.add(qlsp).setVisible(true);
     }//GEN-LAST:event_thongkeMouseClicked
