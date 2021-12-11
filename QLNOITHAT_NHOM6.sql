@@ -264,3 +264,5 @@ from CTHOADON join SANPHAM on CTHOADON.MASP = SANPHAM.MASP
          select max(soSP) from SANPHAM   
 		 UPDATE HOADON SET TONGTIENTT = 1000000,TRANGTHAI = 0,GHICHU = null
             WHERE MAHD = 'hd02'
+			select MASP,TENSP,SOLUONG,TenCl,DONGIA,tendm,MOTA,SANPHAM.TRANGTHAI from SANPHAM join chatlieu on SANPHAM.Macl = chatlieu.Macl join danhmuc on SANPHAM.MADM = danhmuc.madm
+                where SANPHAM.TRANGTHAI = 1
