@@ -34,7 +34,7 @@ public class HoaDonDAO {
             + "		 where MAHD = ?";
 
     public void insert(HoaDon model) {
-        jdbcKien.executeUpdate(INSERT_SQL, model.getMahd(), model.getTentk() ,model.getTongTien(), model.getTrangThai(), model.getGhichu());
+        jdbcKien.executeUpdate(INSERT_SQL, model.getMahd(), model.getTentk(), model.getTongTien(), model.getTrangThai(), model.getGhichu());
     }
 
     public List<HoaDon> selectBySQL(String sqlString, Object... args) {
@@ -90,5 +90,12 @@ public class HoaDonDAO {
     public void updateHD(HoaDon model) {
         jdbcKien.executeUpdate(UPDATE_SQL, model.getMasp(), model.getTongTien(),
                 model.getMahd());
+    }
+
+    public List<HoaDon> findById(String id) {
+        String sql = "SELECT *from HOADON\n"
+                + "where MaHD = ? and TRANGTHAI = 1";
+        return selectBySQL(sql, id);
+
     }
 }

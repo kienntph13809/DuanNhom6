@@ -24,7 +24,6 @@ public class HoaDonChiTietDao {
             + "       where MAHD = ?";
     String INSERT_SQL = "  insert into CTHOADON(MAHD,MASP,SOLUONG,DONGIA,THANHTIEN,TRANGTHAI) values(?,?,?,?,?,?)";
     String DELETE_SQL = "delete from CTHOADON where MAHD = ?";
-   
 
     public List<HoaDonChiTiet> selectBySQL(String sqlString, Object... args) {
         List<HoaDonChiTiet> list = new ArrayList<>();
@@ -65,5 +64,12 @@ public class HoaDonChiTietDao {
     public List<HoaDonChiTiet> selectAll() {
         return selectBySQL(SELECT_ALL);
     }
-    
+
+    public List<HoaDonChiTiet> findById(String id) {
+        String sql = "select * from CTHoaDon\n"
+                + " where MaHD = ?";
+        return selectBySQL(sql, id);
+
+    }
+
 }

@@ -478,6 +478,9 @@ public class GiaoDienTu_1 extends javax.swing.JFrame {
 
         HoaDon.setBackground(new java.awt.Color(176, 228, 246));
         HoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HoaDonMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 HoaDonMousePressed(evt);
             }
@@ -575,28 +578,21 @@ public class GiaoDienTu_1 extends javax.swing.JFrame {
 
         jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 103, 330, 850));
 
-        jLabel10.setBackground(new java.awt.Color(176, 228, 246));
-
-        jDesktopPane1.setLayer(jLabel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 1190, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 1210, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(113, Short.MAX_VALUE))
+            .addGap(0, 730, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 1210, 900));
+        jPanel2.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 1210, 730));
+
+        jLabel10.setBackground(new java.awt.Color(176, 228, 246));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 169, 1186, 560));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -811,6 +807,13 @@ public class GiaoDienTu_1 extends javax.swing.JFrame {
         jDesktopPane1.removeAll();
         jDesktopPane1.add(qlsp).setVisible(true);
     }//GEN-LAST:event_thongkeMouseClicked
+
+    private void HoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoaDonMouseClicked
+        // TODO add your handling code here:
+         CHITIETHOADON hd = new CHITIETHOADON();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(hd).setVisible(true);
+    }//GEN-LAST:event_HoaDonMouseClicked
 
     /**
      * @param args the command line arguments
