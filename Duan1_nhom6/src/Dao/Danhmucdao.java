@@ -20,7 +20,7 @@ public class Danhmucdao implements danhmucvip<DanhMuc, String> {
 
     String insertSQL = "INSERT INTO dbo.DANHMUC(tendm,trangthai)VALUES(?,?)";
     String selectALL_SQL = "SELECT * FROM dbo.DANHMUC WHERE  TRANGTHAI=1  ";
-    String selectByTimKiem = "SELECT * FROM dbo.KHACHHANG WHERE MAKH LIKE ? OR TENKH LIKE ?";
+ 
     String UPDATE_SQL = "UPDATE DANHMUC SET TENDM = ?,TRANGTHAI=? WHERE MADM = ?";
     String DELETE_SQL = "UPDATE DANHMUC SET trangthai=0\n"
             + "where madm=?";

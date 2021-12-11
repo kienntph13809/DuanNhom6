@@ -390,6 +390,11 @@ public class Danhmuc extends javax.swing.JInternalFrame {
 
         jButton3.setBackground(new java.awt.Color(0, 204, 255));
         jButton3.setText("Xóa");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(0, 204, 255));
         jButton4.setText("Làm Mới");
@@ -419,14 +424,10 @@ public class Danhmuc extends javax.swing.JInternalFrame {
                         .addGap(9, 9, 9)
                         .addComponent(rdconhoadong)
                         .addGap(51, 51, 51)
-                        .addComponent(rdngunghd)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(txtmcl, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(339, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(txttencl, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(rdngunghd))
+                    .addComponent(txtmcl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txttencl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(339, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -613,6 +614,11 @@ public class Danhmuc extends javax.swing.JInternalFrame {
 
         }
     }//GEN-LAST:event_tbclMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        xoachatlieu();
+    }//GEN-LAST:event_jButton3ActionPerformed
     void Loadatachatlieu() {
         DefaultTableModel model = (DefaultTableModel) tbcl.getModel();
         model.setRowCount(0);
