@@ -18,11 +18,12 @@ public class sukien {
     private String tgKetThuc;
     private boolean loaiSuKien;
     private boolean trangThai;
+    private String masp;
 
     public sukien() {
     }
 
-    public sukien(String MaSuKien, String TenSuKien, float UuDai, String tgBatDau, String tgKetThuc, boolean loaiSuKien, boolean trangThai) {
+    public sukien(String MaSuKien, String TenSuKien, float UuDai, String tgBatDau, String tgKetThuc, boolean loaiSuKien, boolean trangThai, String masp) {
         this.MaSuKien = MaSuKien;
         this.TenSuKien = TenSuKien;
         this.UuDai = UuDai;
@@ -30,6 +31,7 @@ public class sukien {
         this.tgKetThuc = tgKetThuc;
         this.loaiSuKien = loaiSuKien;
         this.trangThai = trangThai;
+        this.masp = masp;
     }
 
     public String getMaSuKien() {
@@ -88,6 +90,15 @@ public class sukien {
         this.trangThai = trangThai;
     }
 
+    public String getMasp() {
+        return masp;
+    }
+
+    public void setMasp(String masp) {
+        this.masp = masp;
+    }
+
+   
     @Override
     public String toString() {
         return "sukien{" + "TenSuKien=" + TenSuKien + '}';

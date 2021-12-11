@@ -25,7 +25,7 @@ import model.sukien;
  */
 public class Sukiendao {
 
-    String INSERT_SQL = "INSERT INTO SUKIEN(MASK,TENSK,UUDAI,TGBATDAU,TGKETTHIC,LoaiSuKien,TRANGTHAI,MASP) VALUES (?,?,?,?,?,?,?,?)";
+    String INSERT_SQL = "INSERT INTO SUKIEN(MASK,TENSK,TGBATDAU,TGKETTHIC,LoaiSuKien,TRANGTHAI,MASP) VALUES (?,?,?,?,?,?,?)";
     String UPDATE_SQL = "UPDATE SUKIEN SET TENSK =? ,UUDAI=? WHERE MASK =?";
     String DELETE_SQL = "DDELETE FROM SUKIEN WHERE MASK =?";
     String SELECT_ALL_SQL = "SELECT * FROM SUKIEN";
@@ -33,7 +33,7 @@ public class Sukiendao {
 
     public void insert(sukien x) {
         jdbcKien.executeUpdate(INSERT_SQL, x.getMaSuKien(), x.getTenSuKien(), x.getUuDai(), x.getTgBatDau(),
-                x.getTgKetThuc());
+                x.getTgKetThuc(),x.getMasp());
     }
 
     public void update(sukien x) {
@@ -192,7 +192,28 @@ public class Sukiendao {
             }
         }
     }
+ public String getmasp() {
+        String sql = "select max(MASP) from SUKIEN";
+        String masp ="1";
+        try {
+            ResultSet rs = null;
+            try {
+                rs = jdbcKien.executeQuery(sql);
+                if (rs.next()) {
+                    masp = "0" + 1;
+                } else {
+                    masp = "SP0";
+                }
+            } finally {
+                rs.getStatement().getConnection().close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException();
 
+        }
+        return masp;
+    }
     public void updateSukienAn() {
         String sql = "update SUKIEN\n"
                 + "set ANSK = 0\n"
@@ -264,22 +285,22 @@ public class Sukiendao {
             jdbcKien.executeUpdate(sql, sk.getMaSuKien());
         }
     }
+//
+//    public void anSuKien(sukien sk) {
+//        String sql = "update SUKIEN\n"
+//                + "set TRANGTHAI = 0\n"
+//                + "where MASK = ?";
+//        jdbcKien.executeUpdate(sql, sk);
+//    }
 
+//    ẩn sự kiện
     public void anSuKien(sukien sk) {
         String sql = "update SUKIEN\n"
-                + "set ANSK = 0\n"
+                + "set TRANGTHAI = 0\n"
                 + "where MASK = ?";
         jdbcKien.executeUpdate(sql, sk.getMaSuKien());
     }
-
-    //ẩn sự kiện
-//    public void anSuKien(sukien sk) {
-//        String sql = "update SuKien\n"
-//                + "set AnSK = 0\n"
-//                + "where MaSuKien = ?";
-//        jdbcKien.executeUpdate(sql, sk.getMaSuKien());
-//    }
-    //insert một sự kiện
+//    insert một sự kiện
     public void insertSuKien(sukien sk, boolean loaiSK) {
         if (loaiSK) {
             String sql = "insert into SUKIEN (TENSK,UUDAI,TGBATDAU,TGKETTHIC) values(?,?,?,?))";

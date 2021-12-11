@@ -12,12 +12,12 @@ package model;
 public class DanhMuc {
     private int madm;
     private String tendm;
-    private boolean trangThai;
+    private int trangThai;
 
     public DanhMuc() {
     }
 
-    public DanhMuc(int madm, String tendm, boolean trangThai) {
+    public DanhMuc(int madm, String tendm, int trangThai) {
         this.madm = madm;
         this.tendm = tendm;
         this.trangThai = trangThai;
@@ -39,14 +39,18 @@ public class DanhMuc {
         this.tendm = tendm;
     }
 
-    public boolean isTrangThai() {
+    public int getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(boolean trangThai) {
+    public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
 
+    @Override
+    public String toString() {
+        return tendm;
+    }
     
             
 }

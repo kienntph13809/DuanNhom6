@@ -14,9 +14,17 @@ public class KhachHang {
     private String tenkh;
     private String SDT;
     private String DiaChi;
-    private boolean trangThai;
+    private Boolean trangThai;
 
     public KhachHang() {
+    }
+
+    public KhachHang(String makh, String tenkh, String SDT, String DiaChi, Boolean trangThai) {
+        this.makh = makh;
+        this.tenkh = tenkh;
+        this.SDT = SDT;
+        this.DiaChi = DiaChi;
+        this.trangThai = trangThai;
     }
 
     public String getMakh() {
@@ -51,28 +59,14 @@ public class KhachHang {
         this.DiaChi = DiaChi;
     }
 
-    public boolean isTrangThai() {
+    public Boolean getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(boolean trangThai) {
+    public void setTrangThai(Boolean trangThai) {
         this.trangThai = trangThai;
     }
-
-    public KhachHang(String makh, String tenkh, String SDT, String DiaChi, boolean trangThai) {
-        this.makh = makh;
-        this.tenkh = tenkh;
-        this.SDT = SDT;
-        this.DiaChi = DiaChi;
-        this.trangThai = trangThai;
-    }
-
 
   
-
- 
-
-
-    
     
 }

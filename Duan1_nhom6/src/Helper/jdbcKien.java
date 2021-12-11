@@ -23,7 +23,7 @@ public class jdbcKien {
      public static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     public static String dburl = "jdbc:sqlserver://localhost:1433;databaseName=QLNOITHAT_NHOM6";
     public static String username = "sa";
-    public static String password = "123";
+    public static String password = "1";
 
     //nạp driver
     static {

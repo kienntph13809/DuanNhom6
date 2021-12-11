@@ -41,6 +41,7 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
     int viTri = 0;
     int row = 0;
     int vitriSPCT;
+  
 
     public QuanLySanPham() {
         initComponents();
@@ -100,6 +101,7 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
                     sp.getDongia(),
                     sp.getMota(),
                     sp.getTenDm(),
+                    
                     a
 
                 };
@@ -115,7 +117,7 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
         DanhMuc dm = (DanhMuc) CboDanhMuc.getSelectedItem();
         ChatLieu cl = (ChatLieu) cbChatLieu.getSelectedItem();
         Sanpham model = new Sanpham();
-        String SoSp = "SP0" + daoSP.getSoSP();
+        String SoSp = "SP0"+daoSP.getSoSP();
         model.setMasp(SoSp);
         model.setTensp(txtTenSp.getText());
         model.setSoluong(Integer.valueOf(txtSoLuong.getText()));
@@ -125,7 +127,7 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
 
         model.setMota(txtMoTa.getText());
         model.setTrangthai(true);
-
+       
         return model;
 
     }
@@ -134,7 +136,7 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
         int so;
         Sanpham model = getModel();
         try {
-
+         
             daoSP.insert(model);
             this.loadtable();
             this.clear();
@@ -424,21 +426,16 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
         if (Check()) {
-            return;
+           return;
         } else {
-            insert();
+             insert();
         }
-
+        
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
-        if (Check()) {
-            return;
-        } else {
-            update();
-        }
-
+        Update();
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
@@ -455,10 +452,10 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
 
     private void tbnSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbnSanPhamMouseClicked
         // TODO add your handling code here:
-
+        
         //clickTable();
         if (evt.getClickCount() == 2) {
-            row = tbnSanPham.getSelectedRow();
+            row = tbnSanPham.getSelectedRow();      
             setForm();
         }
     }//GEN-LAST:event_tbnSanPhamMouseClicked
@@ -518,34 +515,23 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
     }
 
     public void update() {
-        Sanpham model = updategetModel();
+        Sanpham model = getModel();
 
-        try {
-            daoSP.updatesanPham(model);
-            //cập nhật nhân viên theo maNV
-            this.loadtable();
-            //điền tt mới vào bảng
-            JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
-        } catch (Exception e) {
-            DialogHelper.alert(this, "Lỗi Cập nhật");
+        String confirm = new String(txtMaSp.getText());
+        if (!confirm.equals(model.getTensp())) {
+            txtTenSp.setBackground(pink);
+            JOptionPane.showMessageDialog(this, "Cập Nhật Không Thành Công");
+        } else {
+            try {
+
+                //cập nhật nhân viên theo maNV
+                this.loadtable();
+                //điền tt mới vào bảng
+                JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-
-    }
-
-    Sanpham updategetModel() {
-        DanhMuc dm = (DanhMuc) CboDanhMuc.getSelectedItem();
-        ChatLieu cl = (ChatLieu) cbChatLieu.getSelectedItem();
-        Sanpham model = new Sanpham();
-        model.setMasp(txtMaSp.getText());
-        model.setTensp(txtTenSp.getText());
-        model.setSoluong(Integer.valueOf(txtSoLuong.getText()));
-        model.setMaCL(cl.getMacl());
-        model.setDongia(Float.valueOf(txtDonGia1.getText()));
-        model.setMadm(dm.getMadm());
-        model.setMota(txtMoTa.getText());
-        model.setTrangthai(true);
-        return model;
-
     }
 
     Sanpham getFromSP() {
@@ -556,7 +542,54 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
         return sp;
     }
 
-
+// void fillToTable() {
+//         
+//        model1 = (DefaultTableModel) tbnSanPham.getModel();
+//        model1.setRowCount(0);
+//        try {
+//           
+//            for (Sanpham x : ) {
+//                model1.addRow(new Object[]{
+//                    x.getMaSp(), x.getTenSp(), x.getTenDanhMuc(), x.getNhaSX(), x.getNuocSX()
+//                });
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    
+//    }
+//    private void fillTableData() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    private void clickTable() {
+//         txtTenSp.setText(model1.getValueAt(viTri, 0).toString());
+//        txtSoLuong.setText(model1.getValueAt(viTri, 1).toString());
+//        setSelectedComboboxCL(tbnSanPham.getValueAt(viTri, 3).toString() + " - " + tbnSanPham.getValueAt(viTri, 4).toString(), cbChatLieu);
+//        setSelectedComboboxDM(tbnSanPham.getValueAt(viTri, 2).toString(), CboDanhMuc);
+//
+//    }
+//     public void setSelectedComboboxDM(String cbbselected, JComboBox cbb) {
+//        for (int i = 0; i < cbb.getItemCount(); i++) {
+//            DanhMuc m = (DanhMuc) cbb.getItemAt(i);
+//            if (m != null) {
+//                if (cbbselected.trim().equals(m.getTendm())) {
+//                    cbb.setSelectedItem(m);
+//                }
+//            }
+//        }
+//    }
+//
+//    public void setSelectedComboboxCL(String cbbselected, JComboBox cbb) {
+//        for (int i = 0; i < cbb.getItemCount(); i++) {
+//            ChatLieu m = (ChatLieu) cbb.getItemAt(i);
+//            if (m != null) {
+//                 if (cbbselected.trim().equals(m.getTencl())) {
+//                    cbb.setSelectedItem(m);
+//                }
+//            }
+//        }
+//    }
     void clear() {
         Sanpham model = new Sanpham();
         ChatLieu chatlieu = (ChatLieu) cbChatLieu.getSelectedItem();
@@ -569,45 +602,52 @@ public class QuanLySanPham extends javax.swing.JInternalFrame {
         txtMaSp.setText(tbnSanPham.getValueAt(row, 0).toString());
         txtTenSp.setText(tbnSanPham.getValueAt(row, 1).toString());
         txtSoLuong.setText(tbnSanPham.getValueAt(viTri, 2).toString());
-        cbChatLieu.setSelectedItem(tbnSanPham.getValueAt(row, 3));
-        txtDonGia1.setText(tbnSanPham.getValueAt(row, 4).toString());
-        txtMoTa.setText(tbnSanPham.getValueAt(row, 5).toString());
-        CboDanhMuc.setSelectedItem(tbnSanPham.getValueAt(row, 6));
+       cbChatLieu.setSelectedItem(tbnSanPham.getValueAt(row, 3));
+       txtDonGia1.setText(tbnSanPham.getValueAt(row, 4).toString());
+       txtMoTa.setText(tbnSanPham.getValueAt(row, 5).toString());
+       CboDanhMuc.setSelectedItem(tbnSanPham.getValueAt(row,6));
         if (tbnSanPham.getValueAt(row, 7).toString().equals("Con Hang")) {
             rboConHang.setSelected(true);
-        } else {
+        }else{
             rboHetHang.setSelected(true);
         }
+       
+    }
 
+    private void Update() {
+      
     }
 
     boolean Check() {
-        try {
+       try {
             if (txtTenSp.getText().trim().equals("")) {
                 DialogHelper.alert(this, "Tên sản phẩm không được để trống");
                 return true;
             } else if (txtDonGia1.getText().trim().equals("")) {
                 DialogHelper.alert(this, "Đơn Giá không được để trống");
                 return true;
-            } else if (txtSoLuong.getText().trim().equals("")) {
+            } 
+             else if (txtSoLuong.getText().trim().equals("")) {
                 DialogHelper.alert(this, "Số Lượng không được để trống");
                 return true;
-            } else if (Double.parseDouble(txtDonGia1.getText()) < 0) {
+            }  else if(Double.parseDouble(txtDonGia1.getText())<0){
                 DialogHelper.alert(this, "Giá Sản Phẩm Không được <0");
                 return true;
-            } else if (Integer.parseInt(txtSoLuong.getText()) < 0) {
+            } else if(Integer.parseInt(txtSoLuong.getText())<0){
                 DialogHelper.alert(this, "Số Lượng Không Được < 0");
                 return true;
-            } else {
+            }
+            else{
                 return false;
             }
-        } catch (NumberFormatException e) {
+        }catch (NumberFormatException e) {
             DialogHelper.alert(this, "Số lượng và giá tiền phải là số");
             return true;
-        } catch (Exception e) {
+        }  catch (Exception e) {
             e.printStackTrace();
-            return true;
+            return true ;
         }
     }
-
+     
+    
 }
