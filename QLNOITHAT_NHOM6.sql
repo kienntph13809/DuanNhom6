@@ -152,6 +152,7 @@ drop table CTHOADON
 CREATE TABLE CTHOADON(
 MAHD VARCHAR(15),
 MASP VARCHAR(15),
+TENSP VARCHAR(50),
 SOLUONG INT,
 DONGIA MONEY,
 THANHTIEN MONEY,
@@ -232,7 +233,7 @@ join chatlieu on SANPHAM.Macl = chatlieu.Macl
     insert into HOADON(MAHD,MASP,MAKH,TENTK,MASK,UUDAI,TONGTIENTT,TRANGTHAI,ghichu) values (?,?,?,?,?,?,?,?,?,?)
 	  insert into HOADON(MAHD,MASP,MAKH,TENTK,MASK,NGAYLAP,UUDAI,TONGTIENTT,TRANGTHAI,ghichu) values ('HD03','sp03','KH15','adminduc',NULL,NULL,6500000,1,null)
 
-  insert into CTHOADON values('HD01','SP01',1,6500000,6500000,1)
+  insert into CTHOADON values('HD01','sp01',N'Bàn tr?m hình r?ng',1,6500000,6500000,1)
     insert into CTHOADON values('HD02','SP02',1,6500000,6500000,1)
 	  insert into CTHOADON values('HD03','SP03',1,6500000,6500000,1)
 
@@ -266,3 +267,10 @@ from CTHOADON join SANPHAM on CTHOADON.MASP = SANPHAM.MASP
             WHERE MAHD = 'hd02'
 			select MASP,TENSP,SOLUONG,TenCl,DONGIA,tendm,MOTA,SANPHAM.TRANGTHAI from SANPHAM join chatlieu on SANPHAM.Macl = chatlieu.Macl join danhmuc on SANPHAM.MADM = danhmuc.madm
                 where SANPHAM.TRANGTHAI = 1
+				SELECT MaHD,MASP,CONVERT(NVARCHAR,NGAYLAP,103) as NGAYLAP,
+                TENTK,MASK,UuDai,MAKH,TONGTIENTT,GhiChu,TRANGTHAI
+                FROM HoaDon 
+                where TRANGTHAI = 1
+				
+				   SELECT*FROM HOADON JOIN TAIKHOAN ON HOADON.TENTK = TAIKHOAN.TENTK
+							where  MAHD= ? and hoadon.TRANGTHAI = 1
