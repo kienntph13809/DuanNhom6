@@ -61,7 +61,7 @@ public class Banhang extends javax.swing.JInternalFrame {
         fillCboDanhMuc();
         showHoaDonCho();
         lblTenNV.setText(Auth.user.getTentk());
-        
+
     }
 
     public String dinhDangTien(float so) {
@@ -782,7 +782,7 @@ public class Banhang extends javax.swing.JInternalFrame {
 //    }
     HoaDon getForm() {
         String soHd = "HD0" + daobh.getSoHD();
-
+        
         HoaDon hd = new HoaDon();
         hd.setMahd(soHd);
         hd.setTentk(lblTenNV.getText());
@@ -834,8 +834,8 @@ public class Banhang extends javax.swing.JInternalFrame {
         float tongTien = 0;
         float giamgia5 = 0;
         float giamgia10 = 0;
-        float tienthanhtoan =0;
-        float phantram =0;
+        float tienthanhtoan = 0;
+        float phantram = 0;
 
         int soDong = tbnbanhang.getRowCount();
         if (soDong == 0) {
@@ -850,15 +850,15 @@ public class Banhang extends javax.swing.JInternalFrame {
                 lblTongTien.setText(this.dinhDangTien(tongTien));
                 if (tongTien < 5000000) {
                     giamgia5 += (float) (tongTien / 100 * 5);
-                    tienthanhtoan+=(float)(tongTien-giamgia5) ;
+                    tienthanhtoan += (float) (tongTien - giamgia5);
 //                    phantram+=(float) (tongTien/);
                     lblGiamGia.setText(this.dinhDangTien(giamgia5));
-                    lbtienthanhtoan.setText(this.dinhDangTien(tienthanhtoan)+".VND");
+                    lbtienthanhtoan.setText(this.dinhDangTien(tienthanhtoan) + ".VND");
                 } else {
                     giamgia10 += (float) (tongTien / 100 * 10);
-                     tienthanhtoan+=(float)(tongTien-giamgia10);
+                    tienthanhtoan += (float) (tongTien - giamgia10);
                     lblGiamGia.setText(this.dinhDangTien(giamgia10));
-                     lbtienthanhtoan.setText(this.dinhDangTien(tienthanhtoan));
+                    lbtienthanhtoan.setText(this.dinhDangTien(tienthanhtoan));
                 }
 
             }
@@ -990,6 +990,7 @@ public class Banhang extends javax.swing.JInternalFrame {
             HoaDonChiTiet hdct = new HoaDonChiTiet();
             hdct.setMahd(txtMaHd.getText());
             hdct.setMaSP(tbnbanhang.getValueAt(i, 0) + "");
+            hdct.setTensp(tbnbanhang.getValueAt(i, 1) + "");
             hdct.setDongia(Float.parseFloat(tbnbanhang.getValueAt(i, 2) + ""));
             hdct.setSoluong(Integer.parseInt(tbnbanhang.getValueAt(i, 3) + ""));
             hdct.setThanhtien(Float.parseFloat(lblTongTien.getText()));
@@ -1058,6 +1059,7 @@ public class Banhang extends javax.swing.JInternalFrame {
                     Sanpham sp = new Sanpham();
                     sp.setSoluong(soLuongMoi);
                     sp.setMasp(tbnbanhang.getValueAt(i, 0) + "");
+
                     daosp.updateBanHang(sp);
                 }
 

@@ -32,6 +32,10 @@ public class HoaDonDAO {
             + "       where MAHD = ?        ";
     String UPDATE_HD = " update HOADON set MASP = ?,TONGTIENTT= ?\n"
             + "		 where MAHD = ?";
+    String SELECT_hd = "	SELECT MaHD,MASP,CONVERT(NVARCHAR,NGAYLAP,103) as NGAYLAP,\n"
+            + "                TENTK,MASK,UuDai,MAKH,TONGTIENTT,GhiChu,TRANGTHAI\n"
+            + "                FROM HoaDon \n"
+            + "                where TRANGTHAI = 1";
 
     public void insert(HoaDon model) {
         jdbcKien.executeUpdate(INSERT_SQL, model.getMahd(), model.getTentk(), model.getTongTien(), model.getTrangThai(), model.getGhichu());
@@ -43,18 +47,18 @@ public class HoaDonDAO {
             ResultSet rs = jdbcKien.executeQuery(sqlString, args);
             while (rs.next()) {
                 HoaDon hd = new HoaDon();
-                hd.setMahd(rs.getString("MaHd"));
-                hd.setMasp(rs.getString("Masp"));
-                hd.setMakh(rs.getString("Makh"));
+                hd.setMahd(rs.getString(1));
+                hd.setMasp(rs.getString(2));
+                hd.setMakh(rs.getString(3));
 //                hd.setTenkh(rs.getString("TENKH"));
-                hd.setTentk(rs.getString("TENTK"));
+                hd.setTentk(rs.getString(4));
 //                hd.setHoten(rs.getString("HOTEN"));
-                hd.setMask(rs.getInt("MASK"));
-                hd.setNgaylap(rs.getDate("NGAYLAP"));
-                hd.setUudai(rs.getFloat("UUDAI"));
-                hd.setTongTien(rs.getFloat("TONGTIENTT"));
-                hd.setTrangThai(rs.getBoolean("TRANGTHAI"));
-                hd.setGhichu(rs.getString("ghichu"));
+                hd.setMask(rs.getInt(5));
+                hd.setNgaylap(rs.getDate(6));
+                hd.setUudai(rs.getFloat(7));
+                hd.setTongTien(rs.getFloat(8));
+                hd.setTrangThai(rs.getBoolean(9));
+                hd.setGhichu(rs.getString(10));
 
                 list.add(hd);
             }
@@ -95,6 +99,19 @@ public class HoaDonDAO {
     public List<HoaDon> findById(String id) {
         String sql = "SELECT *from HOADON\n"
                 + "where MaHD = ? and TRANGTHAI = 1";
+        return selectBySQL(sql, id);
+
+    }
+
+    public List<HoaDon> selectHD() {
+        String sql = "SELECT*FROM HOADON JOIN TAIKHOAN ON HOADON.TENTK = TAIKHOAN.TENTK\n"
+                + "where hoadon.TRANGTHAI = 1";
+        return selectBySQL(sql);
+    }
+
+    public List<HoaDon> TimKiemMa(String id) {
+        String sql = "  SELECT*FROM HOADON JOIN TAIKHOAN ON HOADON.TENTK = TAIKHOAN.TENTK\n"
+                + "where  MAHD= ? and hoadon.TRANGTHAI = 1";
         return selectBySQL(sql, id);
 
     }

@@ -22,7 +22,7 @@ public class HoaDonChiTietDao {
     String SELECT_BY_ID_SQL = "select *\n"
             + "from CTHOADON join SANPHAM on CTHOADON.MASP = SANPHAM.MASP\n"
             + "       where MAHD = ?";
-    String INSERT_SQL = "  insert into CTHOADON(MAHD,MASP,SOLUONG,DONGIA,THANHTIEN,TRANGTHAI) values(?,?,?,?,?,?)";
+    String INSERT_SQL = "  insert into CTHOADON(MAHD,MASP,tensp,SOLUONG,DONGIA,THANHTIEN,TRANGTHAI) values(?,?,?,?,?,?,?)";
     String DELETE_SQL = "delete from CTHOADON where MAHD = ?";
 
     public List<HoaDonChiTiet> selectBySQL(String sqlString, Object... args) {
@@ -54,7 +54,7 @@ public class HoaDonChiTietDao {
     }
 
     public void insert(HoaDonChiTiet model) {
-        jdbcKien.executeUpdate(INSERT_SQL, model.getMahd(), model.getMaSP(), model.getSoluong(), model.getDongia(), model.getThanhtien(), model.getTrangthai());
+        jdbcKien.executeUpdate(INSERT_SQL, model.getMahd(), model.getMaSP(),model.getTensp(), model.getSoluong(), model.getDongia(), model.getThanhtien(), model.getTrangthai());
     }
 
     public void delete(String key) {
