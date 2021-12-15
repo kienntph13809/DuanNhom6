@@ -53,7 +53,7 @@ CONSTRAINT PK_SANPHAM PRIMARY KEY (MASP),
 foreign key(MADM) references danhmuc,
 foreign key(MaCl) references chatlieu
 )
-select SANPHAM.MASP from SANPHAM join SUKIEN on SANPHAM.MASP=SUKIEN.MASP
+
 
 
 
@@ -69,6 +69,8 @@ VAITRO BIT,
 TRANGTHAI BIT,
 PRIMARY KEY (TENTK))
 
+select * from TAIKHOAN where TENTK =? , MATKHAU=?
+
 --SỰ KIỆN
 if OBJECT_ID('SUKIEN')is not null
 drop table SUKIEN
@@ -77,13 +79,23 @@ CREATE TABLE SUKIEN(
 MASK varchar(20) ,
 TENSK NVARCHAR(50),
 TGBATDAU DATE,
-TGKETTHIC DATE,
-LoaiSuKien bit default 1,
-TRANGTHAI BIT,
-MASP VARCHAR(15),
-PRIMARY KEY (MASK),
-foreign key(MASP) references SANPHAM
+TGKETTHUC DATE,
+GIAMGIA FLOAT ,
+TRANGTHAI BIT DEFAULT 1, 
+SOSK INT IDENTITY
+PRIMARY KEY (MASK)
 )
+
+
+
+
+Select * from SUKIEN where TRANGTHAI =1 
+
+select SANPHAM.MASP,TENSP,DONGIA,SANPHAM.TRANGTHAI
+from SANPHAM join SUKIEN on SANPHAM.MASP=SUKIEN.MASP where SANPHAM.TRANGTHAI=1
+
+INSERT INTO SUKIEN(MASK) VALUES ('SK06')
+INSERT INTO SUKIEN(TRANGTHAI,MASK) VALUES (1,'SK0010')
 select * from SUKIEN where TRANGTHAI=1
 
 select * from SUKIEN
@@ -152,7 +164,6 @@ drop table CTHOADON
 CREATE TABLE CTHOADON(
 MAHD VARCHAR(15),
 MASP VARCHAR(15),
-TENSP VARCHAR(50),
 SOLUONG INT,
 DONGIA MONEY,
 THANHTIEN MONEY,
@@ -160,6 +171,7 @@ TRANGTHAI BIT
 foreign key(MAHD) references HOADON,
 FOREIGN KEY (MASP) REFERENCES SANPHAM)
 --doanh m?c
+delete from SUKIEN
 
 select * from KHACHHANG
 select * from SANPHAM
@@ -189,7 +201,7 @@ insert into SANPHAM values ('SP02',N'Ghế trạm hình rồng',3,1,4500000,2,N'
 insert into SANPHAM values ('SP03',N'Gương trạm hình rồng',2,1,2500000,3,N'Gương đẹp hình Rồng uốn lượn',1)
 insert into SANPHAM values ('SP04',N'Bàn Làm Việc',2,1,5500000,3,N'Đẹp Chất lượng tốt',1)
 insert into SANPHAM values ('SP05',N'Bàn làm việc',2,1,4500000,3,N'Kệ sách đẹp hình Rồng uốn lượn',1)
-insert into SANPHAM values ('SP06',N'Két sắt',2,1,4500000,3,N'Kệ sách đẹp hình Rồng uốn lượn',1)
+insert into SANPHAM values ('SP06',N'Két sắt',2,1,4500000,3,N'KÉT SẮT AN TOÀN',1)
 insert into SANPHAM values ('SP07',N'Kệ sách',2,1,4500000,3,N'Kệ sách đẹp hình Rồng uốn lượn',1)
 insert into SANPHAM values ('SP08',N'Kệ sách',2,1,4500000,3,N'Kệ sách đẹp hình Rồng uốn lượn',1)
 insert into SANPHAM values ('SP09',N'Kệ sách',2,1,4500000,3,N'Kệ sách đẹp hình Rồng uốn lượn',1)
@@ -211,14 +223,15 @@ insert into TAIKHOAN values ('adminkien','123',N'Nguyễn Trung Kiên',0,1)
 insert into TAIKHOAN values ('admintu','123',N'Phạm Anh Tú',0,1)
 insert into TAIKHOAN values ('adminduc','123',N'Đào Văn Đức',1,1)
 
-insert into SUKIEN values ('SK01',N'KHUYẾN MÃI',GETDATE(),GETDATE()+5,1,1,'SP01')
-insert into SUKIEN values ('SK02',N'KHUYẾN MÃI 30%',GETDATE(),GETDATE()+7,1,1,'SP02')
-insert into SUKIEN values ('SK03',N'KHUYẾN MÃI 40%',GETDATE(),GETDATE()+10,1,1,'SP03')
-insert into SUKIEN values ('SK04',N'KHUYẾN MÃI 40%',GETDATE(),GETDATE()+3,1,0,'SP04')
-insert into SUKIEN values ('SK05',N'KHUYẾN MÃI 40%',GETDATE(),GETDATE()+4,1,1,'SP05')
+insert into SUKIEN values ('SK01',N'KHUYẾN MÃI',GETDATE(),GETDATE()+5,10,1)
+insert into SUKIEN values ('SK02',N'TRI ÂN KHÁCH HÀNG ',GETDATE(),GETDATE()+7,5,1)
+insert into SUKIEN values ('SK03',N'SIÊU SALE ',GETDATE(),GETDATE()+10,15,1)
+insert into SUKIEN values ('SK04',N'SALE SẬP SÀN' ,GETDATE(),GETDATE()+3,0,1)
+insert into SUKIEN values ('SK05',N'SIÊU KHUYẾN MÃI',GETDATE(),GETDATE()+4,20,1)
+insert into SUKIEN values ('SK06',N'SIÊU KHUYẾN MÃI',GETDATE(),GETDATE()+4,20,0)
 update SUKIEN SET TENSK =?, UUDAI =? WHERE MASK=?
 
-select SANPHAM.MASP,tensp,soluong,chatlieu.Macl,tendm,dongia,anhsp,mota
+select SANPHAM.MASP,tensp,soluong,chatlieu.Macl,tendm,dongia,mota
 from danhmuc join SANPHAM on danhmuc.madm =  SANPHAM.MADM
 join chatlieu on SANPHAM.Macl = chatlieu.Macl
  where tendm = 'Gương'
@@ -233,7 +246,7 @@ join chatlieu on SANPHAM.Macl = chatlieu.Macl
     insert into HOADON(MAHD,MASP,MAKH,TENTK,MASK,UUDAI,TONGTIENTT,TRANGTHAI,ghichu) values (?,?,?,?,?,?,?,?,?,?)
 	  insert into HOADON(MAHD,MASP,MAKH,TENTK,MASK,NGAYLAP,UUDAI,TONGTIENTT,TRANGTHAI,ghichu) values ('HD03','sp03','KH15','adminduc',NULL,NULL,6500000,1,null)
 
-  insert into CTHOADON values('HD01','sp01',N'Bàn tr?m hình r?ng',1,6500000,6500000,1)
+  insert into CTHOADON values('HD01','SP01',1,6500000,6500000,1)
     insert into CTHOADON values('HD02','SP02',1,6500000,6500000,1)
 	  insert into CTHOADON values('HD03','SP03',1,6500000,6500000,1)
 
@@ -265,12 +278,10 @@ from CTHOADON join SANPHAM on CTHOADON.MASP = SANPHAM.MASP
          select max(soSP) from SANPHAM   
 		 UPDATE HOADON SET TONGTIENTT = 1000000,TRANGTHAI = 0,GHICHU = null
             WHERE MAHD = 'hd02'
-			select MASP,TENSP,SOLUONG,TenCl,DONGIA,tendm,MOTA,SANPHAM.TRANGTHAI from SANPHAM join chatlieu on SANPHAM.Macl = chatlieu.Macl join danhmuc on SANPHAM.MADM = danhmuc.madm
-                where SANPHAM.TRANGTHAI = 1
-				SELECT MaHD,MASP,CONVERT(NVARCHAR,NGAYLAP,103) as NGAYLAP,
-                TENTK,MASK,UuDai,MAKH,TONGTIENTT,GhiChu,TRANGTHAI
-                FROM HoaDon 
-                where TRANGTHAI = 1
-				
-				   SELECT*FROM HOADON JOIN TAIKHOAN ON HOADON.TENTK = TAIKHOAN.TENTK
-							where  MAHD= ? and hoadon.TRANGTHAI = 1
+
+			select SANPHAM.MASP,tensp,soluong,TenCl,dongia,tendm,mota,sanpham.TRANGTHAI
+                        FROM SANPHAM
+                        join dbo.chatlieu on SANPHAM.Macl = chatlieu.Macl
+                	join danhmuc on danhmuc.madm = SANPHAM.MADM
+          	where sanpham.TRANGTHAI = 1 and
+                       	TENCL = N'Gỗ'
