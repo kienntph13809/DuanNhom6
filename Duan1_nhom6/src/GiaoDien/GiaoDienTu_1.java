@@ -51,7 +51,7 @@ public class GiaoDienTu_1 extends javax.swing.JFrame {
     }
 
     public void showLogin() {
-        new DANGNHAP(this, true).setVisible(true);
+        new DANGNHAP_1(this, true).setVisible(true);
     }
 
     public void openLogin() {
