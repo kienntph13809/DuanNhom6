@@ -18,6 +18,15 @@ import model.Sanpham;
  * @author kien5
  */
 public class SanPhamDao {
+    String sql_select ="select SANPHAM.MASP,TENSP,SOLUONG,DONGIA,TRANGTHAI\n" +
+"from SANPHAM";
+    
+    String selectAll_6 =  "SELECT * FROM dbo.CHITIETSANPHAM JOIN dbo.CHATLIEU ON CHATLIEU.MaChatLieu = CHITIETSANPHAM.MaChatLieu\n"
+            + "		JOIN dbo.KICHTHUOC ON KICHTHUOC.MaKichThuoc = CHITIETSANPHAM.MaKichThuoc\n"
+            + "		JOIN dbo.MAUSAC ON MAUSAC.MaMauSac = CHITIETSANPHAM.MaMauSac\n"
+            + "		JOIN dbo.LOAISP ON LOAISP.MaLoai = CHITIETSANPHAM.MaLoai\n"
+            + "		JOIN dbo.SANPHAM ON SANPHAM.MaSP = CHITIETSANPHAM.MaSP "
+            + "         join SANPHAM_KHUYENMAI on CHITIETSANPHAM.MaCTSP = SANPHAM_KHUYENMAI.MaCTSP where MaKM like ? " ;
 
     private static Sanpham readFromResultSet(ResultSet rs) throws SQLException {
         Sanpham model = new Sanpham();
@@ -51,11 +60,23 @@ public class SanPhamDao {
         return list;
 
     }
+//     public List<Sanpham> selectAll_6 ( String k ){
+//        return readFromResultSet(selectAll_6, k );
+//    }
 
     //lấy về list món
     public static List<Sanpham> getListSanPham() {
         String sql = "select MASP,TENSP,SOLUONG,TenCl,DONGIA,tendm,MOTA,SANPHAM.TRANGTHAI from SANPHAM join chatlieu on SANPHAM.Macl = chatlieu.Macl join danhmuc on SANPHAM.MADM = danhmuc.madm\n"
                 + "where SANPHAM.TRANGTHAI = 1";
+        return select(sql);
+
+    }
+ public void insert2(Sanpham x) {
+        jdbcKien.Update( sql_select, x.getMasp(), x.getTensp(),x.getSoluong(),x.getDongia(),x.getTrangthai()) ;
+    }
+    public static List<Sanpham> getListSanPham1() {
+        String sql = "select SANPHAM.MASP,TENSP,DONGIA,SANPHAM.TRANGTHAI\n"
+                + "from SANPHAM join SUKIEN on SANPHAM.MASP=SUKIEN.MASP where SANPHAM.TRANGTHAI=1";
         return select(sql);
 
     }
@@ -86,6 +107,9 @@ public class SanPhamDao {
                 entity.getTrangthai()
         );
 
+    }
+    public List<Sanpham> selectAll_6 ( String k ){
+        return select(selectAll_6, k );
     }
 
     public void updatesanPham(Sanpham sp) {
@@ -171,6 +195,4 @@ public class SanPhamDao {
         return soSP;
     }
 
- 
-    
 }

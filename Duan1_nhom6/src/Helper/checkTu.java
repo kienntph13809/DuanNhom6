@@ -5,6 +5,7 @@
  */
 package Helper;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import static java.awt.Color.pink;
 import static java.awt.Color.white;
@@ -28,6 +29,21 @@ public class checkTu {
             return false;
         }
     }
+     public static boolean checkSoDuong(JTextField txt) {
+        try {
+            int so = Integer.parseInt(txt.getText());
+            if (so < 0) {
+                txt.requestFocus();
+                DialogHelper.alert(txt.getRootPane(), "Vui Lòng Nhập Số Dương");
+                return false;
+            } else {
+                return true;
+            }
+        } catch (Exception e) {
+            DialogHelper.alert(txt.getRootPane(), "Vui Lòng Nhập Số");
+            return false;
+        }
+    }
 
     public static boolean checkEmail(JTextField txt) {
         txt.setBackground(white);
@@ -38,6 +54,31 @@ public class checkTu {
         } else {
             txt.setBackground(pink);
             JOptionPane.showMessageDialog(txt, "không đúng định dạng");
+            return false;
+        }
+    }
+    public static boolean checkTrongJdate(JDateChooser txt) {
+
+        if (((JTextField) txt.getDateEditor().getUiComponent()).getText().equals("")) {
+            DialogHelper.alert(txt.getRootPane(), "Vui Lòng Không Để Trống");
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    public static boolean checkSoDuong1(JTextField txt) {
+        try {
+            int so = Integer.parseInt(txt.getText());
+            if (so < 0) {
+                txt.requestFocus();
+                DialogHelper.alert(txt.getRootPane(), "Vui Lòng Nhập Số Dương");
+                return false;
+            } else {
+                return true;
+            }
+        } catch (Exception e) {
+            DialogHelper.alert(txt.getRootPane(), "Vui Lòng Nhập Số");
             return false;
         }
     }
@@ -72,6 +113,15 @@ public class checkTu {
             txt.setBackground(pink);
             JOptionPane.showMessageDialog(txt, "Không được để trống ");
             return false;
+        }
+    }
+    public static boolean checkTrongJdate1(JDateChooser txt) {
+
+        if (((JTextField) txt.getDateEditor().getUiComponent()).getText().equals("")) {
+            DialogHelper.alert(txt.getRootPane(), "Vui Lòng Không Để Trống");
+            return false;
+        } else {
+            return true;
         }
     }
       public static boolean checkMaNV(JTextField txt) {

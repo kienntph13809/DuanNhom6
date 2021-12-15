@@ -22,6 +22,7 @@ import model.taikhoan;
  * @author kien5
  */
 public class TaiKhoanDao {
+     final String SELECT_BYID = "SELECT*FROM dbo.NHANVIEN WHERE MaNV = ?";
 
     static Connection con = Utils.myConnection();
 
@@ -176,4 +177,5 @@ public class TaiKhoanDao {
                 + "where TENTK = ?";
         return select(sql,key);
     }
+      
 }

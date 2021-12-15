@@ -20,7 +20,7 @@ public class Utils {
         try {
             String url = "jdbc:sqlserver://DESKTOP-1RHG7VL\\SQLEXPRESS:1433;databaseName=" + "QLNOITHAT_NHOM6";
             String user = "sa";
-            String pass = "123";
+            String pass = "1";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             cnn = DriverManager.getConnection(url, user, pass);
             System.out.println("Kết nối thành công");

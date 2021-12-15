@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author LENOVO
@@ -13,25 +15,21 @@ public class sukien {
 
     private String MaSuKien;
     private String TenSuKien;
-    private float UuDai;
-    private String tgBatDau;
-    private String tgKetThuc;
-    private boolean loaiSuKien;
+    private Date tgBatDau;
+    private Date tgKetThuc;
+    private Float uudai;
     private boolean trangThai;
-    private String masp;
 
     public sukien() {
     }
 
-    public sukien(String MaSuKien, String TenSuKien, float UuDai, String tgBatDau, String tgKetThuc, boolean loaiSuKien, boolean trangThai, String masp) {
+    public sukien(String MaSuKien, String TenSuKien, Date tgBatDau, Date tgKetThuc, Float uudai, boolean trangThai) {
         this.MaSuKien = MaSuKien;
         this.TenSuKien = TenSuKien;
-        this.UuDai = UuDai;
         this.tgBatDau = tgBatDau;
         this.tgKetThuc = tgKetThuc;
-        this.loaiSuKien = loaiSuKien;
+        this.uudai = uudai;
         this.trangThai = trangThai;
-        this.masp = masp;
     }
 
     public String getMaSuKien() {
@@ -50,36 +48,28 @@ public class sukien {
         this.TenSuKien = TenSuKien;
     }
 
-    public float getUuDai() {
-        return UuDai;
-    }
-
-    public void setUuDai(float UuDai) {
-        this.UuDai = UuDai;
-    }
-
-    public String getTgBatDau() {
+    public Date getTgBatDau() {
         return tgBatDau;
     }
 
-    public void setTgBatDau(String tgBatDau) {
+    public void setTgBatDau(Date tgBatDau) {
         this.tgBatDau = tgBatDau;
     }
 
-    public String getTgKetThuc() {
+    public Date getTgKetThuc() {
         return tgKetThuc;
     }
 
-    public void setTgKetThuc(String tgKetThuc) {
+    public void setTgKetThuc(Date tgKetThuc) {
         this.tgKetThuc = tgKetThuc;
     }
 
-    public boolean isLoaiSuKien() {
-        return loaiSuKien;
+    public Float getUudai() {
+        return uudai;
     }
 
-    public void setLoaiSuKien(boolean loaiSuKien) {
-        this.loaiSuKien = loaiSuKien;
+    public void setUudai(Float uudai) {
+        this.uudai = uudai;
     }
 
     public boolean isTrangThai() {
@@ -90,19 +80,9 @@ public class sukien {
         this.trangThai = trangThai;
     }
 
-    public String getMasp() {
-        return masp;
-    }
-
-    public void setMasp(String masp) {
-        this.masp = masp;
-    }
-
-   
     @Override
     public String toString() {
         return "sukien{" + "TenSuKien=" + TenSuKien + '}';
     }
-    
 
 }

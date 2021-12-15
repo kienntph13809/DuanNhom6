@@ -22,8 +22,9 @@ public class HoaDonChiTietDao {
     String SELECT_BY_ID_SQL = "select *\n"
             + "from CTHOADON join SANPHAM on CTHOADON.MASP = SANPHAM.MASP\n"
             + "       where MAHD = ?";
-    String INSERT_SQL = "  insert into CTHOADON(MAHD,MASP,tensp,SOLUONG,DONGIA,THANHTIEN,TRANGTHAI) values(?,?,?,?,?,?,?)";
+    String INSERT_SQL = "  insert into CTHOADON(MAHD,MASP,SOLUONG,DONGIA,THANHTIEN,TRANGTHAI) values(?,?,?,?,?,?)";
     String DELETE_SQL = "delete from CTHOADON where MAHD = ?";
+   
 
     public List<HoaDonChiTiet> selectBySQL(String sqlString, Object... args) {
         List<HoaDonChiTiet> list = new ArrayList<>();
@@ -54,7 +55,7 @@ public class HoaDonChiTietDao {
     }
 
     public void insert(HoaDonChiTiet model) {
-        jdbcKien.executeUpdate(INSERT_SQL, model.getMahd(), model.getMaSP(),model.getTensp(), model.getSoluong(), model.getDongia(), model.getThanhtien(), model.getTrangthai());
+        jdbcKien.executeUpdate(INSERT_SQL, model.getMahd(), model.getMaSP(), model.getSoluong(), model.getDongia(), model.getThanhtien(), model.getTrangthai());
     }
 
     public void delete(String key) {
@@ -64,12 +65,5 @@ public class HoaDonChiTietDao {
     public List<HoaDonChiTiet> selectAll() {
         return selectBySQL(SELECT_ALL);
     }
-
-    public List<HoaDonChiTiet> findById(String id) {
-        String sql = "select * from CTHoaDon\n"
-                + " where MaHD = ?";
-        return selectBySQL(sql, id);
-
-    }
-
+    
 }

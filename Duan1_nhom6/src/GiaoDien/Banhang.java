@@ -61,7 +61,7 @@ public class Banhang extends javax.swing.JInternalFrame {
         fillCboDanhMuc();
         showHoaDonCho();
         lblTenNV.setText(Auth.user.getTentk());
-
+        
     }
 
     public String dinhDangTien(float so) {
@@ -182,7 +182,7 @@ public class Banhang extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bán Hàng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 24))); // NOI18N
         jPanel2.setPreferredSize(new java.awt.Dimension(1150, 660));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Sản Phẩm Đã Chọn"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Giỏ Hàng"));
 
         tbnbanhang.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tbnbanhang.setModel(new javax.swing.table.DefaultTableModel(
@@ -190,11 +190,11 @@ public class Banhang extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Mã SẢN PHẨM", "TÊN SẢN PHẨM", "Đơn Giá", "Số Lương"
+                "Mã SẢN PHẨM", "TÊN SẢN PHẨM", "Đơn Giá", "Số Lương", "Giảm Giá"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -244,7 +244,7 @@ public class Banhang extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Hóa Đơm"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Hóa Đơn"));
 
         tblHoaDon.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tblHoaDon.setModel(new javax.swing.table.DefaultTableModel(
@@ -629,8 +629,6 @@ public class Banhang extends javax.swing.JInternalFrame {
                         .addContainerGap(53, Short.MAX_VALUE))))
         );
 
-        jPanel3.getAccessibleContext().setAccessibleName("Hóa Đơn");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -782,7 +780,7 @@ public class Banhang extends javax.swing.JInternalFrame {
 //    }
     HoaDon getForm() {
         String soHd = "HD0" + daobh.getSoHD();
-        
+
         HoaDon hd = new HoaDon();
         hd.setMahd(soHd);
         hd.setTentk(lblTenNV.getText());
@@ -834,8 +832,8 @@ public class Banhang extends javax.swing.JInternalFrame {
         float tongTien = 0;
         float giamgia5 = 0;
         float giamgia10 = 0;
-        float tienthanhtoan = 0;
-        float phantram = 0;
+        float tienthanhtoan =0;
+        float phantram =0;
 
         int soDong = tbnbanhang.getRowCount();
         if (soDong == 0) {
@@ -850,15 +848,16 @@ public class Banhang extends javax.swing.JInternalFrame {
                 lblTongTien.setText(this.dinhDangTien(tongTien));
                 if (tongTien < 5000000) {
                     giamgia5 += (float) (tongTien / 100 * 5);
-                    tienthanhtoan += (float) (tongTien - giamgia5);
+                    tienthanhtoan+=(float)(tongTien-giamgia5) ;
 //                    phantram+=(float) (tongTien/);
                     lblGiamGia.setText(this.dinhDangTien(giamgia5));
-                    lbtienthanhtoan.setText(this.dinhDangTien(tienthanhtoan) + ".VND");
+                    lbtienthanhtoan.setText(this.dinhDangTien(tienthanhtoan));
+                    
                 } else {
                     giamgia10 += (float) (tongTien / 100 * 10);
-                    tienthanhtoan += (float) (tongTien - giamgia10);
+                     tienthanhtoan+=(float)(tongTien-giamgia10);
                     lblGiamGia.setText(this.dinhDangTien(giamgia10));
-                    lbtienthanhtoan.setText(this.dinhDangTien(tienthanhtoan));
+                     lbtienthanhtoan.setText(this.dinhDangTien(tienthanhtoan));
                 }
 
             }
@@ -990,7 +989,6 @@ public class Banhang extends javax.swing.JInternalFrame {
             HoaDonChiTiet hdct = new HoaDonChiTiet();
             hdct.setMahd(txtMaHd.getText());
             hdct.setMaSP(tbnbanhang.getValueAt(i, 0) + "");
-            hdct.setTensp(tbnbanhang.getValueAt(i, 1) + "");
             hdct.setDongia(Float.parseFloat(tbnbanhang.getValueAt(i, 2) + ""));
             hdct.setSoluong(Integer.parseInt(tbnbanhang.getValueAt(i, 3) + ""));
             hdct.setThanhtien(Float.parseFloat(lblTongTien.getText()));
@@ -1059,7 +1057,6 @@ public class Banhang extends javax.swing.JInternalFrame {
                     Sanpham sp = new Sanpham();
                     sp.setSoluong(soLuongMoi);
                     sp.setMasp(tbnbanhang.getValueAt(i, 0) + "");
-
                     daosp.updateBanHang(sp);
                 }
 
